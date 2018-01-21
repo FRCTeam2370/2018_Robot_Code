@@ -23,8 +23,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team2370.robot.commands.ExampleDriveCommand;
 import org.usfirst.frc.team2370.robot.subsystems.DriveTrain;
 
-// Test message
-
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -47,6 +45,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		m_oi = new OI();
+		DriveTrain.motorSetup();
 		m_chooser.addDefault("Default Auto", new ExampleDriveCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
