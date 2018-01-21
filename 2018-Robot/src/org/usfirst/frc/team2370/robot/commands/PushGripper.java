@@ -9,9 +9,7 @@ package org.usfirst.frc.team2370.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-import org.usfirst.frc.team2370.robot.OI;
 import org.usfirst.frc.team2370.robot.Robot;
-import org.usfirst.frc.team2370.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2370.robot.subsystems.Gripper;
 
 /**
@@ -43,7 +41,7 @@ public class PushGripper extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-		DriveTrain.stopMotors();
+		
 	}
 
 	// Called when another command which requires one or more of the same
