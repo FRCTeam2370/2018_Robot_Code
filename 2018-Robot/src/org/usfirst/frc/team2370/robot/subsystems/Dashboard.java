@@ -7,25 +7,17 @@
 
 package org.usfirst.frc.team2370.robot.subsystems;
 
-import org.usfirst.frc.team2370.robot.RobotMap;
-
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- * Gripper Subsystem
+ * Dashboard Subsystem
  */
-public class Gripper extends Subsystem {
+public class Dashboard extends Subsystem {
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
-	
+
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());	
+		// setDefaultCommand(new MySpecialCommand());
 	}
-	public static void pullPush(double speed)
-	{
-		RobotMap.gripBoi.set(speed);
-		
-	}
-	
 }

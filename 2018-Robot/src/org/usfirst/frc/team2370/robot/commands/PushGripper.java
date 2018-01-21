@@ -12,14 +12,15 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team2370.robot.OI;
 import org.usfirst.frc.team2370.robot.Robot;
 import org.usfirst.frc.team2370.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team2370.robot.subsystems.Gripper;
 
 /**
  * An example command.  You can replace me with your own command.
  */
-public class DriveWithJoystick extends Command {
-	public DriveWithJoystick() {
+public class PushGripper extends Command {
+	public PushGripper() {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.kDriveTrain);
+		requires(Robot.kGripper);
 	}
 
 	// Called just before this Command runs the first time
@@ -30,7 +31,7 @@ public class DriveWithJoystick extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		DriveTrain.arcadeDrive(OI.stick.getRawAxis(1), OI.stick.getRawAxis(0));
+		Gripper.pullPush(.5);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

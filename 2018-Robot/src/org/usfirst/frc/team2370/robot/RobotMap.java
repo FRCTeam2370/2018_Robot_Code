@@ -32,5 +32,6 @@ public class RobotMap {
 	public static WPI_TalonSRX leftMaster = new WPI_TalonSRX(0);
 	public static WPI_TalonSRX rightSlave = new WPI_TalonSRX(0);
 	public static WPI_TalonSRX leftSlave = new WPI_TalonSRX(0);
+	public static WPI_TalonSRX gripBoi = new WPI_TalonSRX(0);
 	public static DifferentialDrive driveTrain = new DifferentialDrive(leftMaster, rightMaster);
 }
