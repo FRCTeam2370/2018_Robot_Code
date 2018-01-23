@@ -24,7 +24,7 @@ public class Gripper extends Subsystem {
 	}
 	public static void pullPush(double speed)
 	{
-		RobotMap.gripBoi.set(speed);
+		RobotMap.gripMotor.set(speed);
 		
 	}
 	
