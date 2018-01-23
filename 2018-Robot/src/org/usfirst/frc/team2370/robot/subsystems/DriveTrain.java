@@ -32,6 +32,9 @@ public class DriveTrain extends Subsystem {
 		RobotMap.rightMaster.set(0);
 		RobotMap.leftMaster.set(0);
 	}
+	public static void turn(double angle) {
+		
+	}
 	
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
