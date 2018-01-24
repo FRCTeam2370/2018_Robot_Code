@@ -9,11 +9,14 @@ package org.usfirst.frc.team2370.robot;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -48,4 +51,7 @@ public class RobotMap {
 	public static Compressor compressor = new Compressor(0);
 	public static Solenoid gearSolenoid1 = new Solenoid(0);
 	public static Solenoid gearSolenoid2 = new Solenoid(1);
+	
+	public static NetworkTable limeLightTable = NetworkTable.getTable("limelight");
+	public static UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 }

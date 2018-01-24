@@ -61,6 +61,7 @@ public class Robot extends TimedRobot {
 	public void robotInit() {
 		m_oi = new OI();
 		DriveTrain.motorSetup();
+		Vision.usbCamSetup();
 		m_chooser.addDefault("Default Auto", new ExampleDriveCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
