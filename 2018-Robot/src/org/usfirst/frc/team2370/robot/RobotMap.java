@@ -38,29 +38,31 @@ public class RobotMap {
 	// number and the module. For example you with a rangefinder:
 	// public static int rangefinderPort = 1;
 	// public static int rangefinderModule = 1;
-	
+
 	public static WPI_TalonSRX rightMaster = new WPI_TalonSRX(16);
 	public static WPI_TalonSRX leftMaster = new WPI_TalonSRX(17);
 	public static WPI_TalonSRX rightSlave = new WPI_TalonSRX(18);
 	public static WPI_TalonSRX leftSlave = new WPI_TalonSRX(19);
 	public static DifferentialDrive driveTrain = new DifferentialDrive(leftMaster, rightMaster);
-	//public static RobotDrive driveTrain = new RobotDrive(leftMaster, rightMaster);
-	
-	/*public static WPI_TalonSRX gripMotor = new WPI_TalonSRX(0);
-	
-	public static WPI_TalonSRX elevatorMotor = new WPI_TalonSRX(0);
-	
-	//public static DigitalInput testDigitalInput = new DigitalInput(0);
-	//public static DigitalOutput testDigitalOutput = new DigitalOutput(0);
-	
-	public static Compressor compressor = new Compressor(0);
-	public static Solenoid gearSolenoid1 = new Solenoid(0);
-	public static Solenoid gearSolenoid2 = new Solenoid(1);
-	*/
+	// public static RobotDrive driveTrain = new RobotDrive(leftMaster,
+	// rightMaster);
+
+	/*
+	 * public static WPI_TalonSRX gripMotor = new WPI_TalonSRX(0);
+	 * 
+	 * public static WPI_TalonSRX elevatorMotor = new WPI_TalonSRX(0);
+	 * 
+	 * //public static DigitalInput testDigitalInput = new DigitalInput(0); //public
+	 * static DigitalOutput testDigitalOutput = new DigitalOutput(0);
+	 * 
+	 * public static Compressor compressor = new Compressor(0); public static
+	 * Solenoid gearSolenoid1 = new Solenoid(0); public static Solenoid
+	 * gearSolenoid2 = new Solenoid(1);
+	 */
 	public static NetworkTable limeLightTable = NetworkTable.getTable("limelight");
 	public static UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-	
+
 	public static Joystick stick = new Joystick(0);
 	public static Button lbutton = new JoystickButton(RobotMap.stick, 5);
-    public static Button rbutton = new JoystickButton(RobotMap.stick, 6);
+	public static Button rbutton = new JoystickButton(RobotMap.stick, 6);
 }

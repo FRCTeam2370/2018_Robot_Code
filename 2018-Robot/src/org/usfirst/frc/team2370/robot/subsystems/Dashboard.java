@@ -21,7 +21,7 @@ public class Dashboard extends Subsystem {
 	public static void dashboard() {
 		SmartDashboard.putNumber("Test", 0);
 	}
-	
+
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());

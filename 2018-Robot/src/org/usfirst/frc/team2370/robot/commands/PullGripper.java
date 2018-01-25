@@ -13,7 +13,7 @@ import org.usfirst.frc.team2370.robot.Robot;
 import org.usfirst.frc.team2370.robot.subsystems.Gripper;
 
 /**
- * An example command.  You can replace me with your own command.
+ * An example command. You can replace me with your own command.
  */
 public class PullGripper extends Command {
 	public PullGripper() {

@@ -20,32 +20,38 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class DriveTrain extends Subsystem {
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
-	
+
 	public static void motorSetup() {
-		/*RobotMap.leftMaster.setSafetyEnabled(false);
-		RobotMap.rightMaster.setSafetyEnabled(false);
-		RobotMap.leftSlave.setSafetyEnabled(false);
-		RobotMap.rightSlave.setSafetyEnabled(false);
-		RobotMap.driveTrain.setSafetyEnabled(false);*/
-		
+		/*
+		 * RobotMap.leftMaster.setSafetyEnabled(false);
+		 * RobotMap.rightMaster.setSafetyEnabled(false);
+		 * RobotMap.leftSlave.setSafetyEnabled(false);
+		 * RobotMap.rightSlave.setSafetyEnabled(false);
+		 * RobotMap.driveTrain.setSafetyEnabled(false);
+		 */
+
 		RobotMap.leftSlave.follow(RobotMap.leftMaster);
 		RobotMap.rightSlave.follow(RobotMap.rightMaster);
 	}
+
 	public static void arcadeDrive(double speed, double rotation) {
 		RobotMap.driveTrain.arcadeDrive(speed, rotation);
 	}
+
 	public static void testDrive() {
 		RobotMap.rightMaster.set(1);
 		RobotMap.leftMaster.set(-1);
 	}
+
 	public static void stopMotors() {
 		RobotMap.rightMaster.set(0);
 		RobotMap.leftMaster.set(0);
 	}
+
 	public static void turn(double angle) {
-		
+
 	}
-	
+
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		setDefaultCommand(new DriveWithJoystick());

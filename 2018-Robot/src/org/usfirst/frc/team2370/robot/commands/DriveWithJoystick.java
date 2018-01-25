@@ -16,7 +16,7 @@ import org.usfirst.frc.team2370.robot.RobotMap;
 import org.usfirst.frc.team2370.robot.subsystems.DriveTrain;
 
 /**
- * An example command.  You can replace me with your own command.
+ * An example command. You can replace me with your own command.
  */
 public class DriveWithJoystick extends Command {
 	public DriveWithJoystick() {
@@ -34,7 +34,7 @@ public class DriveWithJoystick extends Command {
 	@Override
 	protected void execute() {
 		DriveTrain.arcadeDrive(RobotMap.stick.getRawAxis(1), RobotMap.stick.getRawAxis(0));
-		
+
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

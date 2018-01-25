@@ -23,11 +23,11 @@ public class Vision extends Subsystem {
 	public static double getLimeLightVal(String key) {
 		return RobotMap.limeLightTable.getNumber(key, 0);
 	}
-	
+
 	public static void usbCamSetup() {
 		RobotMap.camera.setResolution(640, 480);
 	}
-	
+
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());

@@ -20,19 +20,18 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * Operator interface
  */
 public class OI {
-	
-		
-	public static void init(){
-	    RobotMap.lbutton.whileHeld(new PullGripper());
-	    RobotMap.rbutton.whileHeld(new PushGripper());
-	    RobotMap.lbutton.whileHeld(new DriveWithJoystick());
-	    
-//		Button button = new JoystickButton(stick, 1);
-			
-//		button.whenPressed(new ExampleDriveCommand());
 
-//		button.whileHeld(new ExampleDriveCommand());
-		
-//		button.whenReleased(new ExampleDriveCommand());
+	public static void init() {
+		RobotMap.lbutton.whileHeld(new PullGripper());
+		RobotMap.rbutton.whileHeld(new PushGripper());
+		RobotMap.lbutton.whileHeld(new DriveWithJoystick());
+
+		// Button button = new JoystickButton(stick, 1);
+
+		// button.whenPressed(new ExampleDriveCommand());
+
+		// button.whileHeld(new ExampleDriveCommand());
+
+		// button.whenReleased(new ExampleDriveCommand());
 	}
 }
