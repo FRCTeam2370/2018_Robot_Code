@@ -47,9 +47,9 @@ public class RobotMap {
 	// public static RobotDrive driveTrain = new RobotDrive(leftMaster,
 	// rightMaster);
 
-	/*
-	 * public static WPI_TalonSRX gripMotor = new WPI_TalonSRX(0);
-	 * 
+	public static WPI_TalonSRX gripMotorLeft = new WPI_TalonSRX(0);
+	public static WPI_TalonSRX gripMotorRight = new WPI_TalonSRX(0);
+	/* 
 	 * public static WPI_TalonSRX elevatorMotor = new WPI_TalonSRX(0);
 	 * 
 	 * //public static DigitalInput testDigitalInput = new DigitalInput(0); //public

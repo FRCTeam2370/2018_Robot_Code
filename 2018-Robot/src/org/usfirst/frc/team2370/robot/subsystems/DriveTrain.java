@@ -22,14 +22,6 @@ public class DriveTrain extends Subsystem {
 	// here. Call these from Commands.
 
 	public static void motorSetup() {
-		/*
-		 * RobotMap.leftMaster.setSafetyEnabled(false);
-		 * RobotMap.rightMaster.setSafetyEnabled(false);
-		 * RobotMap.leftSlave.setSafetyEnabled(false);
-		 * RobotMap.rightSlave.setSafetyEnabled(false);
-		 * RobotMap.driveTrain.setSafetyEnabled(false);
-		 */
-
 		RobotMap.leftSlave.follow(RobotMap.leftMaster);
 		RobotMap.rightSlave.follow(RobotMap.rightMaster);
 	}
@@ -38,17 +30,16 @@ public class DriveTrain extends Subsystem {
 		RobotMap.driveTrain.arcadeDrive(speed, rotation);
 	}
 
-	public static void testDrive() {
-		RobotMap.rightMaster.set(1);
-		RobotMap.leftMaster.set(-1);
-	}
-
 	public static void stopMotors() {
 		RobotMap.rightMaster.set(0);
 		RobotMap.leftMaster.set(0);
 	}
 
 	public static void turn(double angle) {
+
+	}
+	
+	public static void driveStraight(double distance) {
 
 	}
 

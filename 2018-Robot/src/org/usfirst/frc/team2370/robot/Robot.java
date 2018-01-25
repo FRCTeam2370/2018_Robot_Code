@@ -25,6 +25,7 @@ import org.usfirst.frc.team2370.robot.subsystems.Dashboard;
 import org.usfirst.frc.team2370.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2370.robot.subsystems.Elevator;
 import org.usfirst.frc.team2370.robot.subsystems.Gripper;
+import org.usfirst.frc.team2370.robot.subsystems.LEDs;
 import org.usfirst.frc.team2370.robot.subsystems.Ramps;
 import org.usfirst.frc.team2370.robot.subsystems.Vision;
 
@@ -38,10 +39,11 @@ import org.usfirst.frc.team2370.robot.subsystems.Vision;
 public class Robot extends TimedRobot {
 	public static final DriveTrain kDriveTrain = new DriveTrain();
 	public static final Gripper kGripper = new Gripper();
-	public static final Elevator kElevator = new Elevator();
+	public static final Elevator kElevator = new Elevator(0,0,0);
 	public static final Ramps kRamps = new Ramps();
 	public static final Vision kVision = new Vision();
 	public static final Dashboard kDashboard = new Dashboard();
+	public static final LEDs kLEDs = new LEDs();
 	public static OI m_oi;
 	// public static RobotMap rMap;
 
