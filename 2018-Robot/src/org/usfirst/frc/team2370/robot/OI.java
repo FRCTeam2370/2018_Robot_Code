@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team2370.robot;
 
+import org.usfirst.frc.team2370.robot.commands.DriveWithJoystick;
 import org.usfirst.frc.team2370.robot.commands.ExampleDriveCommand;
 import org.usfirst.frc.team2370.robot.commands.PullGripper;
 import org.usfirst.frc.team2370.robot.commands.PushGripper;
@@ -19,15 +20,13 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * Operator interface
  */
 public class OI {
-	public static Joystick stick;
+	
 		
 	public static void init(){
-		stick = new Joystick(0);
-	    Button lbutton = new JoystickButton(stick, 5);
+	    RobotMap.lbutton.whileHeld(new PullGripper());
+	    RobotMap.rbutton.whileHeld(new PushGripper());
+	    RobotMap.lbutton.whileHeld(new DriveWithJoystick());
 	    
-	    Button rbutton = new JoystickButton(stick, 6);
-	    lbutton.whileHeld(new PullGripper());
-	    rbutton.whileHeld(new PushGripper());
 //		Button button = new JoystickButton(stick, 1);
 			
 //		button.whenPressed(new ExampleDriveCommand());

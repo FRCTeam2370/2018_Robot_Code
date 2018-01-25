@@ -8,9 +8,11 @@
 package org.usfirst.frc.team2370.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team2370.robot.OI;
 import org.usfirst.frc.team2370.robot.Robot;
+import org.usfirst.frc.team2370.robot.RobotMap;
 import org.usfirst.frc.team2370.robot.subsystems.DriveTrain;
 
 /**
@@ -25,12 +27,14 @@ public class DriveWithJoystick extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
+		DriveTrain.arcadeDrive(0, 0);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		DriveTrain.arcadeDrive(OI.stick.getRawAxis(1), OI.stick.getRawAxis(0));
+		DriveTrain.arcadeDrive(RobotMap.stick.getRawAxis(1), RobotMap.stick.getRawAxis(0));
+		
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -42,7 +46,7 @@ public class DriveWithJoystick extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-		DriveTrain.stopMotors();
+		//DriveTrain.stopMotors();
 	}
 
 	// Called when another command which requires one or more of the same

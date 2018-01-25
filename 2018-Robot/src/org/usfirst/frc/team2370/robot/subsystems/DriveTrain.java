@@ -8,10 +8,10 @@
 package org.usfirst.frc.team2370.robot.subsystems;
 
 import org.usfirst.frc.team2370.robot.OI;
+import org.usfirst.frc.team2370.robot.Robot;
 import org.usfirst.frc.team2370.robot.RobotMap;
 import org.usfirst.frc.team2370.robot.commands.DriveWithJoystick;
 
-import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -22,11 +22,21 @@ public class DriveTrain extends Subsystem {
 	// here. Call these from Commands.
 	
 	public static void motorSetup() {
+		/*RobotMap.leftMaster.setSafetyEnabled(false);
+		RobotMap.rightMaster.setSafetyEnabled(false);
+		RobotMap.leftSlave.setSafetyEnabled(false);
+		RobotMap.rightSlave.setSafetyEnabled(false);
+		RobotMap.driveTrain.setSafetyEnabled(false);*/
+		
 		RobotMap.leftSlave.follow(RobotMap.leftMaster);
 		RobotMap.rightSlave.follow(RobotMap.rightMaster);
 	}
 	public static void arcadeDrive(double speed, double rotation) {
 		RobotMap.driveTrain.arcadeDrive(speed, rotation);
+	}
+	public static void testDrive() {
+		RobotMap.rightMaster.set(1);
+		RobotMap.leftMaster.set(-1);
 	}
 	public static void stopMotors() {
 		RobotMap.rightMaster.set(0);
