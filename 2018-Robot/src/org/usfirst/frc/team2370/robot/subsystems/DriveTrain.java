@@ -13,6 +13,7 @@ import org.usfirst.frc.team2370.robot.RobotMap;
 import org.usfirst.frc.team2370.robot.commands.DriveWithJoystick;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * Drive Train Subsystem
@@ -28,6 +29,7 @@ public class DriveTrain extends Subsystem {
 
 	public static void arcadeDrive(double speed, double rotation) {
 		RobotMap.driveTrain.arcadeDrive(speed, rotation);
+
 	}
 
 	public static void stopMotors() {

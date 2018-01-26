@@ -15,10 +15,12 @@ import edu.wpi.first.wpilibj.command.PIDSubsystem;;
 public class Elevator extends PIDSubsystem {
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
+	public static final double BOTTOM = 0;
 
-	public Elevator(double p, double i, double d) {
-		super(p, i, d);
-		
+	public Elevator() {
+		super("Elevator", 2.0, 0.0, 0.0);
+		setAbsoluteTolerance(0.05);
+		getPIDController().setContinuous(false);
 	}
 
 	public void initDefaultCommand() {
@@ -28,11 +30,12 @@ public class Elevator extends PIDSubsystem {
 
 	@Override
 	protected double returnPIDInput() {
+    	//return .getAverageVoltage(); // returns the sensor value that is providing the feedback for the system
 		return 0;
-	}
+    }
 
 	@Override
-	protected void usePIDOutput(double output) {
-		
-	}
+    protected void usePIDOutput(double output) {
+    	//RobotMap.elevatorMotor.pidWrite(output); // this is where the computed output value fromthe PIDController is applied to the motor
+    }
 }

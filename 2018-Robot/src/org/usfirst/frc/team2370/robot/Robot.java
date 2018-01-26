@@ -39,7 +39,7 @@ import org.usfirst.frc.team2370.robot.subsystems.Vision;
 public class Robot extends TimedRobot {
 	public static final DriveTrain kDriveTrain = new DriveTrain();
 	public static final Gripper kGripper = new Gripper();
-	public static final Elevator kElevator = new Elevator(0,0,0);
+	public static final Elevator kElevator = new Elevator();
 	public static final Ramps kRamps = new Ramps();
 	public static final Vision kVision = new Vision();
 	public static final Dashboard kDashboard = new Dashboard();
