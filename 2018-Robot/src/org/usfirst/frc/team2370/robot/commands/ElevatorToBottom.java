@@ -1,5 +1,7 @@
 package org.usfirst.frc.team2370.robot.commands;
 
+import org.usfirst.frc.team2370.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -10,6 +12,7 @@ public class ElevatorToBottom extends Command {
     public ElevatorToBottom() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	requires(Robot.kElevator);
     }
 
     // Called just before this Command runs the first time

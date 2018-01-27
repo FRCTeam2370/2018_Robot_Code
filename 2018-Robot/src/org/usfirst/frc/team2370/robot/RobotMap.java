@@ -65,4 +65,7 @@ public class RobotMap {
 	public static Joystick stick = new Joystick(0);
 	public static Button lbutton = new JoystickButton(RobotMap.stick, 5);
 	public static Button rbutton = new JoystickButton(RobotMap.stick, 6);
+	public static Button elevatorToBottom = new JoystickButton(RobotMap.stick, 1);
+	public static Button elevatorToTop = new JoystickButton(RobotMap.stick, 2);
+	
 }

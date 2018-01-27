@@ -12,10 +12,13 @@ import org.usfirst.frc.team2370.robot.commands.ExampleDriveCommand;
 import org.usfirst.frc.team2370.robot.commands.MoveElevatorTest;
 import org.usfirst.frc.team2370.robot.commands.PullGripper;
 import org.usfirst.frc.team2370.robot.commands.PushGripper;
+import org.usfirst.frc.team2370.robot.commands.ElevatorToBottom;
+import org.usfirst.frc.team2370.robot.commands.ElevatorToTop;
 
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
+
+//import edu.wpi.first.wpilibj.Joystick;
+//import edu.wpi.first.wpilibj.buttons.Button;
+//import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * Operator interface
@@ -26,6 +29,10 @@ public class OI {
 		RobotMap.lbutton.whileHeld(new PullGripper());
 		RobotMap.rbutton.whileHeld(new PushGripper());
 		RobotMap.lbutton.whileHeld(new MoveElevatorTest());
+		
+		//You can switch these but uuuuuuuuh.
+		RobotMap.elevatorToBottom.whileHeld(new ElevatorToBottom());
+		RobotMap.elevatorToTop.whileHeld(new ElevatorToTop());
 
 		// Button button = new JoystickButton(stick, 1);
 
