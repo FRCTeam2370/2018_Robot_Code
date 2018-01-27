@@ -105,7 +105,7 @@ public class Robot extends TimedRobot {
 		 * MyAutoCommand(); break; case "Default Auto": default: autonomousCommand = new
 		 * ExampleCommand(); break; }
 		 */
-
+		
 		// schedule the autonomous command (example)
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.start();
@@ -126,6 +126,8 @@ public class Robot extends TimedRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
+		RobotMap.compressor.setClosedLoopControl(true);
+		RobotMap.compressor.start();
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
 		}

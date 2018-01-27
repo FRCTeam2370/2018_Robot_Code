@@ -1,5 +1,7 @@
 /*----------------------------------------------------------------------------*/
-/* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
+/* Copyright (c) 2017-2018 FIRST. All Rights Reser
+
+ved.                        */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
@@ -12,6 +14,8 @@ import org.usfirst.frc.team2370.robot.commands.ExampleDriveCommand;
 import org.usfirst.frc.team2370.robot.commands.MoveElevatorTest;
 import org.usfirst.frc.team2370.robot.commands.PullGripper;
 import org.usfirst.frc.team2370.robot.commands.PushGripper;
+import org.usfirst.frc.team2370.robot.commands.ShiftToFast;
+import org.usfirst.frc.team2370.robot.commands.ShiftToSlow;
 import org.usfirst.frc.team2370.robot.commands.ElevatorToBottom;
 import org.usfirst.frc.team2370.robot.commands.ElevatorToTop;
 
@@ -33,6 +37,10 @@ public class OI {
 		//You can switch these but uuuuuuuuh.
 		RobotMap.elevatorToBottom.whileHeld(new ElevatorToBottom());
 		RobotMap.elevatorToTop.whileHeld(new ElevatorToTop());
+		
+		//For shifting
+		RobotMap.shiftHigh.whileHeld(new ShiftToFast());
+		RobotMap.shiftLow.whileHeld(new ShiftToSlow());
 
 		// Button button = new JoystickButton(stick, 1);
 
