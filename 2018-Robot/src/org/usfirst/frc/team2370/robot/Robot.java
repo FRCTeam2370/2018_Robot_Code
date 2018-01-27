@@ -78,7 +78,7 @@ public class Robot extends TimedRobot {
 
 	}
 
-	@Override
+	@Override 
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 	}
@@ -95,7 +95,7 @@ public class Robot extends TimedRobot {
 	 * chooser code above (like the commented example) or additional comparisons to
 	 * the switch structure below with additional strings & commands.
 	 */
-	@Override
+	@Override 
 	public void autonomousInit() {
 		m_autonomousCommand = m_chooser.getSelected();
 
