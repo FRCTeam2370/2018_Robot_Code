@@ -49,9 +49,8 @@ public class RobotMap {
 
 	public static WPI_TalonSRX gripMotorLeft = new WPI_TalonSRX(0);
 	public static WPI_TalonSRX gripMotorRight = new WPI_TalonSRX(0);
+	public static WPI_TalonSRX elevatorMotor = new WPI_TalonSRX(12);
 	/* 
-	 * public static WPI_TalonSRX elevatorMotor = new WPI_TalonSRX(0);
-	 * 
 	 * //public static DigitalInput testDigitalInput = new DigitalInput(0); //public
 	 * static DigitalOutput testDigitalOutput = new DigitalOutput(0);
 	 * 

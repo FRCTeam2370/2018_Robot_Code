@@ -9,6 +9,7 @@ package org.usfirst.frc.team2370.robot;
 
 import org.usfirst.frc.team2370.robot.commands.DriveWithJoystick;
 import org.usfirst.frc.team2370.robot.commands.ExampleDriveCommand;
+import org.usfirst.frc.team2370.robot.commands.MoveElevatorTest;
 import org.usfirst.frc.team2370.robot.commands.PullGripper;
 import org.usfirst.frc.team2370.robot.commands.PushGripper;
 
@@ -24,7 +25,7 @@ public class OI {
 	public static void init() {
 		RobotMap.lbutton.whileHeld(new PullGripper());
 		RobotMap.rbutton.whileHeld(new PushGripper());
-		RobotMap.lbutton.whileHeld(new DriveWithJoystick());
+		RobotMap.lbutton.whileHeld(new MoveElevatorTest());
 
 		// Button button = new JoystickButton(stick, 1);
 

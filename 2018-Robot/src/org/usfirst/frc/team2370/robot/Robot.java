@@ -134,7 +134,12 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		SmartDashboard.putBoolean("Axis", RobotMap.stick.getRawButton(1));
+		SmartDashboard.putNumber("Position", RobotMap.elevatorMotor.getSensorCollection().getQuadraturePosition());
+		SmartDashboard.putNumber("Position2", RobotMap.elevatorMotor.getSelectedSensorPosition(0));
+		SmartDashboard.putNumber("Velocity", RobotMap.elevatorMotor.getSensorCollection().getQuadratureVelocity());
+		SmartDashboard.putNumber("Error", RobotMap.elevatorMotor.getErrorDerivative(0));
+		SmartDashboard.putNumber("Error2", RobotMap.elevatorMotor.getClosedLoopError(0));
+		SmartDashboard.putNumber("Setpoint", RobotMap.elevatorMotor.getClosedLoopTarget(0));
 	}
 
 	/**
