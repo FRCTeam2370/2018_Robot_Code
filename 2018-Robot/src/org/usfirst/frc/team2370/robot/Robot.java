@@ -25,6 +25,7 @@ import org.usfirst.frc.team2370.robot.subsystems.Dashboard;
 import org.usfirst.frc.team2370.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2370.robot.subsystems.Elevator;
 import org.usfirst.frc.team2370.robot.subsystems.Gripper;
+import org.usfirst.frc.team2370.robot.subsystems.LEDs;
 import org.usfirst.frc.team2370.robot.subsystems.Ramps;
 import org.usfirst.frc.team2370.robot.subsystems.Vision;
 
@@ -42,7 +43,12 @@ public class Robot extends TimedRobot {
 	public static final Ramps kRamps = new Ramps();
 	public static final Vision kVision = new Vision();
 	public static final Dashboard kDashboard = new Dashboard();
+
+
+	public static final LEDs kLEDs = new LEDs();
+
 	public static OI m_oi;
+	// public static RobotMap rMap;
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -54,7 +60,9 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		m_oi = new OI();
+		// rMap = new RobotMap();
 		DriveTrain.motorSetup();
+		Vision.usbCamSetup();
 		m_chooser.addDefault("Default Auto", new ExampleDriveCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
@@ -129,6 +137,13 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		SmartDashboard.putNumber("Position", RobotMap.elevatorMotor.getSensorCollection().getQuadraturePosition());
+		SmartDashboard.putNumber("Position2", RobotMap.elevatorMotor.getSelectedSensorPosition(0));
+		SmartDashboard.putNumber("Velocity", RobotMap.elevatorMotor.getSensorCollection().getQuadratureVelocity());
+		SmartDashboard.putNumber("Error", RobotMap.elevatorMotor.getErrorDerivative(0));
+		SmartDashboard.putNumber("Error2", RobotMap.elevatorMotor.getClosedLoopError(0));
+		SmartDashboard.putNumber("Setpoint", RobotMap.elevatorMotor.getClosedLoopTarget(0));
+	
 	}
 
 	/**

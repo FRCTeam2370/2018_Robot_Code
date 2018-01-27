@@ -8,17 +8,16 @@
 package org.usfirst.frc.team2370.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-
 import org.usfirst.frc.team2370.robot.Robot;
-import org.usfirst.frc.team2370.robot.subsystems.Gripper;
+import org.usfirst.frc.team2370.robot.subsystems.Elevator;
 
 /**
  * An example command. You can replace me with your own command.
  */
-public class PullGripper extends Command {
-	public PullGripper() {
+public class MoveElevatorTest extends Command {
+	public MoveElevatorTest() {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.kGripper);
+		requires(Robot.kElevator);
 	}
 
 	// Called just before this Command runs the first time
@@ -29,7 +28,7 @@ public class PullGripper extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Gripper.pullPush(-.5);
+		Elevator.setPos(100);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -41,7 +40,6 @@ public class PullGripper extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-		Gripper.pullPush(0);
 	}
 
 	// Called when another command which requires one or more of the same
