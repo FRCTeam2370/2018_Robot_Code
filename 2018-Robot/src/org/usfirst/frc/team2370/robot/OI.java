@@ -14,8 +14,10 @@ import org.usfirst.frc.team2370.robot.commands.ExampleDriveCommand;
 import org.usfirst.frc.team2370.robot.commands.MoveElevatorTest;
 import org.usfirst.frc.team2370.robot.commands.PullGripper;
 import org.usfirst.frc.team2370.robot.commands.PushGripper;
-import org.usfirst.frc.team2370.robot.commands.ShiftToFast;
-import org.usfirst.frc.team2370.robot.commands.ShiftToSlow;
+
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+
 import org.usfirst.frc.team2370.robot.commands.ElevatorToBottom;
 import org.usfirst.frc.team2370.robot.commands.ElevatorToTop;
 
@@ -30,17 +32,20 @@ import org.usfirst.frc.team2370.robot.commands.ElevatorToTop;
 public class OI {
 
 	public static void init() {
-		RobotMap.lbutton.whileHeld(new PullGripper());
-		RobotMap.rbutton.whileHeld(new PushGripper());
-		RobotMap.lbutton.whileHeld(new MoveElevatorTest());
+		Button elevatorToBottom = new JoystickButton(RobotMap.stick, 1);
+		Button elevatorToTop = new JoystickButton(RobotMap.stick, 2);
+		Button shiftHighButton = new JoystickButton(RobotMap.stick, 3);
+		Button shiftLowButton = new JoystickButton(RobotMap.stick, 4);
+		Button lbutton = new JoystickButton(RobotMap.stick, 5);
+		Button rbutton = new JoystickButton(RobotMap.stick, 6);
+		
+		lbutton.whileHeld(new PullGripper());
+		rbutton.whileHeld(new PushGripper());
+		lbutton.whileHeld(new MoveElevatorTest());
 		
 		//You can switch these but uuuuuuuuh.
-		RobotMap.elevatorToBottom.whileHeld(new ElevatorToBottom());
-		RobotMap.elevatorToTop.whileHeld(new ElevatorToTop());
-		
-		//For shifting
-		RobotMap.shiftHigh.whileHeld(new ShiftToFast());
-		RobotMap.shiftLow.whileHeld(new ShiftToSlow());
+		elevatorToBottom.whileHeld(new ElevatorToBottom());
+		elevatorToTop.whileHeld(new ElevatorToTop());
 
 		// Button button = new JoystickButton(stick, 1);
 

@@ -29,7 +29,6 @@ public class DriveTrain extends Subsystem {
 
 	public static void arcadeDrive(double speed, double rotation) {
 		RobotMap.driveTrain.arcadeDrive(speed, rotation);
-
 	}
 
 	public static void stopMotors() {

@@ -14,26 +14,36 @@ import org.usfirst.frc.team2370.robot.OI;
 import org.usfirst.frc.team2370.robot.Robot;
 import org.usfirst.frc.team2370.robot.RobotMap;
 import org.usfirst.frc.team2370.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team2370.robot.subsystems.Pneumatics;
 
 /**
  * An example command. You can replace me with your own command.
  */
-public class DriveWithJoystick extends Command {
-	public DriveWithJoystick() {
+public class ChangeGears extends Command {
+	public ChangeGears() {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.kDriveTrain);
+		requires(Robot.kPneumatics);
 	}
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		DriveTrain.arcadeDrive(0, 0);
+		
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		DriveTrain.arcadeDrive(RobotMap.stick.getRawAxis(1), RobotMap.stick.getRawAxis(0));
+		if (RobotMap.stick.getRawButton(3))
+		{
+			Pneumatics.setSolenoid1(false);
+			Pneumatics.setSolenoid2(true);
+		}
+		if (RobotMap.stick.getRawButton(4))
+		{
+			Pneumatics.setSolenoid2(false);
+			Pneumatics.setSolenoid1(true);
+		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

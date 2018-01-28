@@ -38,8 +38,10 @@ public class RobotMap {
 	/**
 	 * This will set the Solenoids for the shifting + the compressor
 	 */
-	public static Solenoid right1 = new Solenoid(0);
-	public static Solenoid right2 = new Solenoid(1);
+	public static Solenoid rightSolenoid1 = new Solenoid(0);
+	public static Solenoid rightSolenoid2 = new Solenoid(1);
+	
+	
 	public static Compressor compressor = new Compressor();
 	
 	
@@ -56,9 +58,9 @@ public class RobotMap {
 	// public static RobotDrive driveTrain = new RobotDrive(leftMaster,
 	// rightMaster);
 
-	public static WPI_TalonSRX gripMotorLeft = new WPI_TalonSRX(0);
-	public static WPI_TalonSRX gripMotorRight = new WPI_TalonSRX(0);
-	public static WPI_TalonSRX elevatorMotor = new WPI_TalonSRX(12);
+	//public static WPI_TalonSRX gripMotorLeft = new WPI_TalonSRX(0);
+	//public static WPI_TalonSRX gripMotorRight = new WPI_TalonSRX(0);
+	//public static WPI_TalonSRX elevatorMotor = new WPI_TalonSRX(12);
 	/* 
 	 * //public static DigitalInput testDigitalInput = new DigitalInput(0); //public
 	 * static DigitalOutput testDigitalOutput = new DigitalOutput(0);
@@ -71,12 +73,11 @@ public class RobotMap {
 	public static UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 
 	public static Joystick stick = new Joystick(0);
-	public static Button elevatorToBottom = new JoystickButton(RobotMap.stick, 1);
-	public static Button elevatorToTop = new JoystickButton(RobotMap.stick, 2);
-	public static Button shiftHigh = new JoystickButton(RobotMap.stick, 3);
-	public static Button shiftLow = new JoystickButton(RobotMap.stick, 4);
-	public static Button lbutton = new JoystickButton(RobotMap.stick, 5);
-	public static Button rbutton = new JoystickButton(RobotMap.stick, 6);
+	
+	
+
+	
+	
 	
 	
 	
