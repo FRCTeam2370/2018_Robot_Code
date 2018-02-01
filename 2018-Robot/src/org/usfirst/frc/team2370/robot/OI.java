@@ -9,15 +9,6 @@ ved.                        */
 
 package org.usfirst.frc.team2370.robot;
 
-import org.usfirst.frc.team2370.robot.commands.DriveWithJoystick;
-import org.usfirst.frc.team2370.robot.commands.ExampleDriveCommand;
-import org.usfirst.frc.team2370.robot.commands.MoveElevatorTest;
-import org.usfirst.frc.team2370.robot.commands.PullGripper;
-import org.usfirst.frc.team2370.robot.commands.PushGripper;
-
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
-
 import org.usfirst.frc.team2370.robot.commands.ElevatorToBottom;
 import org.usfirst.frc.team2370.robot.commands.ElevatorToTop;
 

@@ -8,12 +8,8 @@
 package org.usfirst.frc.team2370.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.usfirst.frc.team2370.robot.OI;
 import org.usfirst.frc.team2370.robot.Robot;
 import org.usfirst.frc.team2370.robot.RobotMap;
-import org.usfirst.frc.team2370.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2370.robot.subsystems.Pneumatics;
 
 /**
