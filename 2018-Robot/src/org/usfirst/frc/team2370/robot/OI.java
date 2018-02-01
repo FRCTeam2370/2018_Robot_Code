@@ -24,7 +24,6 @@ public class OI {
 
 	public static void init() {
 		
-		
 		RobotMap.BTN_elevToBot.whenPressed(new ElevatorToBottom());
 		RobotMap.BTN_elevToTop.whenPressed(new ElevatorToTop());
 

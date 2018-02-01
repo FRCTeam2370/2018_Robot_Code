@@ -46,9 +46,17 @@ public class DriveTrain extends Subsystem {
 
 	/**
 	 * A method to turn the robot to a specific angle based on accelerometer
-	 * @param angle - The angle the robot will turn to
+	 * @param angle - The angle the robot will turn to (Only positive angles)
 	 */
-	public static void turn(double angle) {
+	public static void turnRight(double angle) {
+
+	}
+
+	/**
+	 * A method to turn the robot to a specific angle based on accelerometer
+	 * @param angle - The angle the robot will turn to (Only positive angles)
+	 */
+	public static void turnLeft(double angle) {
 
 	}
 	
