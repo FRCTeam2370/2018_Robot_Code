@@ -9,7 +9,6 @@ package org.usfirst.frc.team2370.robot.subsystems;
 
 import org.usfirst.frc.team2370.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -20,6 +19,7 @@ public class Vision extends Subsystem {
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 
+	@SuppressWarnings("deprecation")
 	public static double getLimeLightVal(String key) {
 		return RobotMap.limeLightTable.getNumber(key, 0);
 	}

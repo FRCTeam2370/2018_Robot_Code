@@ -7,14 +7,9 @@
 
 package org.usfirst.frc.team2370.robot.subsystems;
 
-import org.usfirst.frc.team2370.robot.OI;
-import org.usfirst.frc.team2370.robot.Robot;
 import org.usfirst.frc.team2370.robot.RobotMap;
 import org.usfirst.frc.team2370.robot.commands.ChangeGears;
-import org.usfirst.frc.team2370.robot.commands.DriveWithJoystick;
-
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * Drive Train Subsystem

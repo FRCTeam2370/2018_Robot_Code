@@ -7,11 +7,6 @@
 
 package org.usfirst.frc.team2370.robot.subsystems;
 
-import org.usfirst.frc.team2370.robot.RobotMap;
-
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-
 import edu.wpi.first.wpilibj.command.PIDSubsystem;;
 
 /**
@@ -31,7 +26,7 @@ public class Elevator extends PIDSubsystem {
 		setAbsoluteTolerance(0.05);
 		getPIDController().setContinuous(false);
 		
-		int timeout = 1000;
+//		int timeout = 1000;
 //		RobotMap.elevatorMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, timeout);
 //		RobotMap.elevatorMotor.getSensorCollection().setQuadraturePosition(0, timeout);
 //		
