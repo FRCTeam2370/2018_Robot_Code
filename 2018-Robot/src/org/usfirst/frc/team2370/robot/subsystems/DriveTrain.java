@@ -29,8 +29,13 @@ public class DriveTrain extends Subsystem {
 
 	/**
 	 * Use arcade drive from the driveTrain using a speed and rotation parameter
-	 * @param speed - The speed (forward and backward) of the speed controllers (-1.0 to 1.0)
-	 * @param rotation - The rotation (left and right) of the speed controllers (-1.0 to 1.0)
+	 * 
+	 * @param speed
+	 *            - The speed (forward and backward) of the speed controllers (-1.0
+	 *            to 1.0)
+	 * @param rotation
+	 *            - The rotation (left and right) of the speed controllers (-1.0 to
+	 *            1.0)
 	 */
 	public static void arcadeDrive(double speed, double rotation) {
 		RobotMap.driveTrain.arcadeDrive(speed, rotation);
@@ -45,32 +50,43 @@ public class DriveTrain extends Subsystem {
 	}
 
 	/**
-	 * A method to turn the robot a specific number of degrees based on accelerometer
-	 * @param angle - The angle the robot will turn (Only positive angles)
+	 * A method to turn the robot a specific number of degrees based on
+	 * accelerometer
+	 * 
+	 * @param angle
+	 *            The angle the robot will turn (Only positive angles)
 	 */
 	public static void turnRight(double angle) {
 
 	}
 
 	/**
-	 * A method to turn the robot a specific number of degrees based on accelerometer
-	 * @param angle - The angle the robot will turn (Only positive angles)
+	 * A method to turn the robot a specific number of degrees based on
+	 * accelerometer
+	 * 
+	 * @param angle
+	 *            The angle the robot will turn (Only positive angles)
 	 */
 	public static void turnLeft(double angle) {
 
 	}
-	
+
 	/**
 	 * A method to turn the robot to a specific angle based on accelerometer
-	 * @param angle - The angle the robot will turn to in degrees
+	 * 
+	 * @param angle
+	 *            The angle the robot will turn to in degrees
 	 */
 	public static void turnFieldOriented(double angle) {
 
 	}
-	
+
 	/**
-	 * A method to drive the robot forward a specific distance (In inches) using encoders
-	 * @param distance - The distance (In inches) to drive forward
+	 * A method to drive the robot forward a specific distance (In inches) using
+	 * encoders
+	 * 
+	 * @param distance
+	 *            The distance (In inches) to drive forward
 	 */
 	public static void driveStraight(double distance) {
 

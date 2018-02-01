@@ -1,5 +1,5 @@
 /*----------------------------------------------------------------------------*/
- /* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
+/* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
@@ -46,7 +46,6 @@ public class Robot extends TimedRobot {
 	public static final Dashboard kDashboard = new Dashboard();
 	public static final Pneumatics kPneumatics = new Pneumatics();
 
-
 	public static final LEDs kLEDs = new LEDs();
 
 	public static OI m_oi;
@@ -80,7 +79,7 @@ public class Robot extends TimedRobot {
 
 	}
 
-	@Override 
+	@Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 	}
@@ -97,7 +96,7 @@ public class Robot extends TimedRobot {
 	 * chooser code above (like the commented example) or additional comparisons to
 	 * the switch structure below with additional strings & commands.
 	 */
-	@Override 
+	@Override
 	public void autonomousInit() {
 		m_autonomousCommand = m_chooser.getSelected();
 
@@ -107,7 +106,7 @@ public class Robot extends TimedRobot {
 		 * MyAutoCommand(); break; case "Default Auto": default: autonomousCommand = new
 		 * ExampleCommand(); break; }
 		 */
-		
+
 		// schedule the autonomous command (example)
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.start();
@@ -141,13 +140,19 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-//		SmartDashboard.putNumber("Position", RobotMap.elevatorMotor.getSensorCollection().getQuadraturePosition());
-//		SmartDashboard.putNumber("Position2", RobotMap.elevatorMotor.getSelectedSensorPosition(0));
-//		SmartDashboard.putNumber("Velocity", RobotMap.elevatorMotor.getSensorCollection().getQuadratureVelocity());
-//		SmartDashboard.putNumber("Error", RobotMap.elevatorMotor.getErrorDerivative(0));
-//		SmartDashboard.putNumber("Error2", RobotMap.elevatorMotor.getClosedLoopError(0));
-//		SmartDashboard.putNumber("Setpoint", RobotMap.elevatorMotor.getClosedLoopTarget(0));
-	
+		// SmartDashboard.putNumber("Position",
+		// RobotMap.elevatorMotor.getSensorCollection().getQuadraturePosition());
+		// SmartDashboard.putNumber("Position2",
+		// RobotMap.elevatorMotor.getSelectedSensorPosition(0));
+		// SmartDashboard.putNumber("Velocity",
+		// RobotMap.elevatorMotor.getSensorCollection().getQuadratureVelocity());
+		// SmartDashboard.putNumber("Error",
+		// RobotMap.elevatorMotor.getErrorDerivative(0));
+		// SmartDashboard.putNumber("Error2",
+		// RobotMap.elevatorMotor.getClosedLoopError(0));
+		// SmartDashboard.putNumber("Setpoint",
+		// RobotMap.elevatorMotor.getClosedLoopTarget(0));
+
 	}
 
 	/**

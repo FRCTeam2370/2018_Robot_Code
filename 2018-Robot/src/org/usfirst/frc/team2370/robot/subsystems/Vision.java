@@ -29,6 +29,6 @@ public class Vision extends Subsystem {
 	}
 
 	public void initDefaultCommand() {
-		
+
 	}
 }
