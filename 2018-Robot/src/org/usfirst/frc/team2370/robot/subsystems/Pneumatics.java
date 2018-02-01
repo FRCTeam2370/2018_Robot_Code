@@ -24,10 +24,10 @@ public class Pneumatics extends Subsystem {
 	// here. Call these from Commands.
 
 	public static void setSolenoid1(boolean on) {
-		RobotMap.rightSolenoid1.set(on);
+		RobotMap.SLN_rightSolenoid1.set(on);
 	}
 	public static void setSolenoid2(boolean on) {
-		RobotMap.rightSolenoid2.set(on);
+		RobotMap.SLN_rightSolenoid2.set(on);
 	}
 
 	public void initDefaultCommand() {

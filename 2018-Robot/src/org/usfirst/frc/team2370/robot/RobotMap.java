@@ -29,38 +29,32 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
  * the wiring easier and significantly reduces the number of magic numbers
  * floating around.
  */
+/*
+ * Naming conventions
+ * Button --> BTN
+ * TalonSRX --> TAL
+ * Solenoid --> SLN
+ */
 public class RobotMap {
-	// For example to map the left and right motors, you could define the
-	// following variables to use with your drivetrain subsystem.
-	// public static int leftMotor = 1;
-	// public static int rightMotor = 2;
 	
 	/**
 	 * This will set the Solenoids for the shifting + the compressor
 	 */
-	public static Solenoid rightSolenoid1 = new Solenoid(0);
-	public static Solenoid rightSolenoid2 = new Solenoid(1);
+	public static Solenoid SLN_rightSolenoid1 = new Solenoid(0);
+	public static Solenoid SLN_rightSolenoid2 = new Solenoid(1);
 	
 	
 	public static Compressor compressor = new Compressor();
-	
-	
-	// If you are using multiple modules, make sure to define both the port
-	// number and the module. For example you with a rangefinder:
-	// public static int rangefinderPort = 1;
-	// public static int rangefinderModule = 1;
 
-	public static WPI_TalonSRX rightMaster = new WPI_TalonSRX(16);
-	public static WPI_TalonSRX leftMaster = new WPI_TalonSRX(17);
-	public static WPI_TalonSRX rightSlave = new WPI_TalonSRX(18);
-	public static WPI_TalonSRX leftSlave = new WPI_TalonSRX(19);
-	public static DifferentialDrive driveTrain = new DifferentialDrive(leftMaster, rightMaster);
-	// public static RobotDrive driveTrain = new RobotDrive(leftMaster,
-	// rightMaster);
+	public static WPI_TalonSRX TAL_rightMaster = new WPI_TalonSRX(16);
+	public static WPI_TalonSRX TAL_leftMaster = new WPI_TalonSRX(17);
+	public static WPI_TalonSRX TAL_rightSlave = new WPI_TalonSRX(18);
+	public static WPI_TalonSRX TAL_leftSlave = new WPI_TalonSRX(19);
+	public static DifferentialDrive driveTrain = new DifferentialDrive(TAL_leftMaster, TAL_rightMaster);
 
-	//public static WPI_TalonSRX gripMotorLeft = new WPI_TalonSRX(0);
-	//public static WPI_TalonSRX gripMotorRight = new WPI_TalonSRX(0);
-	//public static WPI_TalonSRX elevatorMotor = new WPI_TalonSRX(12);
+	//public static WPI_TalonSRX TAL_gripMotorLeft = new WPI_TalonSRX(0);
+	//public static WPI_TalonSRX TAL_gripMotorRight = new WPI_TalonSRX(0);
+	//public static WPI_TalonSRX TAL_elevatorMotor = new WPI_TalonSRX(12);
 	/* 
 	 * //public static DigitalInput testDigitalInput = new DigitalInput(0); //public
 	 * static DigitalOutput testDigitalOutput = new DigitalOutput(0);
@@ -72,13 +66,11 @@ public class RobotMap {
 	public static NetworkTable limeLightTable = NetworkTable.getTable("limelight");
 	public static UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 
-	public static Joystick stick = new Joystick(0);
+	public static Joystick controller = new Joystick(0);
 	
-	
-
-	
-	
-	
-	
+	public static Button BTN_elevToBot = new JoystickButton(controller, 1);
+	public static Button BTN_elevToTop = new JoystickButton(controller, 2);
+	public static Button BTN_shiftHigh = new JoystickButton(controller, 3);
+	public static Button BTN_shiftLow = new JoystickButton(controller, 4);
 	
 }

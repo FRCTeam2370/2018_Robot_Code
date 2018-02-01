@@ -33,7 +33,7 @@ public class DriveWithJoystick extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		DriveTrain.arcadeDrive(RobotMap.stick.getRawAxis(1), RobotMap.stick.getRawAxis(0));
+		DriveTrain.arcadeDrive(RobotMap.controller.getRawAxis(1), RobotMap.controller.getRawAxis(0));
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

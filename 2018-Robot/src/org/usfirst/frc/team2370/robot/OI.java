@@ -32,25 +32,10 @@ import org.usfirst.frc.team2370.robot.commands.ElevatorToTop;
 public class OI {
 
 	public static void init() {
-		Button elevToBot = new JoystickButton(RobotMap.stick, 1);
-		Button elevToTop = new JoystickButton(RobotMap.stick, 2);
-		Button shiftHighButton = new JoystickButton(RobotMap.stick, 3);
-		Button shiftLowButton = new JoystickButton(RobotMap.stick, 4);
-		Button lbutton = new JoystickButton(RobotMap.stick, 5);
-		Button rbutton = new JoystickButton(RobotMap.stick, 6);
 		
-		lbutton.whileHeld(new PullGripper());
-		rbutton.whileHeld(new PushGripper());
-		lbutton.whileHeld(new MoveElevatorTest());
 		
-		//You can switch these but uuuuuuuuh.
-		//elevToBot.whileHeld(new ElevatorToBottom());
-		//elevToTop.whileHeld(new ElevatorToTop());
-		//These are assuming that we press the buttons and the elevator goes to a specified height.
-		elevToBot.whenPressed(new ElevatorToBottom());
-		elevToTop.whenPressed(new ElevatorToTop());
-
-		// Button button = new JoystickButton(stick, 1);
+		RobotMap.BTN_elevToBot.whenPressed(new ElevatorToBottom());
+		RobotMap.BTN_elevToTop.whenPressed(new ElevatorToTop());
 
 		// button.whenPressed(new ExampleDriveCommand());
 

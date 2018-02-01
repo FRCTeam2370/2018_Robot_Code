@@ -23,8 +23,8 @@ public class DriveTrain extends Subsystem {
 	// here. Call these from Commands.
 
 	public static void motorSetup() {
-		RobotMap.leftSlave.follow(RobotMap.leftMaster);
-		RobotMap.rightSlave.follow(RobotMap.rightMaster);
+		RobotMap.TAL_leftSlave.follow(RobotMap.TAL_leftMaster);
+		RobotMap.TAL_rightSlave.follow(RobotMap.TAL_rightMaster);
 	}
 
 	public static void arcadeDrive(double speed, double rotation) {
@@ -32,8 +32,8 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public static void stopMotors() {
-		RobotMap.rightMaster.set(0);
-		RobotMap.leftMaster.set(0);
+		RobotMap.TAL_rightMaster.set(0);
+		RobotMap.TAL_leftMaster.set(0);
 	}
 
 	public static void turn(double angle) {

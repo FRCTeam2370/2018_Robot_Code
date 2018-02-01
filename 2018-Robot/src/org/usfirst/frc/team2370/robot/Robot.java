@@ -147,8 +147,6 @@ public class Robot extends TimedRobot {
 //		SmartDashboard.putNumber("Error", RobotMap.elevatorMotor.getErrorDerivative(0));
 //		SmartDashboard.putNumber("Error2", RobotMap.elevatorMotor.getClosedLoopError(0));
 //		SmartDashboard.putNumber("Setpoint", RobotMap.elevatorMotor.getClosedLoopTarget(0));
-		SmartDashboard.putBoolean("Right1", RobotMap.rightSolenoid1.get());
-		SmartDashboard.putBoolean("Right2", RobotMap.rightSolenoid2.get());
 	
 	}
 
