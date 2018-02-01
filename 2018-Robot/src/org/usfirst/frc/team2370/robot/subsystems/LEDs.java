@@ -8,7 +8,6 @@
 package org.usfirst.frc.team2370.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * LED Subsystem
