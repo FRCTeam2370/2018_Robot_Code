@@ -7,6 +7,8 @@
 
 package org.usfirst.frc.team2370.robot.subsystems;
 
+import org.usfirst.frc.team2370.robot.RobotMap;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -16,14 +18,18 @@ public class Gripper extends Subsystem {
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 
+	/**
+	 * A method to pull or push the gripper motors based on speed (Negatives for pulling, positive for pushing)
+	 * @param speed - The speed of pull/push (-1 to 1)
+	 */
+	public static void pullPush(double speed) {
+		RobotMap.TAL_gripMotorLeft.set(speed);
+		RobotMap.TAL_gripMotorRight.set(speed * -1);
+	}
+	
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
-	}
-
-	public static void pullPush(double speed) {
-//		RobotMap.gripMotorLeft.set(speed);
-//		RobotMap.gripMotorRight.set(speed * -1);
 	}
 
 }
