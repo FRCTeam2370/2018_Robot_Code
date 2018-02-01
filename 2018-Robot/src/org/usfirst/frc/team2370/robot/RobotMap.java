@@ -66,13 +66,15 @@ public class RobotMap {
 	public static WPI_TalonSRX TAL_elevatorMotor = new WPI_TalonSRX(12);
 	
 	/**
-	 * 
+	 * This will set the Limelight network table up and the driver USB camera for the Vision subsystem
 	 */
 	public static NetworkTable limeLightTable = NetworkTable.getTable("limelight");
 	public static UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 
+	/**
+	 * This will set up the buttons and controller for the OI (Operator Interface)
+	 */
 	public static Joystick controller = new Joystick(0);
-	
 	public static Button BTN_elevToBot = new JoystickButton(controller, 1);
 	public static Button BTN_elevToTop = new JoystickButton(controller, 2);
 	public static Button BTN_shiftHigh = new JoystickButton(controller, 3);
