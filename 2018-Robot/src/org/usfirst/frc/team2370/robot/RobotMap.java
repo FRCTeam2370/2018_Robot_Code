@@ -8,11 +8,13 @@
 package org.usfirst.frc.team2370.robot;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.mindsensors.CANLight;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.PWM;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -75,5 +77,16 @@ public class RobotMap {
 	public static Button BTN_elevToTop = new JoystickButton(controller, 2);
 	public static Button BTN_shiftHigh = new JoystickButton(controller, 3);
 	public static Button BTN_shiftLow = new JoystickButton(controller, 4);
+	
+	/**
+	 * This will set up Blinken if we end up using it for LEDs
+	 * @param PWM channel
+	 */
+	 //public static PWM LED = new PWM(0);
+	 /**
+	  * This will set up the CANLight 
+	  */
+	 
+	 //public static CANLight led = new CANLight(5);
 
 }
