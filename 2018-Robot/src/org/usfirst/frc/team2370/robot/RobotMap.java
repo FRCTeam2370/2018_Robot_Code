@@ -56,7 +56,12 @@ public class RobotMap {
 	 */
 	public static WPI_TalonSRX TAL_gripMotorLeft = new WPI_TalonSRX(0);
 	public static WPI_TalonSRX TAL_gripMotorRight = new WPI_TalonSRX(0);
+	/**
+	 * Motors for the Ramp to elevate after being dropped to the floor.
+	 */
 	
+	public static WPI_TalonSRX TAL_leftRampMotor = new WPI_TalonSRX(0);
+	public static WPI_TalonSRX TAL_rightRampMotor = new WPI_TalonSRX(0);
 	/**
 	 * This will set the speed controller for the Elevator subsystem
 	 */
