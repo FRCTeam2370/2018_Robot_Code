@@ -127,8 +127,9 @@ public class Robot extends TimedRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		RobotMap.compressor.setClosedLoopControl(true);
-		RobotMap.compressor.start();
+//		RobotMap.compressor.setClosedLoopControl(true);
+//		RobotMap.compressor.start();
+		RobotMap.compressor.enabled();
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
 		}
@@ -152,7 +153,7 @@ public class Robot extends TimedRobot {
 		// RobotMap.elevatorMotor.getClosedLoopError(0));
 		// SmartDashboard.putNumber("Setpoint",
 		// RobotMap.elevatorMotor.getClosedLoopTarget(0));
-
+		SmartDashboard.putNumber("Voltage", RobotMap.TAL_leftMaster.getMotorOutputVoltage());
 	}
 
 	/**
