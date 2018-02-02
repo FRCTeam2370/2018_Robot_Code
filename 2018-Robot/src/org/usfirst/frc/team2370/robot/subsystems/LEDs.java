@@ -8,19 +8,14 @@
 package org.usfirst.frc.team2370.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * Dashboard Subsystem
+ * LED Subsystem
  */
 
 public class LEDs extends Subsystem {
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
-
-	public static void dashboard() {
-		SmartDashboard.putNumber("Test", 0);
-	}
 
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.

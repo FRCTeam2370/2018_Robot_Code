@@ -15,6 +15,15 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Ramps extends Subsystem {
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
+	//requires(good programming);
+	
+	public void winchWheels() {
+		
+	}
+	
+	public void dropRamps(boolean rampDropped) {
+		
+	}
 
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.

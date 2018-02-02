@@ -1,5 +1,5 @@
 /*----------------------------------------------------------------------------*/
- /* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
+/* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
@@ -13,22 +13,23 @@
 
 //
 
-package org.usfirst.frc.team2370.robot;
+package src.org.usfirst.frc.team2370.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team2370.robot.commands.ExampleDriveCommand;
-import org.usfirst.frc.team2370.robot.subsystems.Dashboard;
-import org.usfirst.frc.team2370.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team2370.robot.subsystems.Elevator;
-import org.usfirst.frc.team2370.robot.subsystems.Gripper;
-import org.usfirst.frc.team2370.robot.subsystems.LEDs;
-import org.usfirst.frc.team2370.robot.subsystems.Pneumatics;
-import org.usfirst.frc.team2370.robot.subsystems.Ramps;
-import org.usfirst.frc.team2370.robot.subsystems.Vision;
+import src.org.usfirst.frc.team2370.robot.commands.ExampleDriveCommand;
+import src.org.usfirst.frc.team2370.robot.subsystems.Dashboard;
+import src.org.usfirst.frc.team2370.robot.subsystems.DriveTrain;
+import src.org.usfirst.frc.team2370.robot.subsystems.Elevator;
+import src.org.usfirst.frc.team2370.robot.subsystems.Gripper;
+import src.org.usfirst.frc.team2370.robot.subsystems.LEDs;
+import src.org.usfirst.frc.team2370.robot.subsystems.Pneumatics;
+import src.org.usfirst.frc.team2370.robot.subsystems.Ramps;
+import src.org.usfirst.frc.team2370.robot.subsystems.Vision;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -45,7 +46,6 @@ public class Robot extends TimedRobot {
 	public static final Vision kVision = new Vision();
 	public static final Dashboard kDashboard = new Dashboard();
 	public static final Pneumatics kPneumatics = new Pneumatics();
-
 
 	public static final LEDs kLEDs = new LEDs();
 
@@ -80,7 +80,7 @@ public class Robot extends TimedRobot {
 
 	}
 
-	@Override 
+	@Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 	}
@@ -97,7 +97,7 @@ public class Robot extends TimedRobot {
 	 * chooser code above (like the commented example) or additional comparisons to
 	 * the switch structure below with additional strings & commands.
 	 */
-	@Override 
+	@Override
 	public void autonomousInit() {
 		m_autonomousCommand = m_chooser.getSelected();
 
@@ -107,7 +107,7 @@ public class Robot extends TimedRobot {
 		 * MyAutoCommand(); break; case "Default Auto": default: autonomousCommand = new
 		 * ExampleCommand(); break; }
 		 */
-		
+
 		// schedule the autonomous command (example)
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.start();
@@ -128,8 +128,9 @@ public class Robot extends TimedRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		RobotMap.compressor.setClosedLoopControl(true);
-		RobotMap.compressor.start();
+//		RobotMap.compressor.setClosedLoopControl(true);
+//		RobotMap.compressor.start();
+		RobotMap.compressor.enabled();
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
 		}
@@ -141,15 +142,19 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-//		SmartDashboard.putNumber("Position", RobotMap.elevatorMotor.getSensorCollection().getQuadraturePosition());
-//		SmartDashboard.putNumber("Position2", RobotMap.elevatorMotor.getSelectedSensorPosition(0));
-//		SmartDashboard.putNumber("Velocity", RobotMap.elevatorMotor.getSensorCollection().getQuadratureVelocity());
-//		SmartDashboard.putNumber("Error", RobotMap.elevatorMotor.getErrorDerivative(0));
-//		SmartDashboard.putNumber("Error2", RobotMap.elevatorMotor.getClosedLoopError(0));
-//		SmartDashboard.putNumber("Setpoint", RobotMap.elevatorMotor.getClosedLoopTarget(0));
-		SmartDashboard.putBoolean("Right1", RobotMap.rightSolenoid1.get());
-		SmartDashboard.putBoolean("Right2", RobotMap.rightSolenoid2.get());
-	
+		// SmartDashboard.putNumber("Position",
+		// RobotMap.elevatorMotor.getSensorCollection().getQuadraturePosition());
+		// SmartDashboard.putNumber("Position2",
+		// RobotMap.elevatorMotor.getSelectedSensorPosition(0));
+		// SmartDashboard.putNumber("Velocity",
+		// RobotMap.elevatorMotor.getSensorCollection().getQuadratureVelocity());
+		// SmartDashboard.putNumber("Error",
+		// RobotMap.elevatorMotor.getErrorDerivative(0));
+		// SmartDashboard.putNumber("Error2",
+		// RobotMap.elevatorMotor.getClosedLoopError(0));
+		// SmartDashboard.putNumber("Setpoint",
+		// RobotMap.elevatorMotor.getClosedLoopTarget(0));
+		SmartDashboard.putNumber("Voltage", RobotMap.TAL_leftMaster.getMotorOutputVoltage());
 	}
 
 	/**

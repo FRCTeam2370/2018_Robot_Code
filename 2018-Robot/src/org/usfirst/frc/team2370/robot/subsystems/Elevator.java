@@ -7,11 +7,6 @@
 
 package org.usfirst.frc.team2370.robot.subsystems;
 
-import org.usfirst.frc.team2370.robot.RobotMap;
-
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-
 import edu.wpi.first.wpilibj.command.PIDSubsystem;;
 
 /**
@@ -25,25 +20,34 @@ public class Elevator extends PIDSubsystem {
 	public static final double p = 0.02;
 	public static final double i = 0.0;
 	public static final double d = 0.0;
-	
+
 	public Elevator() {
 		super("Elevator", p, i, d);
 		setAbsoluteTolerance(0.05);
 		getPIDController().setContinuous(false);
-		
-		int timeout = 1000;
-//		RobotMap.elevatorMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, timeout);
-//		RobotMap.elevatorMotor.getSensorCollection().setQuadraturePosition(0, timeout);
-//		
-//		RobotMap.elevatorMotor.config_kP(0, p, timeout);
-//		RobotMap.elevatorMotor.config_kI(0, i, timeout);
-//		RobotMap.elevatorMotor.config_kD(0, d, timeout);
+
+		/*
+		 * int timeout = 1000;
+		 * RobotMap.elevatorMotor.configSelectedFeedbackSensor(FeedbackDevice.
+		 * QuadEncoder, 0, timeout);
+		 * RobotMap.elevatorMotor.getSensorCollection().setQuadraturePosition(0,
+		 * timeout);
+		 * 
+		 * RobotMap.elevatorMotor.config_kP(0, p, timeout);
+		 * RobotMap.elevatorMotor.config_kI(0, i, timeout);
+		 * RobotMap.elevatorMotor.config_kD(0, d, timeout);
+		 */
 	}
 
+	/**
+	 * Set the PID setpoint to the given value
+	 * 
+	 * @param pos The setpoint
+	 */
 	public static void setPos(double pos) {
-		//RobotMap.elevatorMotor.set(ControlMode.Position, pos);
+		// RobotMap.elevatorMotor.set(ControlMode.Position, pos);
 	}
-	
+
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
@@ -58,8 +62,7 @@ public class Elevator extends PIDSubsystem {
 	@Override
 	protected void usePIDOutput(double output) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	
 }

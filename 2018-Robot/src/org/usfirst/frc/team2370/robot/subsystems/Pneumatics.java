@@ -7,27 +7,35 @@
 
 package org.usfirst.frc.team2370.robot.subsystems;
 
-import org.usfirst.frc.team2370.robot.OI;
-import org.usfirst.frc.team2370.robot.Robot;
 import org.usfirst.frc.team2370.robot.RobotMap;
 import org.usfirst.frc.team2370.robot.commands.ChangeGears;
-import org.usfirst.frc.team2370.robot.commands.DriveWithJoystick;
-
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * Drive Train Subsystem
+ * Pneumatics Subsystem
  */
 public class Pneumatics extends Subsystem {
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 
+	/**
+	 * A method to turn a solenoid on or off
+	 * 
+	 * @param on
+	 *            True means on, false means off
+	 */
 	public static void setSolenoid1(boolean on) {
-		RobotMap.rightSolenoid1.set(on);
+		RobotMap.SLN_rightSolenoid1.set(on);
 	}
+
+	/**
+	 * A method to turn a solenoid on or off
+	 * 
+	 * @param on
+	 *            True means on, false means off
+	 */
 	public static void setSolenoid2(boolean on) {
-		RobotMap.rightSolenoid2.set(on);
+		RobotMap.SLN_rightSolenoid2.set(on);
 	}
 
 	public void initDefaultCommand() {

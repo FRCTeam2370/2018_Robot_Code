@@ -5,19 +5,17 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package org.usfirst.frc.team2370.robot;
+package src.org.usfirst.frc.team2370.robot;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.mindsensors.CANLight;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.PWM;
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -29,56 +27,75 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
  * the wiring easier and significantly reduces the number of magic numbers
  * floating around.
  */
+/*
+ * Naming conventions Button --> BTN TalonSRX --> TAL Solenoid --> SLN
+ */
+@SuppressWarnings("deprecation")
 public class RobotMap {
-	// For example to map the left and right motors, you could define the
-	// following variables to use with your drivetrain subsystem.
-	// public static int leftMotor = 1;
-	// public static int rightMotor = 2;
-	
+
 	/**
-	 * This will set the Solenoids for the shifting + the compressor
+	 * This will set the solenoids and compressor for the Pneumatics subsystem
 	 */
-	public static Solenoid rightSolenoid1 = new Solenoid(0);
-	public static Solenoid rightSolenoid2 = new Solenoid(1);
-	
-	
+	public static Solenoid SLN_rightSolenoid1 = new Solenoid(0);
+	public static Solenoid SLN_rightSolenoid2 = new Solenoid(1);
 	public static Compressor compressor = new Compressor();
-	
-	
-	// If you are using multiple modules, make sure to define both the port
-	// number and the module. For example you with a rangefinder:
-	// public static int rangefinderPort = 1;
-	// public static int rangefinderModule = 1;
 
-	public static WPI_TalonSRX rightMaster = new WPI_TalonSRX(16);
-	public static WPI_TalonSRX leftMaster = new WPI_TalonSRX(17);
-	public static WPI_TalonSRX rightSlave = new WPI_TalonSRX(18);
-	public static WPI_TalonSRX leftSlave = new WPI_TalonSRX(19);
-	public static DifferentialDrive driveTrain = new DifferentialDrive(leftMaster, rightMaster);
-	// public static RobotDrive driveTrain = new RobotDrive(leftMaster,
-	// rightMaster);
+	/**
+	 * This will set the speed controllers, drive train object, and deadband for the
+	 * DriveTrain subsystem
+	 */
+	public static WPI_TalonSRX TAL_rightMaster = new WPI_TalonSRX(16);
+	public static WPI_TalonSRX TAL_leftMaster = new WPI_TalonSRX(17);
+	public static WPI_TalonSRX TAL_rightSlave = new WPI_TalonSRX(18);
+	public static WPI_TalonSRX TAL_leftSlave = new WPI_TalonSRX(19);
+	public static DifferentialDrive driveTrain = new DifferentialDrive(TAL_leftMaster, TAL_rightMaster);
+	public static double deadbandPercent = .05;
+ 
+	/**   
+	 * This will set the speed controllers for the Gripper subsystem
+	 */
+	public static WPI_TalonSRX TAL_gripMotorLeft = new WPI_TalonSRX(0);
+	public static WPI_TalonSRX TAL_gripMotorRight = new WPI_TalonSRX(0);
+<<<<<<< HEAD
+	/**
+	 * Motors for the Ramp to elevate after being dropped to the floor.
+	 */
+	
+	public static WPI_TalonSRX TAL_leftRampMotor = new WPI_TalonSRX(0);
+	public static WPI_TalonSRX TAL_rightRampMotor = new WPI_TalonSRX(0);
+=======
 
-	//public static WPI_TalonSRX gripMotorLeft = new WPI_TalonSRX(0);
-	//public static WPI_TalonSRX gripMotorRight = new WPI_TalonSRX(0);
-	//public static WPI_TalonSRX elevatorMotor = new WPI_TalonSRX(12);
-	/* 
-	 * //public static DigitalInput testDigitalInput = new DigitalInput(0); //public
-	 * static DigitalOutput testDigitalOutput = new DigitalOutput(0);
-	 * 
-	 * public static Compressor compressor = new Compressor(0); public static
-	 * Solenoid gearSolenoid1 = new Solenoid(0); public static Solenoid
-	 * gearSolenoid2 = new Solenoid(1);
+>>>>>>> branch 'master' of https://github.com/FRCTeam2370/2018_Robot_Code.git
+	/**
+	 * This will set the speed controller for the Elevator subsystem
+	 */
+	public static WPI_TalonSRX TAL_elevatorMotor = new WPI_TalonSRX(12);
+
+	/**
+	 * This will set the Limelight network table up and the driver USB camera for
+	 * the Vision subsystem
 	 */
 	public static NetworkTable limeLightTable = NetworkTable.getTable("limelight");
 	public static UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 
-	public static Joystick stick = new Joystick(0);
+	/**
+	 * This will set up the buttons and controller for the OI (Operator Interface)
+	 */
+	public static Joystick controller = new Joystick(0);
+	public static Button BTN_elevToBot = new JoystickButton(controller, 1);
+	public static Button BTN_elevToTop = new JoystickButton(controller, 2);
+	public static Button BTN_shiftHigh = new JoystickButton(controller, 3);
+	public static Button BTN_shiftLow = new JoystickButton(controller, 4);
 	
-	
+	/**
+	 * This will set up Blinken if we end up using it for LEDs
+	 * @param PWM channel
+	 */
+	 //public static PWM LED = new PWM(0);
+	 /**
+	  * This will set up the CANLight 
+	  */
+	 
+	 //public static CANLight led = new CANLight(5);
 
-	
-	
-	
-	
-	
 }

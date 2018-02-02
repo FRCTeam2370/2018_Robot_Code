@@ -8,12 +8,8 @@
 package org.usfirst.frc.team2370.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.usfirst.frc.team2370.robot.OI;
 import org.usfirst.frc.team2370.robot.Robot;
 import org.usfirst.frc.team2370.robot.RobotMap;
-import org.usfirst.frc.team2370.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2370.robot.subsystems.Pneumatics;
 
 /**
@@ -28,19 +24,17 @@ public class ChangeGears extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		
+
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		if (RobotMap.stick.getRawButton(3))
-		{
+		if (RobotMap.controller.getRawButton(3)) {
 			Pneumatics.setSolenoid1(false);
 			Pneumatics.setSolenoid2(true);
 		}
-		if (RobotMap.stick.getRawButton(4))
-		{
+		if (RobotMap.controller.getRawButton(4)) {
 			Pneumatics.setSolenoid2(false);
 			Pneumatics.setSolenoid1(true);
 		}

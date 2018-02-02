@@ -7,20 +7,10 @@ ved.                        */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package org.usfirst.frc.team2370.robot;
+package src.org.usfirst.frc.team2370.robot;
 
-import org.usfirst.frc.team2370.robot.commands.DriveWithJoystick;
-import org.usfirst.frc.team2370.robot.commands.ExampleDriveCommand;
-import org.usfirst.frc.team2370.robot.commands.MoveElevatorTest;
-import org.usfirst.frc.team2370.robot.commands.PullGripper;
-import org.usfirst.frc.team2370.robot.commands.PushGripper;
-
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
-
-import org.usfirst.frc.team2370.robot.commands.ElevatorToBottom;
-import org.usfirst.frc.team2370.robot.commands.ElevatorToTop;
-
+import src.org.usfirst.frc.team2370.robot.commands.ElevatorToBottom;
+import src.org.usfirst.frc.team2370.robot.commands.ElevatorToTop;
 
 //import edu.wpi.first.wpilibj.Joystick;
 //import edu.wpi.first.wpilibj.buttons.Button;
@@ -32,6 +22,7 @@ import org.usfirst.frc.team2370.robot.commands.ElevatorToTop;
 public class OI {
 
 	public static void init() {
+<<<<<<< HEAD
 		Button elevatorToBottom = new JoystickButton(RobotMap.stick, 1);
 		Button elevatorToTop = new JoystickButton(RobotMap.stick, 2);
 		Button shiftHighButton = new JoystickButton(RobotMap.stick, 3);
@@ -46,8 +37,11 @@ public class OI {
 		//You can switch these but uuuuuuuuh.
 		elevatorToBottom.whileHeld(new ElevatorToBottom());
 		elevatorToTop.whileHeld(new ElevatorToTop());
+=======
+>>>>>>> branch 'master' of https://github.com/FRCTeam2370/2018_Robot_Code.git
 
-		// Button button = new JoystickButton(stick, 1);
+		RobotMap.BTN_elevToBot.whenPressed(new ElevatorToBottom());
+		RobotMap.BTN_elevToTop.whenPressed(new ElevatorToTop());
 
 		// button.whenPressed(new ExampleDriveCommand());
 
