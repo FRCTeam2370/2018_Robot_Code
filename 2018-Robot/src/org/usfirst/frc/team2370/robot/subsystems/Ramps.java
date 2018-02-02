@@ -21,7 +21,7 @@ public class Ramps extends Subsystem {
 		
 	}
 	
-	public void dropRamps() {
+	public void dropRamps(boolean rampDropped) {
 		
 	}
 
