@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path=""/>
-<<<<<<< HEAD
 	<classpathentry kind="lib" path="C:/Users/Administrator/wpilib/java/current/lib/cscore.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Administrator/wpilib/java/current/lib/cscore-sources.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Administrator/wpilib/java/current/lib/ntcore.jar"/>
@@ -12,13 +11,5 @@
 	<classpathentry kind="lib" path="C:/Users/Administrator/wpilib/java/current/lib/WPILib-sources.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Administrator/wpilib/java/current/lib/wpiutil.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Administrator/wpilib/java/current/lib/wpiutil-sources.jar"/>
-=======
-	<classpathentry kind="lib" path="C:/Users/2370 User/wpilib/java/current/lib/WPILib.jar"/>
-	<classpathentry kind="lib" path="C:/Users/2370 User/wpilib/user/java/lib/CTRE_Phoenix.jar"/>
-	<classpathentry kind="lib" path="C:/Users/2370 User/wpilib/user/java/lib/CTRE_Phoenix-sources.jar"/>
-	<classpathentry kind="lib" path="C:/Users/2370 User/wpilib/user/java/lib/navx_frc.jar"/>
-	<classpathentry kind="lib" path="C:/Users/2370 User/wpilib/java/current/lib/cscore.jar"/>
-	<classpathentry kind="lib" path="C:/Users/2370 User/wpilib/java/current/lib/ntcore.jar"/>
->>>>>>> branch 'master' of https://github.com/FRCTeam2370/2018_Robot_Code.git
 	<classpathentry kind="output" path="bin"/>
 </classpath>
