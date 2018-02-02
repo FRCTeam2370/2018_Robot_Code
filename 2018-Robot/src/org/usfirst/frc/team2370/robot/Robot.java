@@ -13,7 +13,7 @@
 
 //
 
-package org.usfirst.frc.team2370.robot;
+package src.org.usfirst.frc.team2370.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
