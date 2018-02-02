@@ -13,22 +13,22 @@
 
 //
 
-package src.org.usfirst.frc.team2370.robot;
+package org.usfirst.frc.team2370.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import src.org.usfirst.frc.team2370.robot.commands.ExampleDriveCommand;
-import src.org.usfirst.frc.team2370.robot.subsystems.Dashboard;
-import src.org.usfirst.frc.team2370.robot.subsystems.DriveTrain;
-import src.org.usfirst.frc.team2370.robot.subsystems.Elevator;
-import src.org.usfirst.frc.team2370.robot.subsystems.Gripper;
-import src.org.usfirst.frc.team2370.robot.subsystems.LEDs;
-import src.org.usfirst.frc.team2370.robot.subsystems.Pneumatics;
-import src.org.usfirst.frc.team2370.robot.subsystems.Ramps;
-import src.org.usfirst.frc.team2370.robot.subsystems.Vision;
+import org.usfirst.frc.team2370.robot.commands.ExampleDriveCommand;
+import org.usfirst.frc.team2370.robot.subsystems.Dashboard;
+import org.usfirst.frc.team2370.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team2370.robot.subsystems.Elevator;
+import org.usfirst.frc.team2370.robot.subsystems.Gripper;
+import org.usfirst.frc.team2370.robot.subsystems.LEDs;
+import org.usfirst.frc.team2370.robot.subsystems.Pneumatics;
+import org.usfirst.frc.team2370.robot.subsystems.Ramps;
+import org.usfirst.frc.team2370.robot.subsystems.Vision;
 
 
 /**
