@@ -7,10 +7,10 @@ ved.                        */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package src.org.usfirst.frc.team2370.robot; 
+package org.usfirst.frc.team2370.robot;
 
-import src.org.usfirst.frc.team2370.robot.commands.ElevatorToBottom;
-import src.org.usfirst.frc.team2370.robot.commands.ElevatorToTop;
+import org.usfirst.frc.team2370.robot.commands.ElevatorToBottom;
+import org.usfirst.frc.team2370.robot.commands.ElevatorToTop;
 
 //import edu.wpi.first.wpilibj.Joystick;
 //import edu.wpi.first.wpilibj.buttons.Button;
@@ -22,23 +22,6 @@ import src.org.usfirst.frc.team2370.robot.commands.ElevatorToTop;
 public class OI {
 
 	public static void init() {
-<<<<<<< HEAD
-		Button elevatorToBottom = new JoystickButton(RobotMap.stick, 1);
-		Button elevatorToTop = new JoystickButton(RobotMap.stick, 2);
-		Button shiftHighButton = new JoystickButton(RobotMap.stick, 3);
-		Button shiftLowButton = new JoystickButton(RobotMap.stick, 4);
-		Button lbutton = new JoystickButton(RobotMap.stick, 5);
-		Button rbutton = new JoystickButton(RobotMap.stick, 6);
-		 
-		lbutton.whileHeld(new PullGripper());
-		rbutton.whileHeld(new PushGripper());
-		lbutton.whileHeld(new MoveElevatorTest());
-		
-		//You can switch these but uuuuuuuuh.
-		elevatorToBottom.whileHeld(new ElevatorToBottom());
-		elevatorToTop.whileHeld(new ElevatorToTop());
-=======
->>>>>>> branch 'master' of https://github.com/FRCTeam2370/2018_Robot_Code.git
 
 		RobotMap.BTN_elevToBot.whenPressed(new ElevatorToBottom());
 		RobotMap.BTN_elevToTop.whenPressed(new ElevatorToTop());

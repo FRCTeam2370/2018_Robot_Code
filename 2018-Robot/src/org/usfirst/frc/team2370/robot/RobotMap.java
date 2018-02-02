@@ -5,10 +5,10 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package src.org.usfirst.frc.team2370.robot;
+package org.usfirst.frc.team2370.robot;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import com.mindsensors.CANLight;
+//import com.mindsensors.CANLight;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
@@ -56,16 +56,14 @@ public class RobotMap {
 	 */
 	public static WPI_TalonSRX TAL_gripMotorLeft = new WPI_TalonSRX(0);
 	public static WPI_TalonSRX TAL_gripMotorRight = new WPI_TalonSRX(0);
-<<<<<<< HEAD
+	
 	/**
 	 * Motors for the Ramp to elevate after being dropped to the floor.
 	 */
 	
 	public static WPI_TalonSRX TAL_leftRampMotor = new WPI_TalonSRX(0);
 	public static WPI_TalonSRX TAL_rightRampMotor = new WPI_TalonSRX(0);
-=======
 
->>>>>>> branch 'master' of https://github.com/FRCTeam2370/2018_Robot_Code.git
 	/**
 	 * This will set the speed controller for the Elevator subsystem
 	 */
