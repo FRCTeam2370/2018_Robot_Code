@@ -38,7 +38,7 @@ public class OI {
 		Button shiftLowButton = new JoystickButton(RobotMap.stick, 4);
 		Button lbutton = new JoystickButton(RobotMap.stick, 5);
 		Button rbutton = new JoystickButton(RobotMap.stick, 6);
-		
+		 
 		lbutton.whileHeld(new PullGripper());
 		rbutton.whileHeld(new PushGripper());
 		lbutton.whileHeld(new MoveElevatorTest());
