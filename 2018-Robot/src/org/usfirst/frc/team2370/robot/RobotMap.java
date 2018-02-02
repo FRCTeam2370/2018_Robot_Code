@@ -48,8 +48,8 @@ public class RobotMap {
 	public static WPI_TalonSRX TAL_leftSlave = new WPI_TalonSRX(19);
 	public static DifferentialDrive driveTrain = new DifferentialDrive(TAL_leftMaster, TAL_rightMaster);
 	public static double deadbandPercent = .05;
-
-	/**
+ 
+	/**   
 	 * This will set the speed controllers for the Gripper subsystem
 	 */
 	public static WPI_TalonSRX TAL_gripMotorLeft = new WPI_TalonSRX(0);
