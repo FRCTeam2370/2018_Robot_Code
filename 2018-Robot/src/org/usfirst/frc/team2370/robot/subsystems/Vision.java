@@ -19,11 +19,23 @@ public class Vision extends Subsystem {
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 
+	/**
+	 * Gets the value of a specific key sent back from the Limelight, keys found on
+	 * the Limelight website
+	 * 
+	 * @param key
+	 *            The String key used to name values
+	 * @return Value contained in key from Limelight
+	 */
 	@SuppressWarnings("deprecation")
 	public static double getLimeLightVal(String key) {
 		return RobotMap.limeLightTable.getNumber(key, 0);
 	}
 
+	/**
+	 * Sets up USB camera to a specific resolution 
+	 * Possibly add FPS or similar settings here
+	 */
 	public static void usbCamSetup() {
 		RobotMap.camera.setResolution(640, 480);
 	}
