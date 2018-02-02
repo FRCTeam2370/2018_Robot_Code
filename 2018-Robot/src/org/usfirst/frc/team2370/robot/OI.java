@@ -7,10 +7,10 @@ ved.                        */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package org.usfirst.frc.team2370.robot;
+package src.org.usfirst.frc.team2370.robot;
 
-import org.usfirst.frc.team2370.robot.commands.ElevatorToBottom;
-import org.usfirst.frc.team2370.robot.commands.ElevatorToTop;
+import src.org.usfirst.frc.team2370.robot.commands.ElevatorToBottom;
+import src.org.usfirst.frc.team2370.robot.commands.ElevatorToTop;
 
 //import edu.wpi.first.wpilibj.Joystick;
 //import edu.wpi.first.wpilibj.buttons.Button;
