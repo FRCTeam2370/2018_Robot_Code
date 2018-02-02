@@ -19,14 +19,17 @@ public class Gripper extends Subsystem {
 	// here. Call these from Commands.
 
 	/**
-	 * A method to pull or push the gripper motors based on speed (Negatives for pulling, positive for pushing)
-	 * @param speed - The speed of pull/push (-1 to 1)
+	 * A method to pull or push the gripper motors based on speed (Negatives for
+	 * pulling, positive for pushing)
+	 * 
+	 * @param speed
+	 *            The speed of pull/push (-1 to 1)
 	 */
 	public static void pullPush(double speed) {
 		RobotMap.TAL_gripMotorLeft.set(speed);
 		RobotMap.TAL_gripMotorRight.set(speed * -1);
 	}
-	
+
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());

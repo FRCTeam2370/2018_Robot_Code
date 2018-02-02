@@ -12,7 +12,6 @@ package org.usfirst.frc.team2370.robot;
 import org.usfirst.frc.team2370.robot.commands.ElevatorToBottom;
 import org.usfirst.frc.team2370.robot.commands.ElevatorToTop;
 
-
 //import edu.wpi.first.wpilibj.Joystick;
 //import edu.wpi.first.wpilibj.buttons.Button;
 //import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -23,7 +22,7 @@ import org.usfirst.frc.team2370.robot.commands.ElevatorToTop;
 public class OI {
 
 	public static void init() {
-		
+
 		RobotMap.BTN_elevToBot.whenPressed(new ElevatorToBottom());
 		RobotMap.BTN_elevToTop.whenPressed(new ElevatorToTop());
 
