@@ -10,6 +10,10 @@ package org.usfirst.frc.team2370.robot.subsystems;
 import org.usfirst.frc.team2370.robot.RobotMap;
 import org.usfirst.frc.team2370.robot.commands.DriveWithJoystick;
 
+import com.kauailabs.navx.frc.AHRS;
+
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -25,6 +29,13 @@ public class DriveTrain extends Subsystem {
 	public static void motorSetup() {
 		RobotMap.TAL_leftSlave.follow(RobotMap.TAL_leftMaster);
 		RobotMap.TAL_rightSlave.follow(RobotMap.TAL_rightMaster);
+		try {
+			RobotMap.ahrs = new AHRS(SerialPort.Port.kUSB1);
+			RobotMap.ahrs.enableLogging(true);
+		} catch (RuntimeException ex) {
+			DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
+		}
+		RobotMap.ahrs.zeroYaw();
 	}
 
 	/**
