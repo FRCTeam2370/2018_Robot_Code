@@ -34,6 +34,11 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
 public class RobotMap {
 
 	/**
+	 * This records the state of the ramps
+	 */
+	public static boolean rampState;
+	
+	/**
 	 * This will set the solenoids and compressor for the Pneumatics subsystem
 	 */
 	public static Solenoid SLN_rightSolenoid1 = new Solenoid(0);

@@ -7,6 +7,8 @@
 
 package org.usfirst.frc.team2370.robot.subsystems;
 
+import org.usfirst.frc.team2370.robot.RobotMap;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -20,11 +22,15 @@ public class Ramps extends Subsystem {
 	public void winchWheels() {
 		
 	}
-	
-	public void dropRamps(boolean rampDropped) {
+	//This method changes the ramp position, true being down and false being raised. 
+	public static void rampPosition(boolean rampDropped) {
+		RobotMap.rampState = rampDropped;
 		
 	}
 
+	public static boolean getRampState() {
+		return RobotMap.rampState;
+	}
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
