@@ -9,6 +9,7 @@ package org.usfirst.frc.team2370.robot;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 //import com.mindsensors.CANLight;
+import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
@@ -46,8 +47,8 @@ public class RobotMap {
 	 */
 	public static WPI_TalonSRX TAL_rightMaster = new WPI_TalonSRX(16);
 	public static WPI_TalonSRX TAL_leftMaster = new WPI_TalonSRX(17);
-	public static WPI_TalonSRX TAL_rightSlave = new WPI_TalonSRX(18);
-	public static WPI_TalonSRX TAL_leftSlave = new WPI_TalonSRX(19);
+	public static WPI_TalonSRX TAL_rightSlave = new WPI_TalonSRX(19);
+	public static WPI_TalonSRX TAL_leftSlave = new WPI_TalonSRX(18);
 	public static DifferentialDrive driveTrain = new DifferentialDrive(TAL_leftMaster, TAL_rightMaster);
 	public static double deadbandPercent = .05;
  
@@ -96,4 +97,9 @@ public class RobotMap {
 	 
 	 //public static CANLight led = new CANLight(5);
 
+	/**
+	 * This will set up all NavX MXP objects
+	 */
+	public static AHRS ahrs;
+	
 }
