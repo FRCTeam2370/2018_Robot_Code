@@ -10,6 +10,7 @@ package org.usfirst.frc.team2370.robot.subsystems;
 import org.usfirst.frc.team2370.robot.RobotMap;
 import org.usfirst.frc.team2370.robot.commands.DriveWithJoystick;
 
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.DriverStation;
@@ -27,8 +28,18 @@ public class DriveTrain extends Subsystem {
 	 * Method to setup the slave speed controllers to follower mode
 	 */
 	public static void motorSetup() {
+		int timeout = 1000;
+		double p = 0.2;
 		RobotMap.TAL_leftSlave.follow(RobotMap.TAL_leftMaster);
 		RobotMap.TAL_rightSlave.follow(RobotMap.TAL_rightMaster);
+		
+		RobotMap.TAL_leftMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, timeout);
+		RobotMap.TAL_rightMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, timeout);
+		RobotMap.TAL_leftMaster.getSensorCollection().setQuadraturePosition(0, timeout);
+		RobotMap.TAL_rightMaster.getSensorCollection().setQuadraturePosition(0, timeout);
+		RobotMap.TAL_leftMaster.config_kP(0, p, timeout);
+		RobotMap.TAL_rightMaster.config_kP(0, p, timeout);
+		
 		try {
 			RobotMap.ahrs = new AHRS(SerialPort.Port.kUSB1);
 			RobotMap.ahrs.enableLogging(true);

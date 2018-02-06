@@ -127,8 +127,8 @@ public class Robot extends TimedRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-//		RobotMap.compressor.setClosedLoopControl(true);
-//		RobotMap.compressor.start();
+		// RobotMap.compressor.setClosedLoopControl(true);
+		// RobotMap.compressor.start();
 		RobotMap.compressor.enabled();
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
@@ -154,6 +154,16 @@ public class Robot extends TimedRobot {
 		// SmartDashboard.putNumber("Setpoint",
 		// RobotMap.elevatorMotor.getClosedLoopTarget(0));
 		SmartDashboard.putNumber("Voltage", RobotMap.TAL_leftMaster.getMotorOutputVoltage());
+		SmartDashboard.putNumber("IMU_Yaw", RobotMap.ahrs.getYaw());
+		SmartDashboard.putNumber("IMU_Pitch", RobotMap.ahrs.getPitch());
+		SmartDashboard.putNumber("IMU_Roll", RobotMap.ahrs.getRoll());
+		
+		SmartDashboard.putNumber("Position Left", RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition());
+		SmartDashboard.putNumber("Velocity Left", RobotMap.TAL_leftMaster.getSensorCollection().getQuadratureVelocity());
+		SmartDashboard.putNumber("Error Left", RobotMap.TAL_leftMaster.getClosedLoopError(0));
+		SmartDashboard.putNumber("Position Right", RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition());
+		SmartDashboard.putNumber("Velocity Right", RobotMap.TAL_rightMaster.getSensorCollection().getQuadratureVelocity());
+		SmartDashboard.putNumber("Error Right", RobotMap.TAL_rightMaster.getClosedLoopError(0));
 	}
 
 	/**
