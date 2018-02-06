@@ -14,6 +14,7 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PWM;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -74,7 +75,9 @@ public class RobotMap {
 	 * This will set the speed controller for the Elevator subsystem
 	 */
 	public static WPI_TalonSRX TAL_elevatorMotor = new WPI_TalonSRX(12);
-
+	public static WPI_TalonSRX TAL_lifter = new WPI_TalonSRX(0);
+	public static DigitalInput lifterSwitch = new DigitalInput(0);
+	
 	/**
 	 * This will set the Limelight network table up and the driver USB camera for
 	 * the Vision subsystem

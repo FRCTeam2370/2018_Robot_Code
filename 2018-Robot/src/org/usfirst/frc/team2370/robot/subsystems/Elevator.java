@@ -7,6 +7,8 @@
 
 package org.usfirst.frc.team2370.robot.subsystems;
 
+import org.usfirst.frc.team2370.robot.RobotMap;
+
 import edu.wpi.first.wpilibj.command.PIDSubsystem;;
 
 /**
@@ -40,9 +42,20 @@ public class Elevator extends PIDSubsystem {
 	}
 
 	/**
+	 * Move the lifter motor until it hits its limit switch / when the elevator is
+	 * in the correct position
+	 */
+	public static void startingLift() {
+		if(!RobotMap.lifterSwitch.get()) {
+			RobotMap.TAL_lifter.set(0.25);
+		}
+	}
+
+	/**
 	 * Set the PID setpoint to the given value
 	 * 
-	 * @param pos The setpoint
+	 * @param pos
+	 *            The setpoint
 	 */
 	public static void setPos(double pos) {
 		// RobotMap.elevatorMotor.set(ControlMode.Position, pos);
