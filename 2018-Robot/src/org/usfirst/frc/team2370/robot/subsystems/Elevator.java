@@ -49,6 +49,9 @@ public class Elevator extends PIDSubsystem {
 		if(!RobotMap.lifterSwitch.get()) {
 			RobotMap.TAL_lifter.set(0.25);
 		}
+		else {
+			RobotMap.TAL_lifter.set(0.0);
+		}
 	}
 
 	/**
