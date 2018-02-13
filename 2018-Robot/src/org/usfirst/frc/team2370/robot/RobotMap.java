@@ -74,7 +74,8 @@ public class RobotMap {
 	 * This will set the speed controller for the Elevator subsystem
 	 */
 	public static WPI_TalonSRX TAL_elevatorMotor = new WPI_TalonSRX(12);
-	public static WPI_TalonSRX TAL_lifter = new WPI_TalonSRX(0);
+	public static Solenoid SLN_elevatorSolenoid1 = new Solenoid(3);
+	public static Solenoid SLN_elevatorSolenoid2 = new Solenoid(4);
 	public static DigitalInput lifterSwitch = new DigitalInput(0);
 	
 	/**

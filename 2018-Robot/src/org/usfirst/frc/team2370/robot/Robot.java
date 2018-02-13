@@ -63,7 +63,7 @@ public class Robot extends TimedRobot {
 		m_oi = new OI();
 		// rMap = new RobotMap();
 		DriveTrain.motorSetup();
-		Elevator.startingLift();
+		Pneumatics.startSolenoidUp();
 		Vision.usbCamSetup();
 		m_chooser.addDefault("Default Auto", new ExampleDriveCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());

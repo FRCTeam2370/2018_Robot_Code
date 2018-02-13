@@ -42,19 +42,6 @@ public class Elevator extends PIDSubsystem {
 	}
 
 	/**
-	 * Move the lifter motor until it hits its limit switch / when the elevator is
-	 * in the correct position
-	 */
-	public static void startingLift() {
-		if(!RobotMap.lifterSwitch.get()) {
-			RobotMap.TAL_lifter.set(0.25);
-		}
-		else {
-			RobotMap.TAL_lifter.set(0.0);
-		}
-	}
-
-	/**
 	 * Set the PID setpoint to the given value
 	 * 
 	 * @param pos

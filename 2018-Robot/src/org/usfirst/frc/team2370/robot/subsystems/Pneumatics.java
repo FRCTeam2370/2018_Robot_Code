@@ -37,6 +37,16 @@ public class Pneumatics extends Subsystem {
 	public static void setSolenoid2(boolean on) {
 		RobotMap.SLN_rightSolenoid2.set(on);
 	}
+	
+	public static void startSolenoidUp() {
+		RobotMap.SLN_elevatorSolenoid1.set(true);
+		RobotMap.SLN_elevatorSolenoid2.set(false);
+	}
+	
+	public static void startSolenoidDown() {
+		RobotMap.SLN_elevatorSolenoid1.set(false);
+		RobotMap.SLN_elevatorSolenoid2.set(true);
+	}
 
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
