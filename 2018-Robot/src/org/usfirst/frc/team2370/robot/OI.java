@@ -21,7 +21,7 @@ import org.usfirst.frc.team2370.robot.commands.ElevatorToTop;
  */
 public class OI {
 
-	public static void init() {
+	public OI() { 
 
 		RobotMap.BTN_elevToBot.whenPressed(new ElevatorToBottom());
 		RobotMap.BTN_elevToTop.whenPressed(new ElevatorToTop());
