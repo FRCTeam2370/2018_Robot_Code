@@ -9,6 +9,9 @@ package org.usfirst.frc.team2370.robot.subsystems;
 
 import org.usfirst.frc.team2370.robot.RobotMap;
 
+import com.ctre.phoenix.ParamEnum;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+
 import edu.wpi.first.wpilibj.command.PIDSubsystem;;
 
 /**
@@ -28,17 +31,20 @@ public class Elevator extends PIDSubsystem {
 		setAbsoluteTolerance(0.05);
 		getPIDController().setContinuous(false);
 
-		/*
-		 * int timeout = 1000;
-		 * RobotMap.elevatorMotor.configSelectedFeedbackSensor(FeedbackDevice.
-		 * QuadEncoder, 0, timeout);
-		 * RobotMap.elevatorMotor.getSensorCollection().setQuadraturePosition(0,
-		 * timeout);
-		 * 
-		 * RobotMap.elevatorMotor.config_kP(0, p, timeout);
-		 * RobotMap.elevatorMotor.config_kI(0, i, timeout);
-		 * RobotMap.elevatorMotor.config_kD(0, d, timeout);
-		 */
+		int timeout = 1000;
+		RobotMap.TAL_elevatorMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, timeout);
+		RobotMap.TAL_elevatorMotor.getSensorCollection().setQuadraturePosition(0, timeout);
+
+		RobotMap.TAL_elevatorMotor.configSetParameter(ParamEnum.eFeedbackNotContinuous, 1, 0x00, 0x00, 0x00);
+		RobotMap.TAL_elevatorMotor.configNominalOutputForward(0, timeout);
+		RobotMap.TAL_elevatorMotor.configNominalOutputReverse(0, timeout);
+		RobotMap.TAL_elevatorMotor.configPeakOutputForward(1, timeout);
+		RobotMap.TAL_elevatorMotor.configPeakOutputReverse(-1, timeout);
+		
+		RobotMap.TAL_elevatorMotor.config_kP(0, p, timeout);
+		RobotMap.TAL_elevatorMotor.config_kI(0, i, timeout);
+		RobotMap.TAL_elevatorMotor.config_kD(0, d, timeout);
+
 	}
 
 	/**
@@ -48,7 +54,7 @@ public class Elevator extends PIDSubsystem {
 	 *            The setpoint
 	 */
 	public static void setPos(double pos) {
-		// RobotMap.elevatorMotor.set(ControlMode.Position, pos);
+		// RobotMap.TAL_elevatorMotor.set(ControlMode.Position, pos);
 	}
 
 	public void initDefaultCommand() {
