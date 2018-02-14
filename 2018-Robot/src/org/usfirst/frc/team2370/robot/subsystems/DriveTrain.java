@@ -7,8 +7,12 @@
 
 package org.usfirst.frc.team2370.robot.subsystems;
 
+import org.omg.IOP.TAG_ALTERNATE_IIOP_ADDRESS;
 import org.usfirst.frc.team2370.robot.RobotMap;
 import org.usfirst.frc.team2370.robot.commands.DriveWithJoystick;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -25,6 +29,9 @@ public class DriveTrain extends Subsystem {
 	public static void motorSetup() {
 		RobotMap.TAL_leftSlave.follow(RobotMap.TAL_leftMaster);
 		RobotMap.TAL_rightSlave.follow(RobotMap.TAL_rightMaster);
+		
+		RobotMap.TAL_leftMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 20);
+		RobotMap.TAL_rightMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 20);
 	}
 
 	/**
@@ -68,6 +75,8 @@ public class DriveTrain extends Subsystem {
 	 *            The angle the robot will turn (Only positive angles)
 	 */
 	public static void turnLeft(double angle) {
+		
+		
 
 	}
 
@@ -89,7 +98,10 @@ public class DriveTrain extends Subsystem {
 	 *            The distance (In inches) to drive forward
 	 */
 	public static void driveStraight(double distance) {
-
+		
+		RobotMap.TAL_leftMaster.set(ControlMode.Position, distance);
+		RobotMap.TAL_rightMaster.set(ControlMode.Position, distance);
+		
 	}
 
 	public void initDefaultCommand() {

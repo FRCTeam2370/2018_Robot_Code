@@ -9,14 +9,21 @@ package org.usfirst.frc.team2370.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team2370.robot.Robot;
+import org.usfirst.frc.team2370.robot.subsystems.DriveTrain;
 
 /**
  * An example command. You can replace me with your own command.
  */
 public class DriveStraight extends Command {
-	public DriveStraight() {
+	
+	//pos is distance set to drive when used
+	public double dist;
+	
+	public DriveStraight(double dist) {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.kDriveTrain);
+		
+		this.dist = dist;
 	}
 
 	// Called just before this Command runs the first time
@@ -27,6 +34,9 @@ public class DriveStraight extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
+		
+		DriveTrain.driveStraight(dist);
+		
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -44,5 +54,9 @@ public class DriveStraight extends Command {
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
+		
+		//RobotMap.TAL_leftmaster.set(0);
+		//RobotMap.TAL_rightmaster.set(0);
+		
 	}
 }
