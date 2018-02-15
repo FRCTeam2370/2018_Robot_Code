@@ -87,7 +87,7 @@ public class RobotMap {
 
 	/**
 	 * This will set up the buttons and controller for the OI (Operator Interface)
-	 */
+	 */ 
 	public static Joystick controller = new Joystick(0);
 	public static Button BTN_carriageToBot = new JoystickButton(controller, 1);
 	public static Button BTN_carriageToTop = new JoystickButton(controller, 2);
@@ -97,7 +97,7 @@ public class RobotMap {
 	public static Button BTN_gripperPush = new JoystickButton(controller, 6);
 	
 	public static boolean isShifted = false;
-	
+	 
 	/**
 	 * This will set up Blinken if we end up using it for LEDs
 	 * @param PWM channel
