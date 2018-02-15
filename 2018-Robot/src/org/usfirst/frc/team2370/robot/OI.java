@@ -11,6 +11,10 @@ package org.usfirst.frc.team2370.robot;
  
 import org.usfirst.frc.team2370.robot.commands.CarriageToBottom;
 import org.usfirst.frc.team2370.robot.commands.CarriageToTop;
+import org.usfirst.frc.team2370.robot.commands.ChangeGears;
+import org.usfirst.frc.team2370.robot.commands.MoveElevator;
+import org.usfirst.frc.team2370.robot.commands.PullGripper;
+import org.usfirst.frc.team2370.robot.commands.PushGripper;
 
 //import edu.wpi.first.wpilibj.Joystick; 
 //import edu.wpi.first.wpilibj.buttons.Button;
@@ -26,11 +30,11 @@ public class OI {
 		RobotMap.BTN_carriageToBot.whenPressed(new CarriageToBottom());
 		RobotMap.BTN_carriageToTop.whenPressed(new CarriageToTop());
 
-		//RobotMap.BTN_elevatorMove.
+		RobotMap.BTN_elevatorMove.whenPressed(new MoveElevator());
 		
-		//RobotMap.BTN_gripperPull
-		//RobotMap.BTN_gripperPush
+		RobotMap.BTN_gripperPull.whenPressed(new PullGripper());
+		RobotMap.BTN_gripperPush.whenPressed(new PushGripper());
 		
-		//RobotMap.BTN_shift
+		RobotMap.BTN_shift.whenPressed(new ChangeGears());
 	}
 }
