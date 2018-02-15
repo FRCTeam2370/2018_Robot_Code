@@ -26,10 +26,11 @@ public class OI {
 		RobotMap.BTN_carriageToBot.whenPressed(new CarriageToBottom());
 		RobotMap.BTN_carriageToTop.whenPressed(new CarriageToTop());
 
-		// button.whenPressed(new ExampleDriveCommand());
-
-		// button.whileHeld(new ExampleDriveCommand());
-
-		// button.whenReleased(new ExampleDriveCommand());
+		//RobotMap.BTN_elevatorMove.
+		
+		//RobotMap.BTN_gripperPull
+		//RobotMap.BTN_gripperPush
+		
+		//RobotMap.BTN_shift
 	}
 }
