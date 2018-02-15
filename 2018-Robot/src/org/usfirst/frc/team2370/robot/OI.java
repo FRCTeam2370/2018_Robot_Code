@@ -9,8 +9,8 @@ ved.                        */
 
 package org.usfirst.frc.team2370.robot;
 
-import org.usfirst.frc.team2370.robot.commands.ElevatorToBottom;
-import org.usfirst.frc.team2370.robot.commands.ElevatorToTop;
+import org.usfirst.frc.team2370.robot.commands.CarriageToBottom;
+import org.usfirst.frc.team2370.robot.commands.CarriageToTop;
 
 //import edu.wpi.first.wpilibj.Joystick; 
 //import edu.wpi.first.wpilibj.buttons.Button;
@@ -23,8 +23,8 @@ public class OI {
 
 	public OI() { 
 
-		RobotMap.BTN_elevToBot.whenPressed(new ElevatorToBottom());
-		RobotMap.BTN_elevToTop.whenPressed(new ElevatorToTop());
+		RobotMap.BTN_carriageToBot.whenPressed(new CarriageToBottom());
+		RobotMap.BTN_carriageToTop.whenPressed(new CarriageToTop());
 
 		// button.whenPressed(new ExampleDriveCommand());
 

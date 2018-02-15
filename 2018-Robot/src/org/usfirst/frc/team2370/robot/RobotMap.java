@@ -89,10 +89,14 @@ public class RobotMap {
 	 * This will set up the buttons and controller for the OI (Operator Interface)
 	 */
 	public static Joystick controller = new Joystick(0);
-	public static Button BTN_elevToBot = new JoystickButton(controller, 1);
-	public static Button BTN_elevToTop = new JoystickButton(controller, 2);
-	public static Button BTN_shiftHigh = new JoystickButton(controller, 3);
-	public static Button BTN_shiftLow = new JoystickButton(controller, 4);
+	public static Button BTN_carriageToBot = new JoystickButton(controller, 1);
+	public static Button BTN_carriageToTop = new JoystickButton(controller, 2);
+	public static Button BTN_shift = new JoystickButton(controller, 3);
+	public static Button BTN_elevatorMove = new JoystickButton(controller, 4);
+	public static Button BTN_gripperPull = new JoystickButton(controller, 5);
+	public static Button BTN_gripperPush = new JoystickButton(controller, 6);
+	
+	public static boolean isShifted = false;
 	
 	/**
 	 * This will set up Blinken if we end up using it for LEDs
