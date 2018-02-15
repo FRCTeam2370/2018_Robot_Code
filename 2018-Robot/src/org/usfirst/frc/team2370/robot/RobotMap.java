@@ -23,7 +23,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 /** 
- * The RobotMap is a mapping from the ports sensors and actuators are wired into
+ * The RobotMap is a mapping from the ports sensors and actuators are wired into 
  * to a variable name. This provides flexibility changing wiring, makes checking
  * the wiring easier and significantly reduces the number of magic numbers
  * floating around.
@@ -51,9 +51,9 @@ public class RobotMap {
 	 * DriveTrain subsystem
 	 */
 	public static WPI_TalonSRX TAL_rightMaster = new WPI_TalonSRX(16);
-	public static WPI_TalonSRX TAL_leftMaster = new WPI_TalonSRX(17);
-	public static WPI_TalonSRX TAL_rightSlave = new WPI_TalonSRX(19);
-	public static WPI_TalonSRX TAL_leftSlave = new WPI_TalonSRX(18);
+	public static WPI_TalonSRX TAL_leftMaster = new WPI_TalonSRX(11);
+	public static WPI_TalonSRX TAL_rightSlave = new WPI_TalonSRX(18);
+	public static WPI_TalonSRX TAL_leftSlave = new WPI_TalonSRX(14);
 	public static DifferentialDrive driveTrain = new DifferentialDrive(TAL_leftMaster, TAL_rightMaster);
 	public static double deadbandPercent = .05;
  
