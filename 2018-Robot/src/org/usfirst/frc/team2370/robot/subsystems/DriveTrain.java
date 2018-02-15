@@ -7,7 +7,6 @@
 
 package org.usfirst.frc.team2370.robot.subsystems;
 
-import org.omg.IOP.TAG_ALTERNATE_IIOP_ADDRESS;
 import org.usfirst.frc.team2370.robot.RobotMap;
 import org.usfirst.frc.team2370.robot.commands.DriveWithJoystick;
 
