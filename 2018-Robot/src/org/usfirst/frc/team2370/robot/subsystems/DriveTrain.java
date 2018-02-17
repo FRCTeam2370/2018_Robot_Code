@@ -35,13 +35,12 @@ public class DriveTrain extends Subsystem {
 		RobotMap.TAL_leftSlave.follow(RobotMap.TAL_leftMaster);
 		RobotMap.TAL_rightSlave.follow(RobotMap.TAL_rightMaster);
 		
-		/*RobotMap.TAL_leftMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, timeout);
+		RobotMap.TAL_leftMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, timeout);
 		RobotMap.TAL_rightMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, timeout);
 		RobotMap.TAL_leftMaster.getSensorCollection().setQuadraturePosition(0, timeout);
 		RobotMap.TAL_rightMaster.getSensorCollection().setQuadraturePosition(0, timeout);
 		RobotMap.TAL_leftMaster.config_kP(0, p, timeout);
-		RobotMap.TAL_rightMaster.config_kP(0, p, timeout);*/
-		
+		RobotMap.TAL_rightMaster.config_kP(0, p, timeout);
 		try {
 			RobotMap.ahrs = new AHRS(SerialPort.Port.kMXP);//kOnboard);
 			RobotMap.ahrs.enableLogging(true);
@@ -127,9 +126,14 @@ public class DriveTrain extends Subsystem {
 	 *            The distance (In inches) to drive forward
 	 */
 	public static void driveStraight(double distance) {
-		/*double vel = 100;
+		//double vel = 100;
 		double encoder2actual = 11.64;
 		double fixedDistance = distance - 1;
+		
+		RobotMap.TAL_leftMaster.set(ControlMode.Position, distance / 11.64);
+		RobotMap.TAL_rightMaster.set(ControlMode.Position, distance / 11.64);
+		 
+		/*
 		while ((RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition() / encoder2actual < fixedDistance) &&
 			   (RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition() / encoder2actual < fixedDistance)) {
 			RobotMap.TAL_leftMaster.set(ControlMode.Velocity, vel);

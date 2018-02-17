@@ -30,6 +30,7 @@ import org.usfirst.frc.team2370.robot.subsystems.Pneumatics;
 import org.usfirst.frc.team2370.robot.subsystems.Vision;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
  
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -135,8 +136,11 @@ public class Robot extends TimedRobot {
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
 		}
+		
 	}
 
+	public WPI_TalonSRX TAL_carriageMotor = new WPI_TalonSRX(13);
+	
 	/**
 	 * This function is called periodically during operator control.
 	 */
@@ -144,7 +148,7 @@ public class Robot extends TimedRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		
-		//RobotMap.TAL_elevatorMotor.set(RobotMap.controller.getRawAxis(5));
+		TAL_carriageMotor.set(RobotMap.controller.getRawAxis(5));
 		
 		/*if (RobotMap.controller.getRawButton(1)) {
 			RobotMap.TAL_elevatorMotor.set(ControlMode.Position, -500);
