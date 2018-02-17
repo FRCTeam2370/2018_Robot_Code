@@ -30,7 +30,7 @@ public class TurnRight extends Command {
 	@Override
 	protected void initialize() {
 		setTimeout(3);
-		RobotMap.ahrs.reset();
+		//RobotMap.ahrs.reset();
 	}
 
 	// Called repeatedly when this Command is scheduled to run

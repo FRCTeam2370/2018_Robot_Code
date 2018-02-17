@@ -82,7 +82,7 @@ public class DriveTrain extends Subsystem {
 	 */
 	public static void turnRight(double angle) {
 		//RobotMap.ahrs.reset();
-		if(RobotMap.ahrs.getAngle() < angle) {
+		if(RobotMap.ahrs.getAngle() < RobotMap.ahrs.getAngle() + angle) {
 			RobotMap.TAL_rightMaster.set(0.2);
 			RobotMap.TAL_leftMaster.set(0.2);
 		} else {
@@ -100,7 +100,7 @@ public class DriveTrain extends Subsystem {
 	 */
 	public static void turnLeft(double angle) {
 		//RobotMap.ahrs.reset();
-		if (RobotMap.ahrs.getAngle() > (angle * -1)) {
+		if (RobotMap.ahrs.getAngle() > RobotMap.ahrs.getAngle() - angle) {
 			RobotMap.TAL_rightMaster.set(-0.2);
 			RobotMap.TAL_leftMaster.set(-0.2);
 		} else {
