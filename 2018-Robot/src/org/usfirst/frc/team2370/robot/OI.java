@@ -14,6 +14,8 @@ import org.usfirst.frc.team2370.robot.commands.ElevatorToBottom;
 import org.usfirst.frc.team2370.robot.commands.ElevatorToTop;
 import org.usfirst.frc.team2370.robot.commands.PullGripper;
 import org.usfirst.frc.team2370.robot.commands.PushGripper;
+import org.usfirst.frc.team2370.robot.commands.TurnLeft;
+import org.usfirst.frc.team2370.robot.commands.TurnRight;
 
 //import edu.wpi.first.wpilibj.Joystick; 
 //import edu.wpi.first.wpilibj.buttons.Button;
@@ -26,8 +28,8 @@ public class OI {
 
 	public OI() { 
 
-		RobotMap.BTN_elevatorToBot.whenPressed(new ElevatorToBottom());
-		RobotMap.BTN_elevatorToTop.whenPressed(new ElevatorToTop());
+		RobotMap.BTN_elevatorToBot.whenPressed(new TurnRight(90));//ElevatorToBottom());
+		RobotMap.BTN_elevatorToTop.whenPressed(new TurnLeft(90));//ElevatorToTop());
 		
 		RobotMap.BTN_gripperPull.whenPressed(new PullGripper());
 		RobotMap.BTN_gripperPush.whenPressed(new PushGripper());

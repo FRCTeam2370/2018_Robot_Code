@@ -31,23 +31,24 @@ public class DriveTrain extends Subsystem {
 	public static void motorSetup() {
 		int timeout = 1000;
 		double p = 0.2;
+		
 		RobotMap.TAL_leftSlave.follow(RobotMap.TAL_leftMaster);
 		RobotMap.TAL_rightSlave.follow(RobotMap.TAL_rightMaster);
 		
-		RobotMap.TAL_leftMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, timeout);
+		/*RobotMap.TAL_leftMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, timeout);
 		RobotMap.TAL_rightMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, timeout);
 		RobotMap.TAL_leftMaster.getSensorCollection().setQuadraturePosition(0, timeout);
 		RobotMap.TAL_rightMaster.getSensorCollection().setQuadraturePosition(0, timeout);
 		RobotMap.TAL_leftMaster.config_kP(0, p, timeout);
-		RobotMap.TAL_rightMaster.config_kP(0, p, timeout);
+		RobotMap.TAL_rightMaster.config_kP(0, p, timeout);*/
 		
 		try {
-			RobotMap.ahrs = new AHRS(SerialPort.Port.kUSB1);
+			RobotMap.ahrs = new AHRS(SerialPort.Port.kMXP);//kOnboard);
 			RobotMap.ahrs.enableLogging(true);
 		} catch (RuntimeException ex) {
 			DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
 		}
-		RobotMap.ahrs.zeroYaw();
+		RobotMap.ahrs.reset();
 	}
 
 	/**
@@ -80,7 +81,13 @@ public class DriveTrain extends Subsystem {
 	 *            The angle the robot will turn (Only positive angles)
 	 */
 	public static void turnRight(double angle) {
-		
+		RobotMap.ahrs.reset();
+		while(RobotMap.ahrs.getAngle() < angle) {
+			RobotMap.TAL_rightMaster.set(-0.1);
+			RobotMap.TAL_leftMaster.set(0.1);
+		}
+		RobotMap.TAL_rightMaster.set(0);
+		RobotMap.TAL_leftMaster.set(0);
 	}
 
 	/**
@@ -91,7 +98,13 @@ public class DriveTrain extends Subsystem {
 	 *            The angle the robot will turn (Only positive angles)
 	 */
 	public static void turnLeft(double angle) {
-		
+		RobotMap.ahrs.reset();
+		while(RobotMap.ahrs.getAngle() > (angle * -1)) {
+			RobotMap.TAL_rightMaster.set(0.1);
+			RobotMap.TAL_leftMaster.set(-0.1);
+		}
+		RobotMap.TAL_rightMaster.set(0);
+		RobotMap.TAL_leftMaster.set(0);
 	}
 
 	/**
@@ -112,7 +125,7 @@ public class DriveTrain extends Subsystem {
 	 *            The distance (In inches) to drive forward
 	 */
 	public static void driveStraight(double distance) {
-		double vel = 100;
+		/*double vel = 100;
 		double encoder2actual = 11.64;
 		double fixedDistance = distance - 1;
 		while ((RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition() / encoder2actual < fixedDistance) &&
@@ -122,7 +135,7 @@ public class DriveTrain extends Subsystem {
 		}
 		RobotMap.TAL_leftMaster.set(ControlMode.Velocity, 0);
 		RobotMap.TAL_rightMaster.set(ControlMode.Velocity, 0);
-		stopMotors();
+		stopMotors();*/
 	}
 
 	public void initDefaultCommand() {

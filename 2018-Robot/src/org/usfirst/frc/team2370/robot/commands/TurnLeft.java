@@ -9,14 +9,20 @@ package org.usfirst.frc.team2370.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team2370.robot.Robot;
+import org.usfirst.frc.team2370.robot.subsystems.DriveTrain;
 
 /**
  * An example command. You can replace me with your own command.
  */
-public class Turn extends Command {
-	public Turn() {
+
+public class TurnLeft extends Command {
+	public double angle = 0;
+	
+	public TurnLeft(double angle) {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.kDriveTrain);
+
+		this.angle = angle;
 	}
 
 	// Called just before this Command runs the first time
@@ -27,6 +33,7 @@ public class Turn extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
+		DriveTrain.turnLeft(angle);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
