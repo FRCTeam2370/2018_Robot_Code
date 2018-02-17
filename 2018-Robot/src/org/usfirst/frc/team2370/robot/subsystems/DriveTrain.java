@@ -10,6 +10,7 @@ package org.usfirst.frc.team2370.robot.subsystems;
 import org.usfirst.frc.team2370.robot.RobotMap;
 import org.usfirst.frc.team2370.robot.commands.DriveWithJoystick;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.kauailabs.navx.frc.AHRS;
 
@@ -79,7 +80,7 @@ public class DriveTrain extends Subsystem {
 	 *            The angle the robot will turn (Only positive angles)
 	 */
 	public static void turnRight(double angle) {
-
+		
 	}
 
 	/**
@@ -90,7 +91,7 @@ public class DriveTrain extends Subsystem {
 	 *            The angle the robot will turn (Only positive angles)
 	 */
 	public static void turnLeft(double angle) {
-
+		
 	}
 
 	/**
@@ -111,7 +112,17 @@ public class DriveTrain extends Subsystem {
 	 *            The distance (In inches) to drive forward
 	 */
 	public static void driveStraight(double distance) {
-
+		double vel = 100;
+		double encoder2actual = 11.64;
+		double fixedDistance = distance - 1;
+		while ((RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition() / encoder2actual < fixedDistance) &&
+			   (RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition() / encoder2actual < fixedDistance)) {
+			RobotMap.TAL_leftMaster.set(ControlMode.Velocity, vel);
+			RobotMap.TAL_rightMaster.set(ControlMode.Velocity, vel);
+		}
+		RobotMap.TAL_leftMaster.set(ControlMode.Velocity, 0);
+		RobotMap.TAL_rightMaster.set(ControlMode.Velocity, 0);
+		stopMotors();
 	}
 
 	public void initDefaultCommand() {
