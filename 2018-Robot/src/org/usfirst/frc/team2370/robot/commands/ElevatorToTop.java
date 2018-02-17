@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2370.robot.commands;
 
 import org.usfirst.frc.team2370.robot.Robot;
+import org.usfirst.frc.team2370.robot.subsystems.Elevator;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -17,10 +18,12 @@ public class ElevatorToTop extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
+		Elevator.setPos(-600);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

@@ -24,18 +24,19 @@ public class PushGripper extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
+		setTimeout(1.5);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Gripper.pullPush(.5);
+		Gripper.pullPush(.75);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return isTimedOut();
 	}
 
 	// Called once after isFinished returns true
@@ -48,5 +49,6 @@ public class PushGripper extends Command {
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
+		end();
 	}
 }

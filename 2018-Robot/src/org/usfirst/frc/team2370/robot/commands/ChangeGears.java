@@ -24,13 +24,13 @@ public class ChangeGears extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-
+		Pneumatics.shiftGears();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Pneumatics.shiftGears();
+		
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -49,5 +49,6 @@ public class ChangeGears extends Command {
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
+		end();
 	}
 }

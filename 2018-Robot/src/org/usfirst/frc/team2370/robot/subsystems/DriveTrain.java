@@ -81,13 +81,14 @@ public class DriveTrain extends Subsystem {
 	 *            The angle the robot will turn (Only positive angles)
 	 */
 	public static void turnRight(double angle) {
-		RobotMap.ahrs.reset();
-		while(RobotMap.ahrs.getAngle() < angle) {
-			RobotMap.TAL_rightMaster.set(-0.1);
-			RobotMap.TAL_leftMaster.set(0.1);
+		//RobotMap.ahrs.reset();
+		if(RobotMap.ahrs.getAngle() < angle) {
+			RobotMap.TAL_rightMaster.set(0.2);
+			RobotMap.TAL_leftMaster.set(0.2);
+		} else {
+			RobotMap.TAL_rightMaster.set(0);
+			RobotMap.TAL_leftMaster.set(0);
 		}
-		RobotMap.TAL_rightMaster.set(0);
-		RobotMap.TAL_leftMaster.set(0);
 	}
 
 	/**
@@ -98,13 +99,14 @@ public class DriveTrain extends Subsystem {
 	 *            The angle the robot will turn (Only positive angles)
 	 */
 	public static void turnLeft(double angle) {
-		RobotMap.ahrs.reset();
-		while(RobotMap.ahrs.getAngle() > (angle * -1)) {
-			RobotMap.TAL_rightMaster.set(0.1);
-			RobotMap.TAL_leftMaster.set(-0.1);
+		//RobotMap.ahrs.reset();
+		if (RobotMap.ahrs.getAngle() > (angle * -1)) {
+			RobotMap.TAL_rightMaster.set(-0.2);
+			RobotMap.TAL_leftMaster.set(-0.2);
+		} else {
+			RobotMap.TAL_rightMaster.set(0);
+			RobotMap.TAL_leftMaster.set(0);
 		}
-		RobotMap.TAL_rightMaster.set(0);
-		RobotMap.TAL_leftMaster.set(0);
 	}
 
 	/**

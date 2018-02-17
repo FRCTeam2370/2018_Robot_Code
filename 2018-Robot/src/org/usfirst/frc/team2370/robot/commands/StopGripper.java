@@ -8,48 +8,45 @@
 package org.usfirst.frc.team2370.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+
 import org.usfirst.frc.team2370.robot.Robot;
-import org.usfirst.frc.team2370.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team2370.robot.subsystems.Gripper;
 
 /**
  * An example command. You can replace me with your own command.
  */
-public class DriveStraight extends Command {
-	double distance = 0;
-	
-	public DriveStraight(double distance) {
+public class StopGripper extends Command {
+	public StopGripper() {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.kDriveTrain);
-		this.distance = distance;
+		requires(Robot.kGripper);
 	}
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		setTimeout(10);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		DriveTrain.driveStraight(distance);
+		Gripper.stopGripper();
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return isTimedOut();
+		return false;
 	}
 
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
+
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
-		end();
 	}
 }

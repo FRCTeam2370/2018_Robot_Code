@@ -10,6 +10,7 @@ package org.usfirst.frc.team2370.robot.subsystems;
 import org.usfirst.frc.team2370.robot.RobotMap;
 
 import com.ctre.phoenix.ParamEnum;
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 
 import edu.wpi.first.wpilibj.command.PIDSubsystem;;
@@ -22,7 +23,7 @@ public class Elevator extends PIDSubsystem {
 	// here. Call these from Commands.
 	public static final double BOTTOM = 0;
 
-	public static final double p = 0.6;
+	public static final double p = 1.6;
 	public static final double i = 0.0;
 	public static final double d = 0.0;
 
@@ -30,7 +31,9 @@ public class Elevator extends PIDSubsystem {
 		super("Elevator", p, i, d);
 		setAbsoluteTolerance(0.05);
 		getPIDController().setContinuous(false);
+	}
 
+	public static void elevatorSetup() {
 		int timeout = 1000;
 		RobotMap.TAL_elevatorMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, timeout);
 		RobotMap.TAL_elevatorMotor.getSensorCollection().setQuadraturePosition(0, timeout);
@@ -47,7 +50,7 @@ public class Elevator extends PIDSubsystem {
 
 		RobotMap.TAL_elevatorMotor.setInverted(true);
 	}
-
+	
 	/**
 	 * Set the PID setpoint to the given value
 	 * 
@@ -55,7 +58,7 @@ public class Elevator extends PIDSubsystem {
 	 *            The setpoint
 	 */
 	public static void setPos(double pos) {
-		// RobotMap.TAL_elevatorMotor.set(ControlMode.Position, pos);
+		RobotMap.TAL_elevatorMotor.set(ControlMode.Position, pos);
 	}
 
 	public void initDefaultCommand() {

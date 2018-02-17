@@ -54,8 +54,8 @@ public class RobotMap {
 	/**   
 	 * This will set the speed controllers for the Gripper subsystem
 	 */ 
-	public static WPI_TalonSRX TAL_gripMotorLeft = new WPI_TalonSRX(0);
-	public static WPI_TalonSRX TAL_gripMotorRight = new WPI_TalonSRX(0);
+	public static WPI_TalonSRX TAL_gripMotorLeft = new WPI_TalonSRX(14);
+	public static WPI_TalonSRX TAL_gripMotorRight = new WPI_TalonSRX(11);
 	
 	/**
 	 * Motors for the Ramp to elevate after being dropped to the floor.

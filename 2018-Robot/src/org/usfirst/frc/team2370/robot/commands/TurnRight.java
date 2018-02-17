@@ -9,6 +9,7 @@ package org.usfirst.frc.team2370.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team2370.robot.Robot;
+import org.usfirst.frc.team2370.robot.RobotMap;
 import org.usfirst.frc.team2370.robot.subsystems.DriveTrain;
 
 /**
@@ -28,6 +29,8 @@ public class TurnRight extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
+		setTimeout(3);
+		RobotMap.ahrs.reset();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -39,7 +42,7 @@ public class TurnRight extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return isTimedOut();
 	}
 
 	// Called once after isFinished returns true
@@ -51,5 +54,6 @@ public class TurnRight extends Command {
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
+		end();
 	}
 }
