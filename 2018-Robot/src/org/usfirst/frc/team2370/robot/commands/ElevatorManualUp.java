@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class CarriageToBottom extends Command {
+public class ElevatorManualUp extends Command {
 
-	public CarriageToBottom() {
+	public ElevatorManualUp() {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(Robot.kElevator);

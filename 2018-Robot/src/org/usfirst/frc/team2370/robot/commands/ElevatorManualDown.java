@@ -7,13 +7,12 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class CarriageToTop extends Command {
+public class ElevatorManualDown extends Command {
 
-	public CarriageToTop() {
+	public ElevatorManualDown() {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(Robot.kElevator);
-
 	}
 
 	// Called just before this Command runs the first time
@@ -22,7 +21,6 @@ public class CarriageToTop extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
