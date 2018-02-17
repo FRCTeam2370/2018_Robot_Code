@@ -9,10 +9,9 @@ ved.                        */
 
 package org.usfirst.frc.team2370.robot;
  
-import org.usfirst.frc.team2370.robot.commands.CarriageToBottom;
-import org.usfirst.frc.team2370.robot.commands.CarriageToTop;
 import org.usfirst.frc.team2370.robot.commands.ChangeGears;
-import org.usfirst.frc.team2370.robot.commands.MoveElevator;
+import org.usfirst.frc.team2370.robot.commands.ElevatorToBottom;
+import org.usfirst.frc.team2370.robot.commands.ElevatorToTop;
 import org.usfirst.frc.team2370.robot.commands.PullGripper;
 import org.usfirst.frc.team2370.robot.commands.PushGripper;
 
@@ -27,10 +26,8 @@ public class OI {
 
 	public OI() { 
 
-		RobotMap.BTN_carriageToBot.whenPressed(new CarriageToBottom());
-		RobotMap.BTN_carriageToTop.whenPressed(new CarriageToTop());
-
-		RobotMap.BTN_elevatorMove.whenPressed(new MoveElevator());
+		RobotMap.BTN_elevatorToBot.whenPressed(new ElevatorToBottom());
+		RobotMap.BTN_elevatorToTop.whenPressed(new ElevatorToTop());
 		
 		RobotMap.BTN_gripperPull.whenPressed(new PullGripper());
 		RobotMap.BTN_gripperPush.whenPressed(new PushGripper());

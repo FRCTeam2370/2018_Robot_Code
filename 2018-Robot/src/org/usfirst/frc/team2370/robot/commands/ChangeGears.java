@@ -30,14 +30,7 @@ public class ChangeGears extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		if (RobotMap.controller.getRawButton(1)) {
-			Pneumatics.setSolenoid1(false);
-			Pneumatics.setSolenoid2(true);
-		}
-		if (RobotMap.controller.getRawButton(2)) {
-			Pneumatics.setSolenoid2(false);
-			Pneumatics.setSolenoid1(true);
-		}
+		Pneumatics.shiftGears();
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

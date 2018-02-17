@@ -35,15 +35,9 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
 public class RobotMap {
 
 	/**
-	 * This records the state of the ramps
-	 */
-	public static boolean rampState;
-	
-	/**
 	 * This will set the solenoids and compressor for the Pneumatics subsystem
 	 */
-	public static Solenoid SLN_rightSolenoid1 = new Solenoid(0);
-	public static Solenoid SLN_rightSolenoid2 = new Solenoid(1);
+	public static Solenoid SLN_shiftingSolenoid = new Solenoid(0);
 	public static Compressor compressor = new Compressor();
 
 	/**
@@ -67,16 +61,16 @@ public class RobotMap {
 	 * Motors for the Ramp to elevate after being dropped to the floor.
 	 */
 	
-	public static WPI_TalonSRX TAL_leftRampMotor = new WPI_TalonSRX(0);
-	public static WPI_TalonSRX TAL_rightRampMotor = new WPI_TalonSRX(0);
+	//public static WPI_TalonSRX TAL_leftRampMotor = new WPI_TalonSRX(0);
+	//public static WPI_TalonSRX TAL_rightRampMotor = new WPI_TalonSRX(0);
 
 	/**
 	 * This will set the speed controller for the Elevator subsystem
 	 */
-	public static WPI_TalonSRX TAL_elevatorMotor = new WPI_TalonSRX(12);
-	public static Solenoid SLN_elevatorSolenoid1 = new Solenoid(3);
-	public static Solenoid SLN_elevatorSolenoid2 = new Solenoid(4);
-	public static DigitalInput lifterSwitch = new DigitalInput(0);
+	public static WPI_TalonSRX TAL_elevatorMotor = new WPI_TalonSRX(15);
+	public static Solenoid SLN_elevatorSolenoid = new Solenoid(1);
+	public static DigitalInput elevatorBottom = new DigitalInput(0);
+	public static DigitalInput elevatorTop = new DigitalInput(1);
 	
 	/**
 	 * This will set the Limelight network table up and the driver USB camera for
@@ -89,14 +83,17 @@ public class RobotMap {
 	 * This will set up the buttons and controller for the OI (Operator Interface)
 	 */ 
 	public static Joystick controller = new Joystick(0);
-	public static Button BTN_carriageToBot = new JoystickButton(controller, 1);
-	public static Button BTN_carriageToTop = new JoystickButton(controller, 2);
+	public static Button BTN_elevatorToBot = new JoystickButton(controller, 1);
+	public static Button BTN_elevatorToTop = new JoystickButton(controller, 2);
 	public static Button BTN_shift = new JoystickButton(controller, 3);
 	public static Button BTN_elevatorMove = new JoystickButton(controller, 4);
 	public static Button BTN_gripperPull = new JoystickButton(controller, 5);
 	public static Button BTN_gripperPush = new JoystickButton(controller, 6);
 	
-	public static boolean shiftState = false;
+	/**
+	 * This will show if the gears are shifted to low or not, defaulting to low
+	 */
+	public static boolean shifted = true;
 	 
 	/**
 	 * This will set up Blinken if we end up using it for LEDs
