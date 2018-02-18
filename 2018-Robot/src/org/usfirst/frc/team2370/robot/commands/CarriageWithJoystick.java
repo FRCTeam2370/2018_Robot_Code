@@ -31,15 +31,19 @@ public class CarriageWithJoystick extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		if (RobotMap.controller.getRawAxis(5) > RobotMap.deadbandPercent) {
-			Elevator.moveCarriage(RobotMap.controller.getRawAxis(5));
-		}
-		else if (RobotMap.controller.getRawAxis(5) < (RobotMap.deadbandPercent) * -1) {
+		//if (RobotMap.controller.getRawAxis(5) > RobotMap.deadbandPercent) {
+		
+		//Elevator.moveCarriage(RobotMap.controller.getRawAxis(5));
+		
+		RobotMap.TAL_carriageMotor.set(RobotMap.controller.getRawAxis(5));
+		
+		//}
+		/*else if (RobotMap.controller.getRawAxis(5) < (RobotMap.deadbandPercent) * -1) {
 			Elevator.moveCarriage(RobotMap.controller.getRawAxis(5));
 		}
 		else{
 			Elevator.stopCarriage();
-		}
+		}*/
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

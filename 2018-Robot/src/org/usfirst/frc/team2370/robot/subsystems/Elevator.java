@@ -26,7 +26,7 @@ public class Elevator extends PIDSubsystem {
 
 	public static final double p = 2.5;
 	public static final double i = 0.0;
-	public static final double d = 0.0;	
+	public static final double d = 0.0;
 
 	public Elevator() {
 		super("Elevator", p, i, d);
