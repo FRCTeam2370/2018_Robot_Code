@@ -1,8 +1,6 @@
-package org.usfirst.frc.team2370.robot;
+package org.usfirst.frc.team2370.robot.commands;
 
-import org.usfirst.frc.team2370.robot.commands.DriveStraight;
-import org.usfirst.frc.team2370.robot.commands.ElevatorToBottom;
-import org.usfirst.frc.team2370.robot.commands.PullGripper;
+import org.usfirst.frc.team2370.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
