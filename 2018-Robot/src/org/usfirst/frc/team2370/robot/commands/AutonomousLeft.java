@@ -15,7 +15,22 @@ public class AutonomousLeft extends CommandGroup {
         	addSequential(new ElevatorToBottom());
         	addParallel(new DriveStraight(0));
         	addParallel(new PullGripper());
-        	
+        	break;
+        case "rrr":
+        	addSequential(new ElevatorToBottom());
+        	addParallel(new DriveStraight(0));
+        	addParallel(new PullGripper());
+        	break;
+        case "rlr":
+        	addSequential(new ElevatorToBottom());
+        	addParallel(new DriveStraight(0));
+        	addParallel(new PullGripper());
+        	break;
+        case "lrl":
+        	addSequential(new ElevatorToBottom());
+        	addParallel(new DriveStraight(0));
+        	addParallel(new PullGripper());
+        	break;
         }
     }
 }
