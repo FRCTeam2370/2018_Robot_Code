@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutonomousLeft extends CommandGroup {
+public class AutonomousCenter extends CommandGroup {
 
-	public AutonomousLeft() {
+	public AutonomousCenter() {
 		switch (RobotMap.fieldMessage) {
 		case "lll":
 			addSequential(new ElevatorToBottom());
