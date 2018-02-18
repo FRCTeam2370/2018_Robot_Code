@@ -44,6 +44,6 @@ public class OI {
 		RobotMap.BTN_gripperPull.whenInactive(new StopGripper());
 		RobotMap.BTN_gripperPush.whenInactive(new StopGripper());
 		
-		RobotMap.BTN_shift.whenPressed(new DriveStraight(100));//new ChangeGears());
+		RobotMap.BTN_shift.whenPressed(new ChangeGears());//new DriveStraight(100));
 	}
 }

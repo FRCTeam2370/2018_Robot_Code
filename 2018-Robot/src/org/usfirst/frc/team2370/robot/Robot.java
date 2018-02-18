@@ -167,6 +167,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("IMU_Pitch", RobotMap.ahrs.getPitch());
 		SmartDashboard.putNumber("IMU_Roll", RobotMap.ahrs.getRoll());
 		SmartDashboard.putNumber("IMU_Angle", RobotMap.ahrs.getAngle());
+		SmartDashboard.putNumber("Pres Sensor", RobotMap.ALA_PreSensor.getValue());
 		
 		/*SmartDashboard.putNumber("Position Left", RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition());
 		SmartDashboard.putNumber("Velocity Left", RobotMap.TAL_leftMaster.getSensorCollection().getQuadratureVelocity());

@@ -12,6 +12,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -39,6 +40,7 @@ public class RobotMap {
 	 */
 	public static Solenoid SLN_shiftingSolenoid = new Solenoid(0);
 	public static Compressor compressor = new Compressor();
+	public static AnalogInput ALA_PreSensor = new AnalogInput(0);
 
 	/**
 	 * This will set the speed controllers, drive train object, and deadband for the
@@ -72,6 +74,7 @@ public class RobotMap {
 	public static Solenoid SLN_elevatorSolenoid = new Solenoid(1);
 	public static DigitalInput elevatorBottom = new DigitalInput(0);
 	public static DigitalInput elevatorTop = new DigitalInput(1);
+	
 	
 	/*public static double pUp = 1.5;
 	public static double pDown = 0.2;
