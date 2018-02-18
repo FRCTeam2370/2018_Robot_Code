@@ -17,7 +17,7 @@ public class AutonomousRight extends CommandGroup {
 			addSequential(new PullGripper());
 
 			break; 
-
+ 
 		case "rrr":
 			addParallel(new ElevatorToBottom());
 			addParallel(new DriveStraight(0));
