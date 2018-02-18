@@ -62,6 +62,14 @@ public class Elevator extends PIDSubsystem {
 	public static void setPos(double pos) {
 		RobotMap.TAL_elevatorMotor.set(ControlMode.Position, pos);
 	}
+	
+	public static void moveCarriage(double speed) {
+		RobotMap.TAL_carriageMotor.set(speed);
+	}
+	
+	public static void stopCarriage() {
+		RobotMap.TAL_carriageMotor.set(0);
+	}
 
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
