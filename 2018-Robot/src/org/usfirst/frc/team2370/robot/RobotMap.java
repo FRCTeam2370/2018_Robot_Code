@@ -95,11 +95,6 @@ public class RobotMap {
 	public static Button BTN_elevatorMove = new JoystickButton(controller, 4);
 	public static Button BTN_gripperPull = new JoystickButton(controller, 5);
 	public static Button BTN_gripperPush = new JoystickButton(controller, 6);
-	
-	/**
-	 * This will show if the gears are shifted to low or not, defaulting to low
-	 */
-	public static boolean shifted = true;
 	 
 	/**
 	 * This will set up Blinken if we end up using it for LEDs

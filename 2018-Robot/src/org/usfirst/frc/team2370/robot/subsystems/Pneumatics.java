@@ -19,11 +19,22 @@ public class Pneumatics extends Subsystem {
 	// here. Call these from Commands.
 
 	/**
+	 * This will show if the gears are shifted to low or not, defaulting to low
+	 */
+	public static boolean isHigh = false;
+	
+	/**
 	 * A method to shift gears
 	 */
 	public static void shiftGears() {
-		RobotMap.shifted = !RobotMap.shifted;
-		RobotMap.SLN_shiftingSolenoid.set(RobotMap.shifted);
+		if (isHigh == false) {
+			RobotMap.SLN_shiftingSolenoid.set(true);
+			isHigh = true;
+		} else {
+			RobotMap.SLN_shiftingSolenoid.set(false);
+			isHigh = false;
+		}
+		
 	}
 	
 	/**
