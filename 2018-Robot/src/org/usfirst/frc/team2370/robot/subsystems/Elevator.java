@@ -8,6 +8,7 @@
 package org.usfirst.frc.team2370.robot.subsystems;
 
 import org.usfirst.frc.team2370.robot.RobotMap;
+import org.usfirst.frc.team2370.robot.commands.CarriageWithJoystick;
 
 import com.ctre.phoenix.ParamEnum;
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -74,6 +75,7 @@ public class Elevator extends PIDSubsystem {
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
+		setDefaultCommand(new CarriageWithJoystick());
 	}
 
 	@Override
