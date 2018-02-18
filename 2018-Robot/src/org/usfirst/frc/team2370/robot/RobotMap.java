@@ -12,6 +12,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -35,48 +36,51 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
 public class RobotMap {
 
 	/**
-	 * This records the state of the ramps
-	 */
-	public static boolean rampState;
-	
-	/**
 	 * This will set the solenoids and compressor for the Pneumatics subsystem
 	 */
-	public static Solenoid SLN_rightSolenoid1 = new Solenoid(0);
-	public static Solenoid SLN_rightSolenoid2 = new Solenoid(1);
+	public static Solenoid SLN_shiftingSolenoid = new Solenoid(0);
 	public static Compressor compressor = new Compressor();
+	public static AnalogInput ALA_PreSensor = new AnalogInput(0);
 
 	/**
 	 * This will set the speed controllers, drive train object, and deadband for the
 	 * DriveTrain subsystem
 	 */
 	public static WPI_TalonSRX TAL_rightMaster = new WPI_TalonSRX(16);
-	public static WPI_TalonSRX TAL_leftMaster = new WPI_TalonSRX(11);
+	public static WPI_TalonSRX TAL_leftMaster = new WPI_TalonSRX(17);
 	public static WPI_TalonSRX TAL_rightSlave = new WPI_TalonSRX(18);
-	public static WPI_TalonSRX TAL_leftSlave = new WPI_TalonSRX(14);
+	public static WPI_TalonSRX TAL_leftSlave = new WPI_TalonSRX(19);
 	public static DifferentialDrive driveTrain = new DifferentialDrive(TAL_leftMaster, TAL_rightMaster);
 	public static double deadbandPercent = .05;
  
 	/**   
 	 * This will set the speed controllers for the Gripper subsystem
 	 */ 
-	public static WPI_TalonSRX TAL_gripMotorLeft = new WPI_TalonSRX(0);
-	public static WPI_TalonSRX TAL_gripMotorRight = new WPI_TalonSRX(0);
+	public static WPI_TalonSRX TAL_gripMotorLeft = new WPI_TalonSRX(14);
+	public static WPI_TalonSRX TAL_gripMotorRight = new WPI_TalonSRX(11);
 	
 	/**
 	 * Motors for the Ramp to elevate after being dropped to the floor.
 	 */
 	
-	public static WPI_TalonSRX TAL_leftRampMotor = new WPI_TalonSRX(0);
-	public static WPI_TalonSRX TAL_rightRampMotor = new WPI_TalonSRX(0);
+	//public static WPI_TalonSRX TAL_leftRampMotor = new WPI_TalonSRX(0);
+	//public static WPI_TalonSRX TAL_rightRampMotor = new WPI_TalonSRX(0);
 
 	/**
 	 * This will set the speed controller for the Elevator subsystem
 	 */
-	public static WPI_TalonSRX TAL_elevatorMotor = new WPI_TalonSRX(12);
-	public static Solenoid SLN_elevatorSolenoid1 = new Solenoid(3);
-	public static Solenoid SLN_elevatorSolenoid2 = new Solenoid(4);
-	public static DigitalInput lifterSwitch = new DigitalInput(0);
+	public static WPI_TalonSRX TAL_elevatorMotor = new WPI_TalonSRX(15);
+	public static WPI_TalonSRX TAL_carriageMotor = new WPI_TalonSRX(13);
+	public static Solenoid SLN_elevatorSolenoid = new Solenoid(1);
+	public static DigitalInput elevatorBottom = new DigitalInput(0);
+	public static DigitalInput elevatorTop = new DigitalInput(1);
+	
+	
+	/*public static double pUp = 1.5;
+	public static double pDown = 0.2;
+	public static double i = 0.0;
+	public static double d = 0.0;
+	public static int timeout = 5;*/
 	
 	/**
 	 * This will set the Limelight network table up and the driver USB camera for
@@ -89,15 +93,15 @@ public class RobotMap {
 	 * This will set up the buttons and controller for the OI (Operator Interface)
 	 */ 
 	public static Joystick controller = new Joystick(0);
-	public static Button BTN_carriageToBot = new JoystickButton(controller, 1);
-	public static Button BTN_carriageToTop = new JoystickButton(controller, 2);
+	public static Button BTN_elevatorToBot = new JoystickButton(controller, 1);
+	public static Button BTN_elevatorToTop = new JoystickButton(controller, 2);
 	public static Button BTN_shift = new JoystickButton(controller, 3);
 	public static Button BTN_elevatorMove = new JoystickButton(controller, 4);
 	public static Button BTN_gripperPull = new JoystickButton(controller, 5);
 	public static Button BTN_gripperPush = new JoystickButton(controller, 6);
+	public static Button BTN_dropElevatorSol = new JoystickButton(controller, 7);
+	public static Button BTN_pushElevatorSol = new JoystickButton(controller, 8); 
 	
-	public static boolean isShifted = false;
-	 
 	/**
 	 * This will set up Blinken if we end up using it for LEDs
 	 * @param PWM channel

@@ -15,8 +15,8 @@ import org.usfirst.frc.team2370.robot.subsystems.Gripper;
 /**
  * An example command. You can replace me with your own command.
  */
-public class PushGripper extends Command {
-	public PushGripper() {
+public class StopGripper extends Command {
+	public StopGripper() {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.kGripper);
 	}
@@ -24,31 +24,29 @@ public class PushGripper extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		setTimeout(3);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Gripper.pullPush(.5);
+		Gripper.stopGripper();
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return isTimedOut();
+		return false;
 	}
 
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-		Gripper.pullPush(0);
+
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
-		//end();
 	}
 }

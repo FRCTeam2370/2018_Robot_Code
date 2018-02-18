@@ -9,13 +9,15 @@ package org.usfirst.frc.team2370.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team2370.robot.Robot;
+import org.usfirst.frc.team2370.robot.RobotMap;
+import org.usfirst.frc.team2370.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2370.robot.subsystems.Elevator;
 
 /**
  * An example command. You can replace me with your own command.
  */
-public class MoveElevatorTest extends Command {
-	public MoveElevatorTest() {
+public class CarriageWithJoystick extends Command {
+	public CarriageWithJoystick() {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.kElevator);
 	}
@@ -23,13 +25,21 @@ public class MoveElevatorTest extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		Elevator.setPos(1000);
+		
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-
+		if (RobotMap.controller.getRawAxis(5) > RobotMap.deadbandPercent) {
+			Elevator.moveCarriage(RobotMap.controller.getRawAxis(5));
+		}
+		else if (RobotMap.controller.getRawAxis(5) < (RobotMap.deadbandPercent) * -1) {
+			Elevator.moveCarriage(RobotMap.controller.getRawAxis(5));
+		}
+		else{
+			Elevator.stopCarriage();
+		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -41,6 +51,7 @@ public class MoveElevatorTest extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
+		// DriveTrain.stopMotors();
 	}
 
 	// Called when another command which requires one or more of the same

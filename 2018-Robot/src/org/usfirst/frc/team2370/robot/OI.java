@@ -9,8 +9,17 @@ ved.                        */
 
 package org.usfirst.frc.team2370.robot;
  
-import org.usfirst.frc.team2370.robot.commands.CarriageToBottom;
-import org.usfirst.frc.team2370.robot.commands.CarriageToTop;
+import org.usfirst.frc.team2370.robot.commands.ChangeGears;
+import org.usfirst.frc.team2370.robot.commands.DriveStraight;
+import org.usfirst.frc.team2370.robot.commands.DropElevatorSol;
+import org.usfirst.frc.team2370.robot.commands.ElevatorToBottom;
+import org.usfirst.frc.team2370.robot.commands.ElevatorToTop;
+import org.usfirst.frc.team2370.robot.commands.PullGripper;
+import org.usfirst.frc.team2370.robot.commands.PushElevatorSol;
+import org.usfirst.frc.team2370.robot.commands.PushGripper;
+import org.usfirst.frc.team2370.robot.commands.StopGripper;
+import org.usfirst.frc.team2370.robot.commands.TurnLeft;
+import org.usfirst.frc.team2370.robot.commands.TurnRight;
 
 //import edu.wpi.first.wpilibj.Joystick; 
 //import edu.wpi.first.wpilibj.buttons.Button;
@@ -23,13 +32,18 @@ public class OI {
 
 	public OI() { 
 
-		RobotMap.BTN_carriageToBot.whenPressed(new CarriageToBottom());
-		RobotMap.BTN_carriageToTop.whenPressed(new CarriageToTop());
-
-		// button.whenPressed(new ExampleDriveCommand());
-
-		// button.whileHeld(new ExampleDriveCommand());
-
-		// button.whenReleased(new ExampleDriveCommand());
+		RobotMap.BTN_dropElevatorSol.whenPressed(new DropElevatorSol());
+		RobotMap.BTN_pushElevatorSol.whenPressed(new PushElevatorSol());
+		
+		RobotMap.BTN_elevatorToBot.whenPressed(new ElevatorToBottom());
+		RobotMap.BTN_elevatorToTop.whenPressed(new ElevatorToTop());
+		
+		RobotMap.BTN_gripperPull.whenReleased(new PullGripper());
+		RobotMap.BTN_gripperPush.whenReleased(new PushGripper());
+		
+		RobotMap.BTN_gripperPull.whenInactive(new StopGripper());
+		RobotMap.BTN_gripperPush.whenInactive(new StopGripper());
+		
+		RobotMap.BTN_shift.whenPressed(new ChangeGears());//new DriveStraight(100));
 	}
 }

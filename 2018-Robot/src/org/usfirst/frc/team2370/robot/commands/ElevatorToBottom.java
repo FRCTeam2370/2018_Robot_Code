@@ -1,15 +1,17 @@
 package org.usfirst.frc.team2370.robot.commands;
 
 import org.usfirst.frc.team2370.robot.Robot;
+import org.usfirst.frc.team2370.robot.RobotMap;
+import org.usfirst.frc.team2370.robot.subsystems.Elevator;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class CarriageToBottom extends Command {
+public class ElevatorToBottom extends Command {
 
-	public CarriageToBottom() {
+	public ElevatorToBottom() {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(Robot.kElevator);
@@ -17,10 +19,12 @@ public class CarriageToBottom extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		//RobotMap.TAL_elevatorMotor.config_kP(0, RobotMap.pDown, RobotMap.timeout);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
+		Elevator.setPos(-800);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

@@ -20,15 +20,17 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team2370.robot.commands.ExampleDriveCommand;
+import org.usfirst.frc.team2370.robot.commands.testAuto;
 import org.usfirst.frc.team2370.robot.subsystems.Dashboard;
 import org.usfirst.frc.team2370.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2370.robot.subsystems.Elevator;
 import org.usfirst.frc.team2370.robot.subsystems.Gripper;
 import org.usfirst.frc.team2370.robot.subsystems.LEDs;
 import org.usfirst.frc.team2370.robot.subsystems.Pneumatics;
-import org.usfirst.frc.team2370.robot.subsystems.Ramps;
 import org.usfirst.frc.team2370.robot.subsystems.Vision;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
  
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -45,7 +47,7 @@ public class Robot extends TimedRobot {
 	public static final DriveTrain kDriveTrain = new DriveTrain();
 	public static final Gripper kGripper = new Gripper();
 	public static final Elevator kElevator = new Elevator();
-	public static final Ramps kRamps = new Ramps();
+	//public static final Ramps kRamps = new Ramps();
 	public static final Vision kVision = new Vision();
 	public static final Dashboard kDashboard = new Dashboard();
 	public static final Pneumatics kPneumatics = new Pneumatics();
@@ -67,9 +69,11 @@ public class Robot extends TimedRobot {
 		m_oi = new OI();
 		// rMap = new RobotMap();
 		DriveTrain.motorSetup();
-		Pneumatics.startSolenoidUp();
+		Elevator.elevatorSetup();
 		Vision.usbCamSetup();
-		m_chooser.addDefault("Default Auto", new ExampleDriveCommand());
+		RobotMap.SLN_shiftingSolenoid.set(false);
+		RobotMap.SLN_elevatorSolenoid.set(false);
+		m_chooser.addDefault("Default Auto", new testAuto());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
 	}
@@ -138,14 +142,18 @@ public class Robot extends TimedRobot {
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
 		}
+		
 	}
 
+	public WPI_TalonSRX TAL_carriageMotor = new WPI_TalonSRX(13);
+	
 	/**
 	 * This function is called periodically during operator control.
 	 */
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		
 		// SmartDashboard.putNumber("Position",
 		// RobotMap.elevatorMotor.getSensorCollection().getQuadraturePosition());
 		// SmartDashboard.putNumber("Position2",
@@ -162,13 +170,30 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("IMU_Yaw", RobotMap.ahrs.getYaw());
 		SmartDashboard.putNumber("IMU_Pitch", RobotMap.ahrs.getPitch());
 		SmartDashboard.putNumber("IMU_Roll", RobotMap.ahrs.getRoll());
+		SmartDashboard.putNumber("IMU_Angle", RobotMap.ahrs.getAngle());
+		SmartDashboard.putNumber("Pres Sensor", RobotMap.ALA_PreSensor.getValue());
 		
-		SmartDashboard.putNumber("Position Left", RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition());
+		/*SmartDashboard.putNumber("Position Left", RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition());
 		SmartDashboard.putNumber("Velocity Left", RobotMap.TAL_leftMaster.getSensorCollection().getQuadratureVelocity());
 		SmartDashboard.putNumber("Error Left", RobotMap.TAL_leftMaster.getClosedLoopError(0));
 		SmartDashboard.putNumber("Position Right", RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition());
 		SmartDashboard.putNumber("Velocity Right", RobotMap.TAL_rightMaster.getSensorCollection().getQuadratureVelocity());
-		SmartDashboard.putNumber("Error Right", RobotMap.TAL_rightMaster.getClosedLoopError(0));
+		SmartDashboard.putNumber("Error Right", RobotMap.TAL_rightMaster.getClosedLoopError(0));*/
+		SmartDashboard.putNumber("Elevator Pos", RobotMap.TAL_elevatorMotor.getSensorCollection().getQuadraturePosition());
+		SmartDashboard.putNumber("Elevator Pos2", RobotMap.TAL_elevatorMotor.getSelectedSensorPosition(0));
+		SmartDashboard.putNumber("Elevator Setpoint", RobotMap.TAL_elevatorMotor.getClosedLoopTarget(0));
+		SmartDashboard.putNumber("Elevator Current", RobotMap.TAL_elevatorMotor.getOutputCurrent());
+		
+		
+		
+		SmartDashboard.putNumber("Right Pos", RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition());
+		SmartDashboard.putNumber("Right Pos2", RobotMap.TAL_rightMaster.getSelectedSensorPosition(0));
+		SmartDashboard.putNumber("Right Setpoint", RobotMap.TAL_rightMaster.getClosedLoopTarget(0));
+		
+		SmartDashboard.putNumber("Left Pos", RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition());
+		SmartDashboard.putNumber("Left Pos2", RobotMap.TAL_leftMaster.getSelectedSensorPosition(0));
+		SmartDashboard.putNumber("Left Setpoint", RobotMap.TAL_leftMaster.getClosedLoopTarget(0));
+		 
 	}
 
 	/**

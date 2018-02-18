@@ -29,6 +29,11 @@ public class Gripper extends Subsystem {
 		RobotMap.TAL_gripMotorLeft.set(speed);
 		RobotMap.TAL_gripMotorRight.set(speed * -1);
 	}
+	
+	public static void stopGripper() {
+		RobotMap.TAL_gripMotorLeft.set(0);
+		RobotMap.TAL_gripMotorRight.set(0);
+	}
 
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.

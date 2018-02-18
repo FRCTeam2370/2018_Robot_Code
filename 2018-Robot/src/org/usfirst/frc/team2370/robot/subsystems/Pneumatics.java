@@ -19,37 +19,34 @@ public class Pneumatics extends Subsystem {
 	// here. Call these from Commands.
 
 	/**
-	 * A method to turn a solenoid on or off
-	 * 
-	 * @param on
-	 *            True means on, false means off
+	 * This will show if the gears are shifted to low or not, defaulting to low
 	 */
-	public static void setSolenoid1(boolean on) {
-		RobotMap.SLN_rightSolenoid1.set(on);
-	}
-
+	public static boolean isHigh = false;
+	
 	/**
-	 * A method to turn a solenoid on or off
-	 * 
-	 * @param on
-	 *            True means on, false means off
+	 * A method to shift gears
 	 */
-	public static void setSolenoid2(boolean on) {
-		RobotMap.SLN_rightSolenoid2.set(on);
+	public static void shiftGears() {
+		if (isHigh == false) {
+			RobotMap.SLN_shiftingSolenoid.set(true);
+			isHigh = true;
+		} else {
+			RobotMap.SLN_shiftingSolenoid.set(false);
+			isHigh = false;
+		}
 	}
 	
-	public static void startSolenoidUp() {
-		RobotMap.SLN_elevatorSolenoid1.set(true);
-		RobotMap.SLN_elevatorSolenoid2.set(false);
-	}
-	
-	public static void startSolenoidDown() {
-		RobotMap.SLN_elevatorSolenoid1.set(false);
-		RobotMap.SLN_elevatorSolenoid2.set(true);
+	/**
+	 * A method to extend elevator / set solenoid on or off
+	 * 
+	 * @param on, whether the solenoid is on or off
+	 */
+	public static void elevatorPush(boolean on) {
+		RobotMap.SLN_elevatorSolenoid.set(on);
 	}
 
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
-		setDefaultCommand(new ChangeGears());
+		//setDefaultCommand(new ChangeGears());
 	}
 }
