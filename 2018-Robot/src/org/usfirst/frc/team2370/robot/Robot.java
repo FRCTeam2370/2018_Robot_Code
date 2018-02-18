@@ -68,7 +68,7 @@ public class Robot extends TimedRobot {
 		Elevator.elevatorSetup();
 		Vision.usbCamSetup();
 		RobotMap.SLN_shiftingSolenoid.set(false);
-		RobotMap.SLN_elevatorSolenoid.set(true);
+		RobotMap.SLN_elevatorSolenoid.set(false);
 		m_chooser.addDefault("Default Auto", new testAuto());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
@@ -149,15 +149,6 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		
-		TAL_carriageMotor.set(RobotMap.controller.getRawAxis(5));
-		
-		/*if (RobotMap.controller.getRawButton(1)) {
-			RobotMap.TAL_elevatorMotor.set(ControlMode.Position, -500);
-		}
-		else if (RobotMap.controller.getRawButton(2)) {
-			RobotMap.TAL_elevatorMotor.set(ControlMode.Position, -150);
-		}*/
 		
 		// SmartDashboard.putNumber("Position",
 		// RobotMap.elevatorMotor.getSensorCollection().getQuadraturePosition());

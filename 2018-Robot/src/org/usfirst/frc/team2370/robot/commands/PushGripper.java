@@ -24,13 +24,13 @@ public class PushGripper extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		setTimeout(1.5);
+		setTimeout(3);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Gripper.pullPush(.75);
+		Gripper.pullPush(.5);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

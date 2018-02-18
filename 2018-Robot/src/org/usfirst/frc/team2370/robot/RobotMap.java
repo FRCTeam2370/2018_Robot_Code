@@ -96,7 +96,9 @@ public class RobotMap {
 	public static Button BTN_elevatorMove = new JoystickButton(controller, 4);
 	public static Button BTN_gripperPull = new JoystickButton(controller, 5);
 	public static Button BTN_gripperPush = new JoystickButton(controller, 6);
-	 
+	public static Button BTN_dropElevatorSol = new JoystickButton(controller, 7);
+	public static Button BTN_pushElevatorSol = new JoystickButton(controller, 8); 
+	
 	/**
 	 * This will set up Blinken if we end up using it for LEDs
 	 * @param PWM channel

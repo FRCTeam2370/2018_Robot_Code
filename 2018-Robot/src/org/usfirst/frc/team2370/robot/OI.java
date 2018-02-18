@@ -11,9 +11,11 @@ package org.usfirst.frc.team2370.robot;
  
 import org.usfirst.frc.team2370.robot.commands.ChangeGears;
 import org.usfirst.frc.team2370.robot.commands.DriveStraight;
+import org.usfirst.frc.team2370.robot.commands.DropElevatorSol;
 import org.usfirst.frc.team2370.robot.commands.ElevatorToBottom;
 import org.usfirst.frc.team2370.robot.commands.ElevatorToTop;
 import org.usfirst.frc.team2370.robot.commands.PullGripper;
+import org.usfirst.frc.team2370.robot.commands.PushElevatorSol;
 import org.usfirst.frc.team2370.robot.commands.PushGripper;
 import org.usfirst.frc.team2370.robot.commands.StopGripper;
 import org.usfirst.frc.team2370.robot.commands.TurnLeft;
@@ -30,11 +32,14 @@ public class OI {
 
 	public OI() { 
 
+		RobotMap.BTN_dropElevatorSol.whenPressed(new DropElevatorSol());
+		RobotMap.BTN_pushElevatorSol.whenPressed(new PushElevatorSol());
+		
 		RobotMap.BTN_elevatorToBot.whenPressed(new ElevatorToBottom());
 		RobotMap.BTN_elevatorToTop.whenPressed(new ElevatorToTop());
 		
-		RobotMap.BTN_gripperPull.whenPressed(new PullGripper());
-		RobotMap.BTN_gripperPush.whenPressed(new PushGripper());
+		RobotMap.BTN_gripperPull.whenReleased(new PullGripper());
+		RobotMap.BTN_gripperPush.whenReleased(new PushGripper());
 		
 		RobotMap.BTN_gripperPull.whenInactive(new StopGripper());
 		RobotMap.BTN_gripperPush.whenInactive(new StopGripper());

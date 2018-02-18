@@ -8,47 +8,46 @@
 package org.usfirst.frc.team2370.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-
 import org.usfirst.frc.team2370.robot.Robot;
-import org.usfirst.frc.team2370.robot.subsystems.Gripper;
+import org.usfirst.frc.team2370.robot.RobotMap;
+import org.usfirst.frc.team2370.robot.subsystems.Pneumatics;
 
 /**
  * An example command. You can replace me with your own command.
  */
-public class PullGripper extends Command {
-	public PullGripper() {
+public class PushElevatorSol extends Command {
+	public PushElevatorSol() {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.kGripper);
+		requires(Robot.kPneumatics);
 	}
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		setTimeout(1.5);
+
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Gripper.pullPush(-.75);
+		RobotMap.SLN_elevatorSolenoid.set(false);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return isTimedOut();
+		return false;
 	}
 
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-		Gripper.pullPush(0);
+		// DriveTrain.stopMotors();
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
-		end();
 	}
 }
