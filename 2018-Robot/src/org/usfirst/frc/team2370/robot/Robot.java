@@ -68,6 +68,7 @@ public class Robot extends TimedRobot {
 		Elevator.elevatorSetup();
 		Vision.usbCamSetup();
 		RobotMap.SLN_shiftingSolenoid.set(false);
+		RobotMap.SLN_elevatorSolenoid.set(true);
 		m_chooser.addDefault("Default Auto", new testAuto());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
