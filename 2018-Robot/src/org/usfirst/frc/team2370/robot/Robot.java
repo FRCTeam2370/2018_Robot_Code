@@ -15,6 +15,7 @@
 
 package org.usfirst.frc.team2370.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -39,11 +40,16 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
  * creating this project, you must also update the build.properties file in the
  * project.
  */
+
+
+
+
 public class Robot extends TimedRobot {
 	public static final DriveTrain kDriveTrain = new DriveTrain();
 	public static final Gripper kGripper = new Gripper();
 	public static final Elevator kElevator = new Elevator();
 	//public static final Ramps kRamps = new Ramps();
+	public static final RobotMap kRobotMap = new RobotMap();
 	public static final Vision kVision = new Vision();
 	public static final Dashboard kDashboard = new Dashboard();
 	public static final Pneumatics kPneumatics = new Pneumatics();
@@ -51,6 +57,8 @@ public class Robot extends TimedRobot {
 	public static final LEDs kLEDs = new LEDs();
 
 	public static OI m_oi;
+	
+	
 	// public static RobotMap rMap;
 
 	Command m_autonomousCommand;
@@ -63,6 +71,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		m_oi = new OI();
+		
 		// rMap = new RobotMap();
 		DriveTrain.motorSetup();
 		Elevator.elevatorSetup();
@@ -103,6 +112,8 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		
+		kRobotMap.fieldMessage = DriverStation.getInstance().getGameSpecificMessage().toLowerCase();
 		m_autonomousCommand = m_chooser.getSelected();
 
 		/*
@@ -111,6 +122,7 @@ public class Robot extends TimedRobot {
 		 * MyAutoCommand(); break; case "Default Auto": default: autonomousCommand = new
 		 * ExampleCommand(); break; }
 		 */
+		
 
 		// schedule the autonomous command (example)
 		if (m_autonomousCommand != null) {
