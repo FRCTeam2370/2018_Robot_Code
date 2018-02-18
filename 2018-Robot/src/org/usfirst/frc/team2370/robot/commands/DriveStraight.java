@@ -9,6 +9,7 @@ package org.usfirst.frc.team2370.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team2370.robot.Robot;
+import org.usfirst.frc.team2370.robot.RobotMap;
 import org.usfirst.frc.team2370.robot.subsystems.DriveTrain;
 
 /**
@@ -27,6 +28,9 @@ public class DriveStraight extends Command {
 	@Override
 	protected void initialize() {
 		setTimeout(10);
+		RobotMap.TAL_rightMaster.getSensorCollection().setQuadraturePosition(0, 20);
+		RobotMap.TAL_leftMaster.getSensorCollection().setQuadraturePosition(0, 20);
+
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -44,6 +48,7 @@ public class DriveStraight extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
+
 	}
 
 	// Called when another command which requires one or more of the same

@@ -23,7 +23,7 @@ public class Elevator extends PIDSubsystem {
 	// here. Call these from Commands.
 	public static final double BOTTOM = 0;
 
-	public static final double p = 1.6;
+	public static final double p = 0.8;
 	public static final double i = 0.0;
 	public static final double d = 0.0;
 

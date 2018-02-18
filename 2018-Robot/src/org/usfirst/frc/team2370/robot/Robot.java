@@ -185,6 +185,17 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("Elevator Pos2", RobotMap.TAL_elevatorMotor.getSelectedSensorPosition(0));
 		SmartDashboard.putNumber("Elevator Setpoint", RobotMap.TAL_elevatorMotor.getClosedLoopTarget(0));
 		SmartDashboard.putNumber("Elevator Current", RobotMap.TAL_elevatorMotor.getOutputCurrent());
+		
+		
+		
+		SmartDashboard.putNumber("Right Pos", RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition());
+		SmartDashboard.putNumber("Right Pos2", RobotMap.TAL_rightMaster.getSelectedSensorPosition(0));
+		SmartDashboard.putNumber("Right Setpoint", RobotMap.TAL_rightMaster.getClosedLoopTarget(0));
+		
+		SmartDashboard.putNumber("Left Pos", RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition());
+		SmartDashboard.putNumber("Left Pos2", RobotMap.TAL_leftMaster.getSelectedSensorPosition(0));
+		SmartDashboard.putNumber("Left Setpoint", RobotMap.TAL_leftMaster.getClosedLoopTarget(0));
+		 
 	}
 
 	/**

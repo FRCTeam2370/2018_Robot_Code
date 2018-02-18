@@ -14,6 +14,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class testAuto extends CommandGroup {
 	public testAuto() {
-		addSequential(new TurnRight(90));//, 10);
+		//addSequential(new TurnRight(90));//, 10);
+		addSequential(new DriveStraight(36),3);
+		
 	}
 }

@@ -30,7 +30,7 @@ public class DriveTrain extends Subsystem {
 	 */
 	public static void motorSetup() {
 		int timeout = 1000;
-		double p = 0.2;
+		double p = 1.0;
 		
 		RobotMap.TAL_leftSlave.follow(RobotMap.TAL_leftMaster);
 		RobotMap.TAL_rightSlave.follow(RobotMap.TAL_rightMaster);
@@ -41,6 +41,12 @@ public class DriveTrain extends Subsystem {
 		RobotMap.TAL_rightMaster.getSensorCollection().setQuadraturePosition(0, timeout);
 		RobotMap.TAL_leftMaster.config_kP(0, p, timeout);
 		RobotMap.TAL_rightMaster.config_kP(0, p, timeout);
+		
+		/*RobotMap.TAL_rightMaster.setInverted(true);
+		RobotMap.TAL_leftMaster.setInverted(true);
+		RobotMap.TAL_rightSlave.setInverted(true);
+		RobotMap.TAL_leftSlave.setInverted(true);*/
+	
 		try {
 			RobotMap.ahrs = new AHRS(SerialPort.Port.kMXP);//kOnboard);
 			RobotMap.ahrs.enableLogging(true);
@@ -127,12 +133,25 @@ public class DriveTrain extends Subsystem {
 	 */
 	public static void driveStraight(double distance) {
 		//double vel = 100;
+		//RobotMap.TAL_leftMaster.setInverted(true);
+		//RobotMap.TAL_rightMaster.setInverted(true);
+		double speed = 0.2;
 		double encoder2actual = 11.64;
-		double fixedDistance = distance - 1;
+		//double fixedDistance = distance - 1;
 		
-		RobotMap.TAL_leftMaster.set(ControlMode.Position, distance / 11.64);
-		RobotMap.TAL_rightMaster.set(ControlMode.Position, distance / 11.64);
+		if ((RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition() < distance * encoder2actual) &&
+			RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition() > (distance * encoder2actual)*-1) {
+			RobotMap.TAL_rightMaster.set(-1 * speed);
+			RobotMap.TAL_leftMaster.set(speed);
+		} else {
+			RobotMap.TAL_rightMaster.set(0);
+			RobotMap.TAL_leftMaster.set(0);
+		}
+		//RobotMap.TAL_leftMaster.set(ControlMode.Position, distance * 11.64);
+		//RobotMap.TAL_rightMaster.set(ControlMode.Position, distance * 11.64);
 		 
+		//RobotMap.TAL_leftMaster.setInverted(false);
+		//RobotMap.TAL_rightMaster.setInverted(false);
 		/*
 		while ((RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition() / encoder2actual < fixedDistance) &&
 			   (RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition() / encoder2actual < fixedDistance)) {
