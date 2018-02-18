@@ -29,7 +29,7 @@ public class PushElevatorSol extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
-	protected void execute() {
+	protected void execute() { 
 		RobotMap.SLN_elevatorSolenoid.set(false);
 	}
 
