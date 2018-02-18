@@ -11,7 +11,7 @@ public class AutonomousRight extends CommandGroup {
 		switch (RobotMap.fieldMessage) {
 		case "lll":
 
-			// Drive Forwadr Beyond Switch
+			// Drive Forward Beyond Switch
 			addParallel(new ElevatorToBottom());
 			addParallel(new DriveStraight(0));
 			addSequential(new PullGripper());
