@@ -34,7 +34,6 @@ public class Pneumatics extends Subsystem {
 			RobotMap.SLN_shiftingSolenoid.set(false);
 			isHigh = false;
 		}
-		
 	}
 	
 	/**
