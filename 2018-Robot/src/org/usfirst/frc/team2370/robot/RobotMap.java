@@ -72,6 +72,12 @@ public class RobotMap {
 	public static DigitalInput elevatorBottom = new DigitalInput(0);
 	public static DigitalInput elevatorTop = new DigitalInput(1);
 	
+	public static double pUp = 1.5;
+	public static double pDown = 0.2;
+	public static double i = 0.0;
+	public static double d = 0.0;
+	public static int timeout = 5;
+	
 	/**
 	 * This will set the Limelight network table up and the driver USB camera for
 	 * the Vision subsystem

@@ -23,7 +23,7 @@ public class Elevator extends PIDSubsystem {
 	// here. Call these from Commands.
 	public static final double BOTTOM = 0;
 
-	public static final double p = 0.8;
+	public static final double p = 0.0;
 	public static final double i = 0.0;
 	public static final double d = 0.0;
 
@@ -44,9 +44,11 @@ public class Elevator extends PIDSubsystem {
 		RobotMap.TAL_elevatorMotor.configPeakOutputForward(1, timeout);
 		RobotMap.TAL_elevatorMotor.configPeakOutputReverse(-1, timeout);
 		
-		RobotMap.TAL_elevatorMotor.config_kP(0, p, timeout);
-		RobotMap.TAL_elevatorMotor.config_kI(0, i, timeout);
-		RobotMap.TAL_elevatorMotor.config_kD(0, d, timeout);
+		//RobotMap.TAL_elevatorMotor.
+		
+		//RobotMap.TAL_elevatorMotor.config_kP(0, p, timeout);
+		//RobotMap.TAL_elevatorMotor.config_kI(0, i, timeout);
+		//RobotMap.TAL_elevatorMotor.config_kD(0, d, timeout);
 
 		RobotMap.TAL_elevatorMotor.setInverted(true);
 	}

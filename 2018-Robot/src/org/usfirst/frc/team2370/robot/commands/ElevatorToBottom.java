@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2370.robot.commands;
 
 import org.usfirst.frc.team2370.robot.Robot;
+import org.usfirst.frc.team2370.robot.RobotMap;
 import org.usfirst.frc.team2370.robot.subsystems.Elevator;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -18,7 +19,7 @@ public class ElevatorToBottom extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		
+		RobotMap.TAL_elevatorMotor.config_kP(0, RobotMap.pDown, RobotMap.timeout);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
