@@ -28,27 +28,31 @@ public class DriveTrain extends Subsystem {
 	/**
 	 * Method to setup the slave speed controllers to follower mode
 	 */
+	static double speed = 0.30;
 	public static void motorSetup() {
 		int timeout = 1000;
 		double p = 1.0;
 		
+
 		RobotMap.TAL_leftSlave.follow(RobotMap.TAL_leftMaster);
 		RobotMap.TAL_rightSlave.follow(RobotMap.TAL_rightMaster);
-		
+
 		RobotMap.TAL_leftMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, timeout);
 		RobotMap.TAL_rightMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, timeout);
 		RobotMap.TAL_leftMaster.getSensorCollection().setQuadraturePosition(0, timeout);
 		RobotMap.TAL_rightMaster.getSensorCollection().setQuadraturePosition(0, timeout);
 		RobotMap.TAL_leftMaster.config_kP(0, p, timeout);
 		RobotMap.TAL_rightMaster.config_kP(0, p, timeout);
-		
-		/*RobotMap.TAL_rightMaster.setInverted(true);
-		RobotMap.TAL_leftMaster.setInverted(true);
-		RobotMap.TAL_rightSlave.setInverted(true);
-		RobotMap.TAL_leftSlave.setInverted(true);*/
-	
+
+		/*
+		 * RobotMap.TAL_rightMaster.setInverted(true);
+		 * RobotMap.TAL_leftMaster.setInverted(true);
+		 * RobotMap.TAL_rightSlave.setInverted(true);
+		 * RobotMap.TAL_leftSlave.setInverted(true);
+		 */
+
 		try {
-			RobotMap.ahrs = new AHRS(SerialPort.Port.kMXP);//kOnboard);
+			RobotMap.ahrs = new AHRS(SerialPort.Port.kMXP);// kOnboard);
 			RobotMap.ahrs.enableLogging(true);
 		} catch (RuntimeException ex) {
 			DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
@@ -86,8 +90,8 @@ public class DriveTrain extends Subsystem {
 	 *            The angle the robot will turn (Only positive angles)
 	 */
 	public static void turnRight(double angle) {
-		//RobotMap.ahrs.reset();
-		if(RobotMap.ahrs.getAngle() < RobotMap.ahrs.getAngle() + angle) {
+		// RobotMap.ahrs.reset();
+		if (RobotMap.ahrs.getAngle() < RobotMap.ahrs.getAngle() + angle) {
 			RobotMap.TAL_rightMaster.set(0.2);
 			RobotMap.TAL_leftMaster.set(0.2);
 		} else {
@@ -104,7 +108,7 @@ public class DriveTrain extends Subsystem {
 	 *            The angle the robot will turn (Only positive angles)
 	 */
 	public static void turnLeft(double angle) {
-		//RobotMap.ahrs.reset();
+		// RobotMap.ahrs.reset();
 		if (RobotMap.ahrs.getAngle() > RobotMap.ahrs.getAngle() - angle) {
 			RobotMap.TAL_rightMaster.set(-0.2);
 			RobotMap.TAL_leftMaster.set(-0.2);
@@ -131,33 +135,33 @@ public class DriveTrain extends Subsystem {
 	 * @param distance
 	 *            The distance (In inches) to drive forward
 	 */
-	public static void driveStraight(double distance) {
-		double speed = 0.2;
+	public static void driveForward(double distance) {
 		
-		//double fixedDistance = distance - 1;
-		
-		if ((RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition() < distance / RobotMap.encoder2actual) &&
-			RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition() > (distance / RobotMap.encoder2actual)*-1) {
+
+		// double fixedDistance = distance - 1;
+
+		if ((RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition() < distance
+				* RobotMap.encoder2actual)
+				&& RobotMap.TAL_leftMaster.getSensorCollection()
+						.getQuadraturePosition() > (distance * RobotMap.encoder2actual) * -1) {
 			RobotMap.TAL_rightMaster.set(-1 * speed);
 			RobotMap.TAL_leftMaster.set(speed);
 		} else {
 			RobotMap.TAL_rightMaster.set(0);
 			RobotMap.TAL_leftMaster.set(0);
 		}
-		//RobotMap.TAL_leftMaster.set(ControlMode.Position, distance * 11.64);
-		//RobotMap.TAL_rightMaster.set(ControlMode.Position, distance * 11.64);
-		 
-		//RobotMap.TAL_leftMaster.setInverted(false);
-		//RobotMap.TAL_rightMaster.setInverted(false);
-		/*
-		while ((RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition() / encoder2actual < fixedDistance) &&
-			   (RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition() / encoder2actual < fixedDistance)) {
-			RobotMap.TAL_leftMaster.set(ControlMode.Velocity, vel);
-			RobotMap.TAL_rightMaster.set(ControlMode.Velocity, vel);
+	}
+	public static void driveBackwards(double distance) {
+		if ((RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition() > distance
+				* RobotMap.encoder2actual)
+				&& RobotMap.TAL_leftMaster.getSensorCollection()
+						.getQuadraturePosition() < (distance * RobotMap.encoder2actual) * -1) {
+			RobotMap.TAL_rightMaster.set(-1 * -speed);
+			RobotMap.TAL_leftMaster.set(-speed);
+		} else {
+			RobotMap.TAL_rightMaster.set(0);
+			RobotMap.TAL_leftMaster.set(0);
 		}
-		RobotMap.TAL_leftMaster.set(ControlMode.Velocity, 0);
-		RobotMap.TAL_rightMaster.set(ControlMode.Velocity, 0);
-		stopMotors();*/
 	}
 
 	public void initDefaultCommand() {

@@ -56,7 +56,7 @@ public class RobotMap {
 	public static WPI_TalonSRX TAL_leftSlave = new WPI_TalonSRX(19);
 	public static DifferentialDrive driveTrain = new DifferentialDrive(TAL_leftMaster, TAL_rightMaster);
 	public static double deadbandPercent = .05;
-	public static double encoder2actual = 11.64;
+	public static double encoder2actual = 139.1519;
 	/**   
 	 * This will set the speed controllers for the Gripper subsystem
 	 */ 
@@ -97,7 +97,7 @@ public class RobotMap {
 	 * This will set up the buttons and controller for the OI (Operator Interface)
 	 */ 
 	public static Joystick controller = new Joystick(0);
-	public static Button BTN_elevatorToBot = new JoystickButton(controller, 1);
+	//public static Button BTN_elevatorToBot = new JoystickButton(controller, 1);
 	public static Button BTN_elevatorToTop = new JoystickButton(controller, 2);
 	public static Button BTN_shift = new JoystickButton(controller, 3);
 	public static Button BTN_elevatorMove = new JoystickButton(controller, 4);
@@ -105,7 +105,7 @@ public class RobotMap {
 	public static Button BTN_gripperPush = new JoystickButton(controller, 6);
 	public static Button BTN_dropElevatorSol = new JoystickButton(controller, 7);
 	public static Button BTN_pushElevatorSol = new JoystickButton(controller, 8); 
-	
+	public static Button BTN_driveStraight = new JoystickButton(controller, 1);
 	/**
 	 * This will set up Blinken if we end up using it for LEDs
 	 * @param PWM channel
