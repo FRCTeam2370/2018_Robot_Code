@@ -41,7 +41,7 @@ public class AutonomousRight extends CommandGroup {
 
 			break;
 
-		case "rlr":
+		case "rlr": 
 			// Place powercube on scale in front of the robot.
 			// addParallel(new ElevatorToBottom());
 			addParallel(new SetElevatorPosition(10));
