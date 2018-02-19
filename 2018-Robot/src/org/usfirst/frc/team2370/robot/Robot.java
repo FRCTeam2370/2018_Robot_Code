@@ -21,7 +21,11 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team2370.robot.commands.testAuto;
+
+import org.usfirst.frc.team2370.robot.commands.AutonomousCenter;
+import org.usfirst.frc.team2370.robot.commands.AutonomousDefault;
+import org.usfirst.frc.team2370.robot.commands.AutonomousLeft;
+import org.usfirst.frc.team2370.robot.commands.AutonomousRight;
 import org.usfirst.frc.team2370.robot.subsystems.Dashboard;
 import org.usfirst.frc.team2370.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2370.robot.subsystems.Elevator;
@@ -78,7 +82,10 @@ public class Robot extends TimedRobot {
 		Vision.usbCamSetup();
 		RobotMap.SLN_shiftingSolenoid.set(false);
 		RobotMap.SLN_elevatorSolenoid.set(false);
-		m_chooser.addDefault("Default Auto", new testAuto());
+		m_chooser.addDefault("Default", new AutonomousDefault());
+		m_chooser.addObject("Right", new AutonomousRight());
+		m_chooser.addObject("Center", new AutonomousCenter());
+		m_chooser.addObject("Left", new AutonomousLeft());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
 	}
