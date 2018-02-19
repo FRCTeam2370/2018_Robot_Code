@@ -132,15 +132,12 @@ public class DriveTrain extends Subsystem {
 	 *            The distance (In inches) to drive forward
 	 */
 	public static void driveStraight(double distance) {
-		//double vel = 100;
-		//RobotMap.TAL_leftMaster.setInverted(true);
-		//RobotMap.TAL_rightMaster.setInverted(true);
 		double speed = 0.2;
-		double encoder2actual = 11.64;
+		
 		//double fixedDistance = distance - 1;
 		
-		if ((RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition() < distance * encoder2actual) &&
-			RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition() > (distance * encoder2actual)*-1) {
+		if ((RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition() < distance / RobotMap.encoder2actual) &&
+			RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition() > (distance / RobotMap.encoder2actual)*-1) {
 			RobotMap.TAL_rightMaster.set(-1 * speed);
 			RobotMap.TAL_leftMaster.set(speed);
 		} else {

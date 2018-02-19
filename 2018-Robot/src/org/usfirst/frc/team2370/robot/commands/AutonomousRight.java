@@ -11,33 +11,45 @@ public class AutonomousRight extends CommandGroup {
 		switch (RobotMap.fieldMessage) {
 		case "lll":
 
-			// Drive Forward Beyond Switch
-			addParallel(new ElevatorToBottom());
-			addParallel(new DriveStraight(0));
-			addSequential(new PullGripper());
+			// Drive past line
+			// addParallel(new ElevatorToBottom());
+			addParallel(new DriveStraight(14));
+			// Stop
 
-			break; 
- 
+			break;
+
 		case "rrr":
-			addParallel(new ElevatorToBottom());
-			addParallel(new DriveStraight(0));
-			addSequential(new PullGripper());
+
+			// Place powercube on scale in front of the robot.
+			// addParallel(new ElevatorToBottom());
+			addParallel(new SetElevatorPosition(10));
+			addParallel(new DriveStraight(15));
+			addSequential(new TurnLeft(90));
+			addSequential(new PushGripper());
+			addSequential(new TurnRight(90));
+			// stop
 
 			break;
 
 		case "lrl":
+			// Drive to the scale and place the cube
 			addParallel(new ElevatorToBottom());
-			addParallel(new DriveStraight(0));
-			addSequential(new PullGripper());
+			addParallel(new DriveStraight(30));
+			addSequential(new TurnLeft(90));
+			addSequential(new PushGripper());
+			addSequential(new TurnRight(90));
 
 			break;
 
 		case "rlr":
-			addParallel(new ElevatorToBottom());
-			addParallel(new DriveStraight(0));
-			addSequential(new PullGripper());
-
-			break;
+			// Place powercube on scale in front of the robot.
+			// addParallel(new ElevatorToBottom());
+			addParallel(new SetElevatorPosition(10));
+			addParallel(new DriveStraight(15));
+			addSequential(new TurnLeft(90));
+			addSequential(new PushGripper());
+			addSequential(new TurnRight(90));
+			// stop
 
 		}
 
