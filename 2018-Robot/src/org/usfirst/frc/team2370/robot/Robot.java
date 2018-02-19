@@ -21,6 +21,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import org.usfirst.frc.team2370.robot.commands.AutonomousLeft;
+import org.usfirst.frc.team2370.robot.commands.AutonomousRight;
 import org.usfirst.frc.team2370.robot.commands.testAuto;
 import org.usfirst.frc.team2370.robot.subsystems.Dashboard;
 import org.usfirst.frc.team2370.robot.subsystems.DriveTrain;
@@ -71,7 +74,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		m_oi = new OI();
-		
+		RobotMap.fieldMessage = "rrr";
 		// rMap = new RobotMap();
 		DriveTrain.motorSetup();
 		Elevator.elevatorSetup();
@@ -79,8 +82,10 @@ public class Robot extends TimedRobot {
 		RobotMap.SLN_shiftingSolenoid.set(false);
 		RobotMap.SLN_elevatorSolenoid.set(false);
 		m_chooser.addDefault("Default Auto", new testAuto());
-		// chooser.addObject("My Auto", new MyAutoCommand());
+		m_chooser.addObject("Auto Right", new AutonomousRight());
+		m_chooser.addObject("Autonomous Left", new AutonomousLeft());
 		SmartDashboard.putData("Auto mode", m_chooser);
+		
 	}
 
 	/**
@@ -112,9 +117,11 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		
+		RobotMap.ahrs.reset();
 		kRobotMap.fieldMessage = DriverStation.getInstance().getGameSpecificMessage().toLowerCase();
 		m_autonomousCommand = m_chooser.getSelected();
+		
+		
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
@@ -136,6 +143,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		SmartDashboard.putNumber("IMU_Angle", RobotMap.ahrs.getAngle());
 	}
 
 	@Override
@@ -183,7 +191,7 @@ public class Robot extends TimedRobot {
 //		SmartDashboard.putNumber("IMU_Yaw", RobotMap.ahrs.getYaw());
 //		SmartDashboard.putNumber("IMU_Pitch", RobotMap.ahrs.getPitch());
 //		SmartDashboard.putNumber("IMU_Roll", RobotMap.ahrs.getRoll());
-//		SmartDashboard.putNumber("IMU_Angle", RobotMap.ahrs.getAngle());
+		SmartDashboard.putNumber("IMU_Angle", RobotMap.ahrs.getAngle());
 //		SmartDashboard.putNumber("Pres Sensor", RobotMap.ALA_PreSensor.getValue());
 		
 		/*SmartDashboard.putNumber("Position Left", RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition());

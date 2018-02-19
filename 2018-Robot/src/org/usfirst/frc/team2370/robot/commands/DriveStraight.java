@@ -27,7 +27,7 @@ public class DriveStraight extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		setTimeout(10);
+		setTimeout(8);
 		RobotMap.TAL_rightMaster.getSensorCollection().setQuadraturePosition(0, 20);
 		RobotMap.TAL_leftMaster.getSensorCollection().setQuadraturePosition(0, 20);
 
@@ -36,7 +36,8 @@ public class DriveStraight extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		DriveTrain.driveStraight(distance);
+		DriveTrain.driveForward(distance);
+		
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

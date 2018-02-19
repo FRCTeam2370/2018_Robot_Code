@@ -29,10 +29,10 @@ public class DriveTrain extends Subsystem {
 	 * Method to setup the slave speed controllers to follower mode
 	 */
 	static double speed = 0.30;
+
 	public static void motorSetup() {
 		int timeout = 1000;
 		double p = 1.0;
-		
 
 		RobotMap.TAL_leftSlave.follow(RobotMap.TAL_leftMaster);
 		RobotMap.TAL_rightSlave.follow(RobotMap.TAL_rightMaster);
@@ -90,7 +90,7 @@ public class DriveTrain extends Subsystem {
 	 *            The angle the robot will turn (Only positive angles)
 	 */
 	public static void turnRight(double angle) {
-		// RobotMap.ahrs.reset();
+
 		if (RobotMap.ahrs.getAngle() < RobotMap.ahrs.getAngle() + angle) {
 			RobotMap.TAL_rightMaster.set(0.2);
 			RobotMap.TAL_leftMaster.set(0.2);
@@ -108,7 +108,7 @@ public class DriveTrain extends Subsystem {
 	 *            The angle the robot will turn (Only positive angles)
 	 */
 	public static void turnLeft(double angle) {
-		// RobotMap.ahrs.reset();
+
 		if (RobotMap.ahrs.getAngle() > RobotMap.ahrs.getAngle() - angle) {
 			RobotMap.TAL_rightMaster.set(-0.2);
 			RobotMap.TAL_leftMaster.set(-0.2);
@@ -136,7 +136,6 @@ public class DriveTrain extends Subsystem {
 	 *            The distance (In inches) to drive forward
 	 */
 	public static void driveForward(double distance) {
-		
 
 		// double fixedDistance = distance - 1;
 
@@ -151,11 +150,12 @@ public class DriveTrain extends Subsystem {
 			RobotMap.TAL_leftMaster.set(0);
 		}
 	}
+
 	public static void driveBackwards(double distance) {
-		if ((RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition() > distance
+		if ((RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition() > -distance
 				* RobotMap.encoder2actual)
 				&& RobotMap.TAL_leftMaster.getSensorCollection()
-						.getQuadraturePosition() < (distance * RobotMap.encoder2actual) * -1) {
+						.getQuadraturePosition() < (-distance * RobotMap.encoder2actual) * -1) {
 			RobotMap.TAL_rightMaster.set(-1 * -speed);
 			RobotMap.TAL_leftMaster.set(-speed);
 		} else {

@@ -10,6 +10,7 @@ ved.                        */
 package org.usfirst.frc.team2370.robot;
  
 import org.usfirst.frc.team2370.robot.commands.ChangeGears;
+import org.usfirst.frc.team2370.robot.commands.DriveBackwards;
 import org.usfirst.frc.team2370.robot.commands.DriveStraight;
 import org.usfirst.frc.team2370.robot.commands.DropElevatorSol;
 import org.usfirst.frc.team2370.robot.commands.ElevatorToBottom;
@@ -35,7 +36,7 @@ public class OI {
 		RobotMap.BTN_dropElevatorSol.whenPressed(new DropElevatorSol());
 		RobotMap.BTN_pushElevatorSol.whenPressed(new PushElevatorSol());
 		
-		//RobotMap.BTN_elevatorToBot.whenPressed(new ElevatorToBottom());
+		RobotMap.BTN_elevatorToBot.whenPressed(new ElevatorToBottom());
 		RobotMap.BTN_elevatorToTop.whenPressed(new ElevatorToTop());
 		
 		RobotMap.BTN_gripperPull.whenReleased(new PullGripper());
@@ -44,7 +45,7 @@ public class OI {
 		RobotMap.BTN_gripperPull.whenInactive(new StopGripper());
 		RobotMap.BTN_gripperPush.whenInactive(new StopGripper());
 		
-		RobotMap.BTN_driveStraight.whenPressed(new DriveStraight(195));
+		//RobotMap.BTN_driveStraight.whenPressed(new DriveStraight(120));
 		
 		RobotMap.BTN_shift.whenPressed(new ChangeGears());//new DriveStraight(100));
 	}
