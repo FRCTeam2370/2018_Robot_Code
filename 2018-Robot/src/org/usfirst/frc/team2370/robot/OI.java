@@ -38,8 +38,8 @@ public class OI {
 		RobotMap.BTN_elevatorToBot.whenPressed(new ElevatorToBottom());
 		RobotMap.BTN_elevatorToTop.whenPressed(new ElevatorToTop());
 		
-		RobotMap.BTN_gripperPull.whenReleased(new PullGripper());
-		RobotMap.BTN_gripperPush.whenReleased(new PushGripper());
+		RobotMap.BTN_gripperPull.whenReleased(new PushGripper());
+		RobotMap.BTN_gripperPush.whenReleased(new PullGripper());
 		
 		RobotMap.BTN_gripperPull.whenInactive(new StopGripper());
 		RobotMap.BTN_gripperPush.whenInactive(new StopGripper());

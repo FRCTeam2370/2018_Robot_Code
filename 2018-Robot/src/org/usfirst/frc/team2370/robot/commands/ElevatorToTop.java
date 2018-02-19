@@ -19,19 +19,19 @@ public class ElevatorToTop extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		//setTimeout(0.1);
+		setTimeout(0.1);
 		//RobotMap.TAL_elevatorMotor.config_kP(0, RobotMap.pUp, RobotMap.timeout);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Elevator.setPos(-3000);
-		end();
+		Elevator.setPos(-3200);
+		//end();
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return false;
+		return isTimedOut();//false;
 	}
 
 	// Called once after isFinished returns true
