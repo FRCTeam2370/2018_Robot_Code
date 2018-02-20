@@ -33,6 +33,8 @@ public class TurnRight extends Command {
 		//RobotMap.TAL_rightMaster.getSensorCollection().setQuadraturePosition(0, 20);
 		RobotMap.oldAngle = RobotMap.ahrs.getAngle();
 		setTimeout(3);
+		
+		//RobotMap.ahrs.reset();
 	}
 
 	// Called repeatedly when this Command is scheduled to run

@@ -36,7 +36,7 @@ public class OI {
 		RobotMap.BTN_dropElevatorSol.whenPressed(new DropElevatorSol());
 		RobotMap.BTN_pushElevatorSol.whenPressed(new PushElevatorSol());
 		
-		RobotMap.BTN_testTurning.whenReleased(new TurnRight(90));
+		RobotMap.BTN_testTurning.whenReleased(new TurnLeft(90));
 		
 		RobotMap.BTN_elevatorToBot.whenPressed(new ElevatorToBottom());
 		RobotMap.BTN_elevatorToTop.whenPressed(new ElevatorToTop());

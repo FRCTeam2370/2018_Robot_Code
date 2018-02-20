@@ -95,9 +95,6 @@ public class Robot extends TimedRobot {
 		
 		RobotMap.SLN_shiftingSolenoid.set(false);
 		RobotMap.SLN_elevatorSolenoid.set(false);
-		
-		RobotMap.ahrs.reset();
-		RobotMap.ahrs.zeroYaw();
 
 		//m_chooser.addDefault("Default Auto", new testAuto());
 		m_chooser.addDefault("Default", new AutonomousDefault());

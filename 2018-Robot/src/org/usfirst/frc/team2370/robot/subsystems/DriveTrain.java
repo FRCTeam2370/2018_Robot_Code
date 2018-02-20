@@ -19,27 +19,36 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  * Drive Train Subsystem
  */
-public class DriveTrain extends Subsystem implements PIDOutput {
+public class DriveTrain extends Subsystem {
+
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
-
 	/**
 	 * Method to setup the slave speed controllers to follower mode
 	 */
 	static double speed = 0.55;
-	static double turnSpeed = 0.4;
-	static double error = 10;
-	static final double kP = 0.5;
+	static double turnSpeed = 0.7;
+	static double error = 3;
+	static final double kP = 2.0;
 	static final double kI = 0.0;
 	static final double kD = 0.0;
 	static final double kF = 0.0;
-	static final double kToleranceDegrees = 2.0;
-	static PIDController turnController;
+		
+	public DriveTrain() {
+		/*super(kP, kI, kD);
+		setAbsoluteTolerance(0.05);
+        getPIDController().setContinuous(true);
+        getPIDController().setInputRange(-180.0f,  180.0f);
+        getPIDController().setOutputRange(-1.0, 1.0);
+        getPIDController().enable();*/
+		// TODO Auto-generated constructor stub
+	}
 	
 	public static void motorSetup() {
 		int timeout = 1000;
@@ -69,12 +78,7 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 			DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
 		}
 		RobotMap.ahrs.reset();
-		
-		turnController = new PIDController(kP, kI, kD, kF, RobotMap.ahrs, Robot.kDriveTrain);
-		turnController.setInputRange(-180.0f,  180.0f);
-	    turnController.setOutputRange(-1.0, 1.0);
-	    turnController.setAbsoluteTolerance(kToleranceDegrees);
-	    turnController.setContinuous(true);
+
 	}
 
 	/**
@@ -115,14 +119,19 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 			RobotMap.TAL_rightMaster.set(0);
 			RobotMap.TAL_leftMaster.set(0);
 		}*/
-		/*if (RobotMap.ahrs.getAngle() <= RobotMap.oldAngle + angle - error) {
+		if (RobotMap.ahrs.getAngle() < RobotMap.oldAngle + angle - error - 35) {
 			RobotMap.TAL_rightMaster.set(turnSpeed);
 			RobotMap.TAL_leftMaster.set(turnSpeed);
-		} else {
+		} 
+		else if(RobotMap.ahrs.getAngle() > RobotMap.oldAngle + angle + error) {
+			RobotMap.TAL_rightMaster.set(-turnSpeed/4);
+			RobotMap.TAL_leftMaster.set(-turnSpeed/4);
+		}
+		else {
 			RobotMap.TAL_rightMaster.set(0);
 			RobotMap.TAL_leftMaster.set(0);
-		}*/
-		turnController.setSetpoint(angle);
+		}
+		//Robot.kDriveTrain.getPIDController().setSetpoint(angle);
 	}
 
 	/**
@@ -144,11 +153,20 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 		/*if (RobotMap.ahrs.getAngle() >= RobotMap.oldAngle - angle + error) {
 			RobotMap.TAL_rightMaster.set(turnSpeed*-1);
 			RobotMap.TAL_leftMaster.set(turnSpeed*-1);
-		} else {
+			*/
+		if (RobotMap.ahrs.getAngle() > RobotMap.oldAngle - angle + error + 25) {
+			RobotMap.TAL_rightMaster.set(-1*turnSpeed);
+			RobotMap.TAL_leftMaster.set(-1*turnSpeed);
+		} 
+		else if(RobotMap.ahrs.getAngle() < RobotMap.oldAngle - angle - error) {
+			RobotMap.TAL_rightMaster.set(turnSpeed/4);
+			RobotMap.TAL_leftMaster.set(turnSpeed/4);
+		}
+		else {
 			RobotMap.TAL_rightMaster.set(0);
 			RobotMap.TAL_leftMaster.set(0);
-		}*/
-		turnController.setSetpoint(angle*-1);
+		}
+		//Robot.kDriveTrain.getPIDController().setSetpoint(angle*-1);
 	}
 
 	/**
@@ -202,10 +220,15 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 		setDefaultCommand(new DriveWithJoystick());
 	}
 
-	@Override
-	public void pidWrite(double output) {
+	/*@Override
+	protected double returnPIDInput() {
 		// TODO Auto-generated method stub
-		RobotMap.TAL_rightMaster.set(output);
-		RobotMap.TAL_leftMaster.set(output);
+		return RobotMap.ahrs.getAngle();
 	}
+
+	@Override
+	protected void usePIDOutput(double output) {
+		// TODO Auto-generated method stub
+		arcadeDrive(0, output);
+	}*/
 }
