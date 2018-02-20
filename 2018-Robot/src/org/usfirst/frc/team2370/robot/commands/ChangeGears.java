@@ -25,6 +25,7 @@ public class ChangeGears extends Command {
 	@Override
 	protected void initialize() {
 		Pneumatics.shiftGears();
+		setTimeout(0.1);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -36,7 +37,7 @@ public class ChangeGears extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return isTimedOut();
 	}
 
 	// Called once after isFinished returns true

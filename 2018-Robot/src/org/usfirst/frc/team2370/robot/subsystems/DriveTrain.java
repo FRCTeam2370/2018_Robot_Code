@@ -154,7 +154,7 @@ public class DriveTrain extends Subsystem {
 			RobotMap.TAL_rightMaster.set(turnSpeed*-1);
 			RobotMap.TAL_leftMaster.set(turnSpeed*-1);
 			*/
-		if (RobotMap.ahrs.getAngle() > RobotMap.oldAngle - angle + error + 25) {
+		if (RobotMap.ahrs.getAngle() > RobotMap.oldAngle - angle + error + 38) {
 			RobotMap.TAL_rightMaster.set(-1*turnSpeed);
 			RobotMap.TAL_leftMaster.set(-1*turnSpeed);
 		} 
