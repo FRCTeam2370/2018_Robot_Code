@@ -17,7 +17,7 @@ import org.usfirst.frc.team2370.robot.subsystems.DriveTrain;
  */
 
 public class TurnLeft extends Command {
-	public double angle = 0;
+	public double angle;
 	
 	public TurnLeft(double angle) {
 		// Use requires() here to declare subsystem dependencies
@@ -29,8 +29,10 @@ public class TurnLeft extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		setTimeout(3);
-		//RobotMap.ahrs.reset();
+		RobotMap.TAL_leftMaster.getSensorCollection().setQuadraturePosition(0, 20);
+		RobotMap.TAL_rightMaster.getSensorCollection().setQuadraturePosition(0, 20);
+		
+		
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -42,7 +44,7 @@ public class TurnLeft extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return isTimedOut();
+		return false;
 	}
 
 	// Called once after isFinished returns true

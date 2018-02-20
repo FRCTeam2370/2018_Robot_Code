@@ -22,14 +22,16 @@ public class AutonomousRight extends CommandGroup {
 
 			// Place powercube on scale in front of the robot.
 			// addParallel(new ElevatorToBottom());
-			addParallel(new SetElevatorPosition(-2000));
-			addSequential(new DriveStraight(136));
-			addSequential(new TurnLeft(90));
-			addSequential(new DriveStraight(5));
+			
+			addSequential(new DriveStraight(142), 3.5);
+			addSequential(new TurnLeft(90), 2);
+			addSequential(new SetElevatorPosition(-3000));
+			addSequential(new DriveStraight(18), 1.5);
 			addSequential(new PushGripper());
-			addSequential(new DriveBackwards(10));
-			addSequential(new TurnRight(90));
-			addSequential(new DriveStraight(5));
+			addSequential(new DriveBackwards(20), 3);
+			addSequential(new ElevatorToBottom());
+			addSequential(new TurnRight(90), 2.5);
+			addSequential(new DriveStraight(5) , 2);
 			// stop
 
 			break;

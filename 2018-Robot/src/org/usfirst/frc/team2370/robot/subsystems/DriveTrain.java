@@ -28,7 +28,7 @@ public class DriveTrain extends Subsystem {
 	/**
 	 * Method to setup the slave speed controllers to follower mode
 	 */
-	static double speed = 0.30;
+	static double speed = 0.55;
 
 	public static void motorSetup() {
 		int timeout = 1000;
@@ -52,7 +52,7 @@ public class DriveTrain extends Subsystem {
 		 */
 
 		try {
-			RobotMap.ahrs = new AHRS(SerialPort.Port.kMXP);// kOnboard);
+			RobotMap.ahrs = new AHRS(SerialPort.Port.kMXP, AHRS.SerialDataType.kRawData, RobotMap.updateRate);// kOnboard);
 			RobotMap.ahrs.enableLogging(true);
 		} catch (RuntimeException ex) {
 			DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
@@ -90,10 +90,10 @@ public class DriveTrain extends Subsystem {
 	 *            The angle the robot will turn (Only positive angles)
 	 */
 	public static void turnRight(double angle) {
-
-		if (RobotMap.ahrs.getAngle() < RobotMap.ahrs.getAngle() + angle) {
-			RobotMap.TAL_rightMaster.set(0.2);
-			RobotMap.TAL_leftMaster.set(0.2);
+		RobotMap.currentTurnDegrees = ((RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition() + RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition()) /2)/RobotMap.encoder2TurnDegrees;
+		if (RobotMap.currentTurnDegrees > angle*-1) {
+			RobotMap.TAL_rightMaster.set(0.35);
+			RobotMap.TAL_leftMaster.set(0.35);
 		} else {
 			RobotMap.TAL_rightMaster.set(0);
 			RobotMap.TAL_leftMaster.set(0);
@@ -108,10 +108,11 @@ public class DriveTrain extends Subsystem {
 	 *            The angle the robot will turn (Only positive angles)
 	 */
 	public static void turnLeft(double angle) {
-
-		if (RobotMap.ahrs.getAngle() > RobotMap.ahrs.getAngle() - angle) {
-			RobotMap.TAL_rightMaster.set(-0.2);
-			RobotMap.TAL_leftMaster.set(-0.2);
+		RobotMap.currentTurnDegrees = ((RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition() + RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition()) /2)/RobotMap.encoder2TurnDegrees;
+	
+		if (RobotMap.currentTurnDegrees < angle) {
+			RobotMap.TAL_rightMaster.set(-0.35);
+			RobotMap.TAL_leftMaster.set(-0.35);
 		} else {
 			RobotMap.TAL_rightMaster.set(0);
 			RobotMap.TAL_leftMaster.set(0);

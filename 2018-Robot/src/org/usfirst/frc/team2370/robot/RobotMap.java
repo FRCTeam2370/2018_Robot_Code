@@ -57,6 +57,10 @@ public class RobotMap {
 	public static DifferentialDrive driveTrain = new DifferentialDrive(TAL_leftMaster, TAL_rightMaster);
 	public static double deadbandPercent = .05;
 	public static double encoder2actual = 139.1519;
+	public static double encoder2TurnDegrees = 25.2888;
+	public static double currentTurnDegrees;
+	public static byte updateRate = 30;
+	public static double oldAngle;
 	/**   
 	 * This will set the speed controllers for the Gripper subsystem
 	 */ 
@@ -100,7 +104,7 @@ public class RobotMap {
 	public static Button BTN_elevatorToBot = new JoystickButton(controller, 1);
 	public static Button BTN_elevatorToTop = new JoystickButton(controller, 2);
 	public static Button BTN_shift = new JoystickButton(controller, 3);
-	public static Button BTN_elevatorMove = new JoystickButton(controller, 4);
+	public static Button BTN_testTurning = new JoystickButton(controller, 4);
 	public static Button BTN_gripperPull = new JoystickButton(controller, 5);
 	public static Button BTN_gripperPush = new JoystickButton(controller, 6);
 	public static Button BTN_dropElevatorSol = new JoystickButton(controller, 7);

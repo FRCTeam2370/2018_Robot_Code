@@ -16,6 +16,8 @@
 package org.usfirst.frc.team2370.robot;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.MotorSafety;
+import edu.wpi.first.wpilibj.MotorSafetyHelper;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -81,18 +83,21 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		m_oi = new OI();
-		RobotMap.fieldMessage = "rrr";
+		RobotMap.fieldMessage = "lll";
 		// rMap = new RobotMap();
 		DriveTrain.motorSetup();
 		Elevator.elevatorSetup();
 		Vision.usbCamSetup();
+		RobotMap.TAL_rightMaster.setSafetyEnabled(false);
+		RobotMap.TAL_leftMaster.setSafetyEnabled(false);
+		RobotMap.TAL_rightSlave.setSafetyEnabled(false);
+		RobotMap.TAL_leftSlave.setSafetyEnabled(false);
+		
 		RobotMap.SLN_shiftingSolenoid.set(false);
-		RobotMap.SLN_elevatorSolenoid.set(false);
+		RobotMap.SLN_elevatorSolenoid.set(true);
+		
 
 		//m_chooser.addDefault("Default Auto", new testAuto());
-		m_chooser.addObject("Auto Right", new AutonomousRight());
-		m_chooser.addObject("Autonomous Left", new AutonomousLeft());
-
 		m_chooser.addDefault("Default", new AutonomousDefault());
 		m_chooser.addObject("Right", new AutonomousRight());
 		m_chooser.addObject("Center", new AutonomousCenter());
@@ -133,6 +138,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void autonomousInit() {
 		RobotMap.ahrs.reset();
+		RobotMap.SLN_elevatorSolenoid.set(true);
 		kRobotMap.fieldMessage = DriverStation.getInstance().getGameSpecificMessage().toLowerCase();
 		m_autonomousCommand = m_chooser.getSelected();
 		
@@ -188,8 +194,13 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		Scheduler.getInstance().run();
 		
+		Scheduler.getInstance().run();
+		SmartDashboard.putNumber("IMU_Angle", RobotMap.ahrs.getAngle());
+		SmartDashboard.putNumber("IMU_Angleuhhh", RobotMap.ahrs.getQuaternionZ());
+		SmartDashboard.putNumber("IMU_Angleuhhh2", RobotMap.ahrs.getRoll());
+		SmartDashboard.putNumber("IMU_Angleuhhh3", RobotMap.ahrs.getQuaternionW());
+
 		// SmartDashboard.putNumber("Position",
 		// RobotMap.elevatorMotor.getSensorCollection().getQuadraturePosition());
 		// SmartDashboard.putNumber("Position2",
@@ -206,7 +217,7 @@ public class Robot extends TimedRobot {
 //		SmartDashboard.putNumber("IMU_Yaw", RobotMap.ahrs.getYaw());
 //		SmartDashboard.putNumber("IMU_Pitch", RobotMap.ahrs.getPitch());
 //		SmartDashboard.putNumber("IMU_Roll", RobotMap.ahrs.getRoll());
-		SmartDashboard.putNumber("IMU_Angle", RobotMap.ahrs.getAngle());
+		
 //		SmartDashboard.putNumber("Pres Sensor", RobotMap.ALA_PreSensor.getValue());
 		
 		/*SmartDashboard.putNumber("Position Left", RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition());
@@ -229,7 +240,8 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("Left Pos", RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition());
 //		SmartDashboard.putNumber("Left Pos2", RobotMap.TAL_leftMaster.getSelectedSensorPosition(0));
 //		SmartDashboard.putNumber("Left Setpoint", RobotMap.TAL_leftMaster.getClosedLoopTarget(0));
-		 
+		//RobotMap.currentTurnTicks = ((RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition() + RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition()) /2)/ RobotMap.encoder2TurnDegrees;
+		SmartDashboard.putNumber("Turning Degrees", RobotMap.currentTurnDegrees);
 	}
 
 	/**
