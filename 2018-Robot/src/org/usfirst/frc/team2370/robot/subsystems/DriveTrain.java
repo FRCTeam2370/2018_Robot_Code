@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team2370.robot.subsystems;
 
+import org.usfirst.frc.team2370.robot.Robot;
 import org.usfirst.frc.team2370.robot.RobotMap;
 import org.usfirst.frc.team2370.robot.commands.DriveWithJoystick;
 
@@ -15,13 +16,15 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  * Drive Train Subsystem
  */
-public class DriveTrain extends Subsystem {
+public class DriveTrain extends Subsystem implements PIDOutput {
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 
@@ -31,6 +34,13 @@ public class DriveTrain extends Subsystem {
 	static double speed = 0.55;
 	static double turnSpeed = 0.4;
 	static double error = 10;
+	static final double kP = 0.5;
+	static final double kI = 0.0;
+	static final double kD = 0.0;
+	static final double kF = 0.0;
+	static final double kToleranceDegrees = 2.0;
+	static PIDController turnController;
+	
 	public static void motorSetup() {
 		int timeout = 1000;
 		double p = 1.0;
@@ -59,6 +69,12 @@ public class DriveTrain extends Subsystem {
 			DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
 		}
 		RobotMap.ahrs.reset();
+		
+		turnController = new PIDController(kP, kI, kD, kF, RobotMap.ahrs, Robot.kDriveTrain);
+		turnController.setInputRange(-180.0f,  180.0f);
+	    turnController.setOutputRange(-1.0, 1.0);
+	    turnController.setAbsoluteTolerance(kToleranceDegrees);
+	    turnController.setContinuous(true);
 	}
 
 	/**
@@ -99,13 +115,14 @@ public class DriveTrain extends Subsystem {
 			RobotMap.TAL_rightMaster.set(0);
 			RobotMap.TAL_leftMaster.set(0);
 		}*/
-		if (RobotMap.ahrs.getAngle() < RobotMap.oldAngle + angle - error) {
+		/*if (RobotMap.ahrs.getAngle() <= RobotMap.oldAngle + angle - error) {
 			RobotMap.TAL_rightMaster.set(turnSpeed);
 			RobotMap.TAL_leftMaster.set(turnSpeed);
 		} else {
 			RobotMap.TAL_rightMaster.set(0);
 			RobotMap.TAL_leftMaster.set(0);
-		}
+		}*/
+		turnController.setSetpoint(angle);
 	}
 
 	/**
@@ -124,13 +141,14 @@ public class DriveTrain extends Subsystem {
 			RobotMap.TAL_rightMaster.set(0);
 			RobotMap.TAL_leftMaster.set(0);
 		}*/
-		if (RobotMap.ahrs.getAngle() > RobotMap.oldAngle - angle + error) {
+		/*if (RobotMap.ahrs.getAngle() >= RobotMap.oldAngle - angle + error) {
 			RobotMap.TAL_rightMaster.set(turnSpeed*-1);
 			RobotMap.TAL_leftMaster.set(turnSpeed*-1);
 		} else {
 			RobotMap.TAL_rightMaster.set(0);
 			RobotMap.TAL_leftMaster.set(0);
-		}
+		}*/
+		turnController.setSetpoint(angle*-1);
 	}
 
 	/**
@@ -182,5 +200,12 @@ public class DriveTrain extends Subsystem {
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		setDefaultCommand(new DriveWithJoystick());
+	}
+
+	@Override
+	public void pidWrite(double output) {
+		// TODO Auto-generated method stub
+		RobotMap.TAL_rightMaster.set(output);
+		RobotMap.TAL_leftMaster.set(output);
 	}
 }
