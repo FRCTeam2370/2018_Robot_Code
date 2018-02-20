@@ -13,6 +13,8 @@ import org.usfirst.frc.team2370.robot.commands.CarriageWithJoystick;
 import com.ctre.phoenix.ParamEnum;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
+import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 
 import edu.wpi.first.wpilibj.command.PIDSubsystem;;
 
@@ -52,6 +54,8 @@ public class Elevator extends PIDSubsystem {
 		RobotMap.TAL_elevatorMotor.config_kD(0, d, timeout);
 
 		RobotMap.TAL_elevatorMotor.setInverted(true);
+		
+		RobotMap.TAL_carriageMotor.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen, 0);
 }
 	
 	/**
@@ -74,10 +78,10 @@ public class Elevator extends PIDSubsystem {
 	}
 	
 	public static void moveCarriage(double speed) {
-		if (RobotMap.DIG_elevatorTop.get() == true && speed < 0) {
+		if (RobotMap.TAL_gripMotorLeft.getSensorCollection().isFwdLimitSwitchClosed() == false && speed > 0) {
 			RobotMap.TAL_carriageMotor.set(speed);
 		}
-		else if (RobotMap.DIG_elevatorTop.get() == false) {
+		else if (RobotMap.TAL_gripMotorLeft.getSensorCollection().isFwdLimitSwitchClosed() == true) {
 			RobotMap.TAL_carriageMotor.set(speed);
 		}
 		else {

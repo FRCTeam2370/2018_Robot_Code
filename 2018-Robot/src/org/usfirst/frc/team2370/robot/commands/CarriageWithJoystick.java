@@ -35,7 +35,7 @@ public class CarriageWithJoystick extends Command {
 		
 		//Elevator.moveCarriage(RobotMap.controller.getRawAxis(5));
 		
-		RobotMap.TAL_carriageMotor.set(RobotMap.controller.getRawAxis(5));
+		Elevator.moveCarriage(RobotMap.controller.getRawAxis(5));
 		
 		//}
 		/*else if (RobotMap.controller.getRawAxis(5) < (RobotMap.deadbandPercent) * -1) {
