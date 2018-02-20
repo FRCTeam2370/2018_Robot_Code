@@ -83,7 +83,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		m_oi = new OI();
-		RobotMap.fieldMessage = "lll";
+		RobotMap.fieldMessage = "rrr";
 		// rMap = new RobotMap();
 		DriveTrain.motorSetup();
 		Elevator.elevatorSetup();
@@ -94,8 +94,10 @@ public class Robot extends TimedRobot {
 		RobotMap.TAL_leftSlave.setSafetyEnabled(false);
 		
 		RobotMap.SLN_shiftingSolenoid.set(false);
-		RobotMap.SLN_elevatorSolenoid.set(true);
+		RobotMap.SLN_elevatorSolenoid.set(false);
 		
+		RobotMap.ahrs.reset();
+		RobotMap.ahrs.zeroYaw();
 
 		//m_chooser.addDefault("Default Auto", new testAuto());
 		m_chooser.addDefault("Default", new AutonomousDefault());
@@ -138,7 +140,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void autonomousInit() {
 		RobotMap.ahrs.reset();
-		RobotMap.SLN_elevatorSolenoid.set(true);
+		RobotMap.SLN_elevatorSolenoid.set(false);
 		kRobotMap.fieldMessage = DriverStation.getInstance().getGameSpecificMessage().toLowerCase();
 		m_autonomousCommand = m_chooser.getSelected();
 		
@@ -173,6 +175,7 @@ public class Robot extends TimedRobot {
 		RobotMap.TAL_rightMaster.getSensorCollection().setQuadraturePosition(0, 20);
 		RobotMap.TAL_leftMaster.getSensorCollection().setQuadraturePosition(0, 20);
 		
+		RobotMap.SLN_elevatorSolenoid.set(false);
 		
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
@@ -196,11 +199,7 @@ public class Robot extends TimedRobot {
 	public void teleopPeriodic() {
 		
 		Scheduler.getInstance().run();
-		SmartDashboard.putNumber("IMU_Angle", RobotMap.ahrs.getAngle());
-		SmartDashboard.putNumber("IMU_Angleuhhh", RobotMap.ahrs.getQuaternionZ());
-		SmartDashboard.putNumber("IMU_Angleuhhh2", RobotMap.ahrs.getRoll());
-		SmartDashboard.putNumber("IMU_Angleuhhh3", RobotMap.ahrs.getQuaternionW());
-
+		
 		// SmartDashboard.putNumber("Position",
 		// RobotMap.elevatorMotor.getSensorCollection().getQuadraturePosition());
 		// SmartDashboard.putNumber("Position2",
@@ -231,7 +230,8 @@ public class Robot extends TimedRobot {
 //		SmartDashboard.putNumber("Elevator Setpoint", RobotMap.TAL_elevatorMotor.getClosedLoopTarget(0));
 //		SmartDashboard.putNumber("Elevator Current", RobotMap.TAL_elevatorMotor.getOutputCurrent());
 		
-		
+		SmartDashboard.putNumber("IMU_Angle", RobotMap.ahrs.getAngle());
+		SmartDashboard.putNumber("IMU_Yaw", RobotMap.ahrs.getYaw());
 		
 		SmartDashboard.putNumber("Right Pos", RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition());
 //		SmartDashboard.putNumber("Right Pos2", RobotMap.TAL_rightMaster.getSelectedSensorPosition(0));

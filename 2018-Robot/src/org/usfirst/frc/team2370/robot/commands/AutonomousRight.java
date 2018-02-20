@@ -24,8 +24,9 @@ public class AutonomousRight extends CommandGroup {
 			// addParallel(new ElevatorToBottom());
 			
 			addSequential(new DriveStraight(142), 3.5);
+			RobotMap.SLN_elevatorSolenoid.set(true);
+			addParallel(new SetElevatorPosition(-3000));
 			addSequential(new TurnLeft(90), 2);
-			addSequential(new SetElevatorPosition(-3000));
 			addSequential(new DriveStraight(18), 1.5);
 			addSequential(new PushGripper());
 			addSequential(new DriveBackwards(20), 3);
