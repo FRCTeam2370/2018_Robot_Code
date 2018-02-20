@@ -64,8 +64,25 @@ public class Elevator extends PIDSubsystem {
 		RobotMap.TAL_elevatorMotor.set(ControlMode.Position, pos);
 	}
 	
+	public static void elevatorReset() {
+		if (RobotMap.DIG_elevatorBottom.get() == false) {
+			RobotMap.TAL_elevatorMotor.set(-0.1);
+		} else {
+			RobotMap.TAL_elevatorMotor.set(0);
+			RobotMap.TAL_elevatorMotor.getSensorCollection().setQuadraturePosition(0, 20);
+		}
+	}
+	
 	public static void moveCarriage(double speed) {
-		RobotMap.TAL_carriageMotor.set(speed);
+		if (RobotMap.DIG_elevatorTop.get() == true && speed < 0) {
+			RobotMap.TAL_carriageMotor.set(speed);
+		}
+		else if (RobotMap.DIG_elevatorTop.get() == false) {
+			RobotMap.TAL_carriageMotor.set(speed);
+		}
+		else {
+			RobotMap.TAL_carriageMotor.set(0);
+		}
 	}
 	
 	public static void stopCarriage() {
