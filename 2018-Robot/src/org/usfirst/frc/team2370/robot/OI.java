@@ -13,6 +13,7 @@ import org.usfirst.frc.team2370.robot.commands.ChangeGears;
 import org.usfirst.frc.team2370.robot.commands.DriveBackwards;
 import org.usfirst.frc.team2370.robot.commands.DriveStraight;
 import org.usfirst.frc.team2370.robot.commands.DropElevatorSol;
+import org.usfirst.frc.team2370.robot.commands.ElevatorReset;
 import org.usfirst.frc.team2370.robot.commands.ElevatorToBottom;
 import org.usfirst.frc.team2370.robot.commands.ElevatorToTop;
 import org.usfirst.frc.team2370.robot.commands.PullGripper;
@@ -36,7 +37,7 @@ public class OI {
 		RobotMap.BTN_dropElevatorSol.whenPressed(new DropElevatorSol());
 		RobotMap.BTN_pushElevatorSol.whenPressed(new PushElevatorSol());
 		
-		RobotMap.BTN_testTurning.whenReleased(new TurnLeft(90));
+		RobotMap.BTN_testTurning.whenPressed(new ElevatorReset());
 		
 		RobotMap.BTN_elevatorToBot.whenPressed(new ElevatorToBottom());
 		RobotMap.BTN_elevatorToTop.whenPressed(new ElevatorToTop());

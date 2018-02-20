@@ -80,9 +80,8 @@ public class RobotMap {
 	public static WPI_TalonSRX TAL_elevatorMotor = new WPI_TalonSRX(15);
 	public static WPI_TalonSRX TAL_carriageMotor = new WPI_TalonSRX(13);
 	public static Solenoid SLN_elevatorSolenoid = new Solenoid(1);
-	public static DigitalInput elevatorBottom = new DigitalInput(0);
-	public static DigitalInput elevatorTop = new DigitalInput(1);
-	
+	public static DigitalInput DIG_elevatorBottom = new DigitalInput(0);
+	public static DigitalInput DIG_elevatorTop = new DigitalInput(1);
 	
 	/*public static double pUp = 1.5;
 	public static double pDown = 0.2;
