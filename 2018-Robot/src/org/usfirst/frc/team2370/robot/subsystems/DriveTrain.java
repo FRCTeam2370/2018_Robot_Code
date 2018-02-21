@@ -25,34 +25,34 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  * Drive Train Subsystem
  */
-public class DriveTrain extends Subsystem {
+public class DriveTrain extends PIDSubsystem {
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 	/**
 	 * Method to setup the slave speed controllers to follower mode
 	 */
+	
+	static double fwdMod = 0;
 	static double speed = 0.55;
 	static double turnSpeed = 0.7;
 	static double error = 3;
-	static final double kP = 2.0;
+	static final double kP = 0.5;
 	static final double kI = 0.0;
 	static final double kD = 0.0;
-	static final double kF = 0.0;
+	static final double kF = speed;
 		
 	public DriveTrain() {
-		/*super(kP, kI, kD);
+		super("AngleController" ,kP, kI, kD, kF);
 		setAbsoluteTolerance(0.05);
         getPIDController().setContinuous(true);
         getPIDController().setInputRange(-180.0f,  180.0f);
         getPIDController().setOutputRange(-1.0, 1.0);
-        getPIDController().enable();*/
-		// TODO Auto-generated constructor stub
+        getPIDController().enable();
 	}
 	
 	public static void motorSetup() {
 		int timeout = 1000;
-		double p = 1.0;
 
 		RobotMap.TAL_leftSlave.follow(RobotMap.TAL_leftMaster);
 		RobotMap.TAL_rightSlave.follow(RobotMap.TAL_rightMaster);
@@ -61,9 +61,7 @@ public class DriveTrain extends Subsystem {
 		RobotMap.TAL_rightMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, timeout);
 		RobotMap.TAL_leftMaster.getSensorCollection().setQuadraturePosition(0, timeout);
 		RobotMap.TAL_rightMaster.getSensorCollection().setQuadraturePosition(0, timeout);
-		RobotMap.TAL_leftMaster.config_kP(0, p, timeout);
-		RobotMap.TAL_rightMaster.config_kP(0, p, timeout);
-
+		
 		/*
 		 * RobotMap.TAL_rightMaster.setInverted(true);
 		 * RobotMap.TAL_leftMaster.setInverted(true);
@@ -190,12 +188,14 @@ public class DriveTrain extends Subsystem {
 
 		// double fixedDistance = distance - 1;
 
+		 Robot.kDriveTrain.setSetpoint(RobotMap.ahrs.getAngle());
+		
 		if ((RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition() < distance
 				* RobotMap.encoder2actual)
 				&& RobotMap.TAL_leftMaster.getSensorCollection()
 						.getQuadraturePosition() > (distance * RobotMap.encoder2actual) * -1) {
-			RobotMap.TAL_rightMaster.set(-1 * speed);
-			RobotMap.TAL_leftMaster.set(speed);
+			RobotMap.TAL_rightMaster.set(-1 * speed + fwdMod);
+			RobotMap.TAL_leftMaster.set(speed - fwdMod);
 		} else {
 			RobotMap.TAL_rightMaster.set(0);
 			RobotMap.TAL_leftMaster.set(0);
@@ -220,15 +220,18 @@ public class DriveTrain extends Subsystem {
 		setDefaultCommand(new DriveWithJoystick());
 	}
 
-	/*@Override
+	@Override
 	protected double returnPIDInput() {
-		// TODO Auto-generated method stub
+		
 		return RobotMap.ahrs.getAngle();
+		
 	}
 
 	@Override
 	protected void usePIDOutput(double output) {
-		// TODO Auto-generated method stub
-		arcadeDrive(0, output);
-	}*/
-}
+		
+		fwdMod = output;
+		
+	}
+
+	}
