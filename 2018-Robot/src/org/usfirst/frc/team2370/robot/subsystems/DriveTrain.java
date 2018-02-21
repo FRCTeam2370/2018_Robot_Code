@@ -32,27 +32,12 @@ public class DriveTrain extends Subsystem {
 	/**
 	 * Method to setup the slave speed controllers to follower mode
 	 */
+
 	static double speed = 0.55;
 	static double turnSpeed = 0.55;
-	static double error = 25;
-	static final double kP = 2.0;
-	static final double kI = 0.0;
-	static final double kD = 0.0;
-	static final double kF = 0.0;
-		
-	public DriveTrain() {
-		/*super(kP, kI, kD);
-		setAbsoluteTolerance(0.05);
-        getPIDController().setContinuous(true);
-        getPIDController().setInputRange(-180.0f,  180.0f);
-        getPIDController().setOutputRange(-1.0, 1.0);
-        getPIDController().enable();*/
-		// TODO Auto-generated constructor stub
-	}
-	
+
 	public static void motorSetup() {
 		int timeout = 1000;
-		double p = 1.0;
 
 		RobotMap.TAL_leftSlave.follow(RobotMap.TAL_leftMaster);
 		RobotMap.TAL_rightSlave.follow(RobotMap.TAL_rightMaster);
@@ -61,8 +46,6 @@ public class DriveTrain extends Subsystem {
 		RobotMap.TAL_rightMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, timeout);
 		RobotMap.TAL_leftMaster.getSensorCollection().setQuadraturePosition(0, timeout);
 		RobotMap.TAL_rightMaster.getSensorCollection().setQuadraturePosition(0, timeout);
-		RobotMap.TAL_leftMaster.config_kP(0, p, timeout);
-		RobotMap.TAL_rightMaster.config_kP(0, p, timeout);
 
 		/*
 		 * RobotMap.TAL_rightMaster.setInverted(true);
@@ -72,7 +55,8 @@ public class DriveTrain extends Subsystem {
 		 */
 
 		try {
-			RobotMap.ahrs = new AHRS(SerialPort.Port.kUSB);//, AHRS.SerialDataType.kRawData, RobotMap.updateRate);// kOnboard);
+			RobotMap.ahrs = new AHRS(SerialPort.Port.kUSB);// , AHRS.SerialDataType.kRawData, RobotMap.updateRate);//
+															// kOnboard);
 			RobotMap.ahrs.enableLogging(true);
 		} catch (RuntimeException ex) {
 			DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
@@ -111,27 +95,26 @@ public class DriveTrain extends Subsystem {
 	 *            The angle the robot will turn (Only positive angles)
 	 */
 	public static void turnRight(double angle) {
-		/*RobotMap.currentTurnDegrees = ((RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition() + RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition()) /2)/RobotMap.encoder2TurnDegrees;
-		if (RobotMap.currentTurnDegrees > angle*-1) {
+		/*
+		 * RobotMap.currentTurnDegrees =
+		 * ((RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition() +
+		 * RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition())
+		 * /2)/RobotMap.encoder2TurnDegrees; if (RobotMap.currentTurnDegrees > angle*-1)
+		 * { RobotMap.TAL_rightMaster.set(turnSpeed);
+		 * RobotMap.TAL_leftMaster.set(turnSpeed); } else {
+		 * RobotMap.TAL_rightMaster.set(0); RobotMap.TAL_leftMaster.set(0); }
+		 */
+		if (RobotMap.ahrs.getAngle() < RobotMap.oldAngle + angle) {
 			RobotMap.TAL_rightMaster.set(turnSpeed);
 			RobotMap.TAL_leftMaster.set(turnSpeed);
+		} else if (RobotMap.ahrs.getAngle() > RobotMap.oldAngle + angle) {
+			RobotMap.TAL_rightMaster.set(-turnSpeed / 3);
+			RobotMap.TAL_leftMaster.set(-turnSpeed / 3);
 		} else {
 			RobotMap.TAL_rightMaster.set(0);
 			RobotMap.TAL_leftMaster.set(0);
-		}*/
-		if (RobotMap.ahrs.getAngle() < RobotMap.oldAngle + angle - error) {
-			RobotMap.TAL_rightMaster.set(turnSpeed);
-			RobotMap.TAL_leftMaster.set(turnSpeed);
-		} 
-		else if(RobotMap.ahrs.getAngle() > RobotMap.oldAngle + angle + error) {
-			RobotMap.TAL_rightMaster.set(-turnSpeed/3);
-			RobotMap.TAL_leftMaster.set(-turnSpeed/3);
 		}
-		else {
-			RobotMap.TAL_rightMaster.set(0);
-			RobotMap.TAL_leftMaster.set(0);
-		}
-		//Robot.kDriveTrain.getPIDController().setSetpoint(angle);
+		// Robot.kDriveTrain.getPIDController().setSetpoint(angle);
 	}
 
 	/**
@@ -142,31 +125,31 @@ public class DriveTrain extends Subsystem {
 	 *            The angle the robot will turn (Only positive angles)
 	 */
 	public static void turnLeft(double angle) {
-		/*RobotMap.currentTurnDegrees = ((RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition() + RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition()) /2)/RobotMap.encoder2TurnDegrees;
-		if (RobotMap.currentTurnDegrees < angle) {
-			RobotMap.TAL_rightMaster.set(-turnSpeed);
-			RobotMap.TAL_leftMaster.set(-turnSpeed);
+		/*
+		 * RobotMap.currentTurnDegrees =
+		 * ((RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition() +
+		 * RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition())
+		 * /2)/RobotMap.encoder2TurnDegrees; if (RobotMap.currentTurnDegrees < angle) {
+		 * RobotMap.TAL_rightMaster.set(-turnSpeed);
+		 * RobotMap.TAL_leftMaster.set(-turnSpeed); } else {
+		 * RobotMap.TAL_rightMaster.set(0); RobotMap.TAL_leftMaster.set(0); }
+		 */
+		/*
+		 * if (RobotMap.ahrs.getAngle() >= RobotMap.oldAngle - angle + error) {
+		 * RobotMap.TAL_rightMaster.set(turnSpeed*-1);
+		 * RobotMap.TAL_leftMaster.set(turnSpeed*-1);
+		 */
+		if (RobotMap.ahrs.getAngle() > RobotMap.oldAngle - angle) {
+			RobotMap.TAL_rightMaster.set(-1 * turnSpeed);
+			RobotMap.TAL_leftMaster.set(-1 * turnSpeed);
+		} else if (RobotMap.ahrs.getAngle() < RobotMap.oldAngle - angle) {
+			RobotMap.TAL_rightMaster.set(turnSpeed / 3);
+			RobotMap.TAL_leftMaster.set(turnSpeed / 3);
 		} else {
 			RobotMap.TAL_rightMaster.set(0);
 			RobotMap.TAL_leftMaster.set(0);
-		}*/
-		/*if (RobotMap.ahrs.getAngle() >= RobotMap.oldAngle - angle + error) {
-			RobotMap.TAL_rightMaster.set(turnSpeed*-1);
-			RobotMap.TAL_leftMaster.set(turnSpeed*-1);
-			*/
-		if (RobotMap.ahrs.getAngle() > RobotMap.oldAngle - angle + error) {
-			RobotMap.TAL_rightMaster.set(-1*turnSpeed);
-			RobotMap.TAL_leftMaster.set(-1*turnSpeed);
-		} 
-		else if(RobotMap.ahrs.getAngle() < RobotMap.oldAngle - angle - error) {
-			RobotMap.TAL_rightMaster.set(turnSpeed/3);
-			RobotMap.TAL_leftMaster.set(turnSpeed/3);
 		}
-		else {
-			RobotMap.TAL_rightMaster.set(0);
-			RobotMap.TAL_leftMaster.set(0);
-		}
-		//Robot.kDriveTrain.getPIDController().setSetpoint(angle*-1);
+		// Robot.kDriveTrain.getPIDController().setSetpoint(angle*-1);
 	}
 
 	/**
@@ -194,8 +177,10 @@ public class DriveTrain extends Subsystem {
 				* RobotMap.encoder2actual)
 				&& RobotMap.TAL_leftMaster.getSensorCollection()
 						.getQuadraturePosition() > (distance * RobotMap.encoder2actual) * -1) {
+
 			RobotMap.TAL_rightMaster.set(-1 * speed);
-			RobotMap.TAL_leftMaster.set(speed + 0.05);
+			RobotMap.TAL_leftMaster.set(speed);
+
 		} else {
 			RobotMap.TAL_rightMaster.set(0);
 			RobotMap.TAL_leftMaster.set(0);
@@ -220,15 +205,4 @@ public class DriveTrain extends Subsystem {
 		setDefaultCommand(new DriveWithJoystick());
 	}
 
-	/*@Override
-	protected double returnPIDInput() {
-		// TODO Auto-generated method stub
-		return RobotMap.ahrs.getAngle();
-	}
-
-	@Override
-	protected void usePIDOutput(double output) {
-		// TODO Auto-generated method stub
-		arcadeDrive(0, output);
-	}*/
 }

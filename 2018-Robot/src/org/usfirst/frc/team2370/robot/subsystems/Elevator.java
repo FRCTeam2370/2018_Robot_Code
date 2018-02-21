@@ -16,12 +16,13 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 
-import edu.wpi.first.wpilibj.command.PIDSubsystem;;
+import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import edu.wpi.first.wpilibj.command.Subsystem;;
 
 /**
  * Elevator Subsystem
  */
-public class Elevator extends PIDSubsystem {
+public class Elevator extends Subsystem {
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 	public static final double BOTTOM = 0;
@@ -31,9 +32,7 @@ public class Elevator extends PIDSubsystem {
 	public static final double d = 0.0;
 
 	public Elevator() {
-		super("Elevator", p, i, d);
-		setAbsoluteTolerance(0.05);
-		getPIDController().setContinuous(false);
+		
 	}
 
 	public static void elevatorSetup() {
@@ -102,16 +101,5 @@ public class Elevator extends PIDSubsystem {
 		setDefaultCommand(new CarriageWithJoystick());
 	}
 
-	@Override
-	protected double returnPIDInput() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	protected void usePIDOutput(double output) {
-		// TODO Auto-generated method stub
-
-	}
-
+	
 }

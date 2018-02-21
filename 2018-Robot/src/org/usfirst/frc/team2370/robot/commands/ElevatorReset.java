@@ -2,6 +2,7 @@ package org.usfirst.frc.team2370.robot.commands;
 
 import org.usfirst.frc.team2370.robot.Robot;
 import org.usfirst.frc.team2370.robot.RobotMap;
+import org.usfirst.frc.team2370.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2370.robot.subsystems.Elevator;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -14,7 +15,7 @@ public class ElevatorReset extends Command {
 	public ElevatorReset() {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
-		requires(Robot.kElevator);
+		requires(Robot.kDriveTrain);
 	}
 
 	// Called just before this Command runs the first time
@@ -26,7 +27,6 @@ public class ElevatorReset extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		//Elevator.setPos(0);
-		RobotMap.ahrs.setAngleAdjustment(0);;
 		//end();
 	}
 
