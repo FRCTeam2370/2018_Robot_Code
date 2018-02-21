@@ -33,8 +33,8 @@ public class DriveTrain extends Subsystem {
 	 * Method to setup the slave speed controllers to follower mode
 	 */
 	static double speed = 0.55;
-	static double turnSpeed = 0.7;
-	static double error = 3;
+	static double turnSpeed = 0.55;
+	static double error = 25;
 	static final double kP = 2.0;
 	static final double kI = 0.0;
 	static final double kD = 0.0;
@@ -119,13 +119,13 @@ public class DriveTrain extends Subsystem {
 			RobotMap.TAL_rightMaster.set(0);
 			RobotMap.TAL_leftMaster.set(0);
 		}*/
-		if (RobotMap.ahrs.getAngle() < RobotMap.oldAngle + angle - error - 35) {
+		if (RobotMap.ahrs.getAngle() < RobotMap.oldAngle + angle - error) {
 			RobotMap.TAL_rightMaster.set(turnSpeed);
 			RobotMap.TAL_leftMaster.set(turnSpeed);
 		} 
 		else if(RobotMap.ahrs.getAngle() > RobotMap.oldAngle + angle + error) {
-			RobotMap.TAL_rightMaster.set(-turnSpeed/4);
-			RobotMap.TAL_leftMaster.set(-turnSpeed/4);
+			RobotMap.TAL_rightMaster.set(-turnSpeed/3);
+			RobotMap.TAL_leftMaster.set(-turnSpeed/3);
 		}
 		else {
 			RobotMap.TAL_rightMaster.set(0);
@@ -154,13 +154,13 @@ public class DriveTrain extends Subsystem {
 			RobotMap.TAL_rightMaster.set(turnSpeed*-1);
 			RobotMap.TAL_leftMaster.set(turnSpeed*-1);
 			*/
-		if (RobotMap.ahrs.getAngle() > RobotMap.oldAngle - angle + error + 38) {
+		if (RobotMap.ahrs.getAngle() > RobotMap.oldAngle - angle + error) {
 			RobotMap.TAL_rightMaster.set(-1*turnSpeed);
 			RobotMap.TAL_leftMaster.set(-1*turnSpeed);
 		} 
 		else if(RobotMap.ahrs.getAngle() < RobotMap.oldAngle - angle - error) {
-			RobotMap.TAL_rightMaster.set(turnSpeed/4);
-			RobotMap.TAL_leftMaster.set(turnSpeed/4);
+			RobotMap.TAL_rightMaster.set(turnSpeed/3);
+			RobotMap.TAL_leftMaster.set(turnSpeed/3);
 		}
 		else {
 			RobotMap.TAL_rightMaster.set(0);
@@ -195,7 +195,7 @@ public class DriveTrain extends Subsystem {
 				&& RobotMap.TAL_leftMaster.getSensorCollection()
 						.getQuadraturePosition() > (distance * RobotMap.encoder2actual) * -1) {
 			RobotMap.TAL_rightMaster.set(-1 * speed);
-			RobotMap.TAL_leftMaster.set(speed);
+			RobotMap.TAL_leftMaster.set(speed + 0.05);
 		} else {
 			RobotMap.TAL_rightMaster.set(0);
 			RobotMap.TAL_leftMaster.set(0);

@@ -78,15 +78,18 @@ public class Elevator extends PIDSubsystem {
 	}
 	
 	public static void moveCarriage(double speed) {
-		if (RobotMap.TAL_gripMotorLeft.getSensorCollection().isFwdLimitSwitchClosed() == false && speed > 0) {
-			RobotMap.TAL_carriageMotor.set(speed);
-		}
-		else if (RobotMap.TAL_gripMotorLeft.getSensorCollection().isFwdLimitSwitchClosed() == true) {
-			RobotMap.TAL_carriageMotor.set(speed);
-		}
-		else {
-			RobotMap.TAL_carriageMotor.set(0);
-		}
+//		if (RobotMap.TAL_carriageMotor.getSensorCollection().isFwdLimitSwitchClosed() == false && speed > 0) {
+//			RobotMap.TAL_carriageMotor.set(speed);
+//		}
+//		else if (RobotMap.TAL_carriageMotor.getSensorCollection().isFwdLimitSwitchClosed() == true) {
+//			RobotMap.TAL_carriageMotor.set(speed);
+//		}
+//		else {
+//			RobotMap.TAL_carriageMotor.set(0);
+//		}
+		
+		RobotMap.TAL_carriageMotor.set(speed);
+		
 	}
 	
 	public static void stopCarriage() {

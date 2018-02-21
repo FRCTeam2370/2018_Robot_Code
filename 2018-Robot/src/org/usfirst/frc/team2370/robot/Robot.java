@@ -83,7 +83,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		m_oi = new OI();
-		RobotMap.fieldMessage = "rrr";
+		RobotMap.fieldMessage = "lll";
 		// rMap = new RobotMap();
 		DriveTrain.motorSetup();
 		Elevator.elevatorSetup();
@@ -180,6 +180,7 @@ public class Robot extends TimedRobot {
 		// this line or comment it out.
 		// RobotMap.compressor.setClosedLoopControl(true);
 		// RobotMap.compressor.start();
+		RobotMap.ahrs.reset();
 		RobotMap.compressor.enabled();
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
@@ -226,7 +227,7 @@ public class Robot extends TimedRobot {
 //		SmartDashboard.putNumber("Elevator Pos2", RobotMap.TAL_elevatorMotor.getSelectedSensorPosition(0));
 //		SmartDashboard.putNumber("Elevator Setpoint", RobotMap.TAL_elevatorMotor.getClosedLoopTarget(0));
 //		SmartDashboard.putNumber("Elevator Current", RobotMap.TAL_elevatorMotor.getOutputCurrent());
-		SmartDashboard.putBoolean("The freaking limitswitch", RobotMap.TAL_gripMotorLeft.getSensorCollection().isFwdLimitSwitchClosed());
+		SmartDashboard.putBoolean("The freaking limitswitch", RobotMap.TAL_elevatorMotor.getSensorCollection().isFwdLimitSwitchClosed());
 		SmartDashboard.putNumber("IMU_Angle", RobotMap.ahrs.getAngle());
 		SmartDashboard.putNumber("IMU_Yaw", RobotMap.ahrs.getYaw());
 		

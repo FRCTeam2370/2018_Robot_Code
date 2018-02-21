@@ -26,7 +26,7 @@ public class ElevatorReset extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		//Elevator.setPos(0);
-		Elevator.elevatorReset();
+		RobotMap.ahrs.setAngleAdjustment(0);;
 		//end();
 	}
 

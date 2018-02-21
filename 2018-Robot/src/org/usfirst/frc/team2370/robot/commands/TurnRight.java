@@ -32,9 +32,8 @@ public class TurnRight extends Command {
 		//RobotMap.TAL_leftMaster.getSensorCollection().setQuadraturePosition(0, 20);
 		//RobotMap.TAL_rightMaster.getSensorCollection().setQuadraturePosition(0, 20);
 		RobotMap.oldAngle = RobotMap.ahrs.getAngle();
-		setTimeout(3);
+		//setTimeout(3);
 		
-		//RobotMap.ahrs.reset();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -46,7 +45,7 @@ public class TurnRight extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return isTimedOut();
+		return false;
 	}
 
 	// Called once after isFinished returns true

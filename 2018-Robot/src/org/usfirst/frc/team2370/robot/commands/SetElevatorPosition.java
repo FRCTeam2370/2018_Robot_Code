@@ -19,7 +19,7 @@ public class SetElevatorPosition extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	setTimeout(1.5);
+    	setTimeout(.5);
     }
 
     // Called repeatedly when this Command is scheduled to run
