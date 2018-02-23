@@ -49,10 +49,10 @@ public class RobotMap {
 	 * This will set the speed controllers, drive train object, and deadband for the
 	 * DriveTrain subsystem
 	 */
-	public static WPI_TalonSRX TAL_rightMaster = new WPI_TalonSRX(16);
-	public static WPI_TalonSRX TAL_leftMaster = new WPI_TalonSRX(17);
-	public static WPI_TalonSRX TAL_rightSlave = new WPI_TalonSRX(18);
-	public static WPI_TalonSRX TAL_leftSlave = new WPI_TalonSRX(19);
+	public static WPI_TalonSRX TAL_rightMaster = new WPI_TalonSRX(13);
+	public static WPI_TalonSRX TAL_leftMaster = new WPI_TalonSRX(11);
+	public static WPI_TalonSRX TAL_rightSlave = new WPI_TalonSRX(12);
+	public static WPI_TalonSRX TAL_leftSlave = new WPI_TalonSRX(10);
 	public static DifferentialDrive driveTrain = new DifferentialDrive(TAL_leftMaster, TAL_rightMaster);
 	public static double deadbandPercent = .05;
 	public static double encoder2actual = 139.1519;
@@ -63,8 +63,8 @@ public class RobotMap {
 	/**   
 	 * This will set the speed controllers for the Gripper subsystem
 	 */ 
-	public static WPI_TalonSRX TAL_gripMotorLeft = new WPI_TalonSRX(14);
-	public static WPI_TalonSRX TAL_gripMotorRight = new WPI_TalonSRX(11);
+	public static WPI_TalonSRX TAL_gripMotorLeft = new WPI_TalonSRX(0);
+	public static WPI_TalonSRX TAL_gripMotorRight = new WPI_TalonSRX(1);
 	
 	/**
 	 * Motors for the Ramp to elevate after being dropped to the floor.
@@ -76,8 +76,8 @@ public class RobotMap {
 	/**
 	 * This will set the speed controller for the Elevator subsystem
 	 */
-	public static WPI_TalonSRX TAL_elevatorMotor = new WPI_TalonSRX(15);
-	public static WPI_TalonSRX TAL_carriageMotor = new WPI_TalonSRX(13);
+	public static WPI_TalonSRX TAL_elevatorMotor = new WPI_TalonSRX(2);
+	public static WPI_TalonSRX TAL_carriageMotor = new WPI_TalonSRX(3);
 	public static Solenoid SLN_elevatorSolenoid = new Solenoid(1);
 	public static DigitalInput DIG_elevatorBottom = new DigitalInput(0);
 	public static DigitalInput DIG_elevatorTop = new DigitalInput(1);
