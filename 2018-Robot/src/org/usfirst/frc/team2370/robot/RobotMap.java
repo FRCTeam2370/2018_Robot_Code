@@ -38,7 +38,6 @@ public class RobotMap {
 	/**
 	 * This gets the game message to determine where our scale side is. 
 	 */
-	public static String fieldMessage;
 	/**
 	 * This will set the solenoids and compressor for the Pneumatics subsystem
 	 */

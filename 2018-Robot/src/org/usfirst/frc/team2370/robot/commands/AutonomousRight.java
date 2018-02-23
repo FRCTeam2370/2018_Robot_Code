@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2370.robot.commands;
 
+import org.usfirst.frc.team2370.robot.Robot;
 import org.usfirst.frc.team2370.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -8,7 +9,7 @@ public class AutonomousRight extends CommandGroup {
 
 	public AutonomousRight() {
 
-		switch (RobotMap.fieldMessage) {
+		switch (Robot.fieldMessage) {
 		case "lll":
 			// Drive to the scale and place the cube (Around the world)
 			addSequential(new DriveStraight(220), 4.3);

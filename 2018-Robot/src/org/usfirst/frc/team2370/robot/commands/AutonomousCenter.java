@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2370.robot.commands;
 
+import org.usfirst.frc.team2370.robot.Robot;
 import org.usfirst.frc.team2370.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -10,7 +11,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutonomousCenter extends CommandGroup {
 
 	public AutonomousCenter() {
-		switch (RobotMap.fieldMessage) {
+		switch (Robot.fieldMessage) {
 		case "lll":
 			addSequential(new ElevatorToBottom());
 			addParallel(new DriveStraight(0));

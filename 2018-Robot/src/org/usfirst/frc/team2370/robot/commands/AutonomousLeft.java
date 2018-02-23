@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2370.robot.commands;
 
+import org.usfirst.frc.team2370.robot.Robot;
 import org.usfirst.frc.team2370.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -10,7 +11,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutonomousLeft extends CommandGroup {
 
 	public AutonomousLeft() {
-		switch (RobotMap.fieldMessage) {
+		switch (Robot.fieldMessage) {
 		case "lll":
 			addSequential(new DriveStraight(115), 3.25);
 			addSequential(new PushElevatorSol(), .5);

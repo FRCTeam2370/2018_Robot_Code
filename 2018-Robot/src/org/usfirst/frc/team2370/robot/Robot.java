@@ -24,7 +24,6 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-
 import org.usfirst.frc.team2370.robot.commands.AutonomousLeft;
 import org.usfirst.frc.team2370.robot.commands.AutonomousRight;
 //import org.usfirst.frc.team2370.robot.commands.testAuto;
@@ -44,7 +43,7 @@ import org.usfirst.frc.team2370.robot.subsystems.Vision;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
- 
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -53,14 +52,11 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
  * project.
  */
 
-
-
-
 public class Robot extends TimedRobot {
 	public static final DriveTrain kDriveTrain = new DriveTrain();
 	public static final Gripper kGripper = new Gripper();
 	public static final Elevator kElevator = new Elevator();
-	//public static final Ramps kRamps = new Ramps();
+	// public static final Ramps kRamps = new Ramps();
 	public static final RobotMap kRobotMap = new RobotMap();
 	public static final Vision kVision = new Vision();
 	public static final Dashboard kDashboard = new Dashboard();
@@ -69,9 +65,12 @@ public class Robot extends TimedRobot {
 	public static final LEDs kLEDs = new LEDs();
 
 	public static OI m_oi;
-	
-	
+
 	// public static RobotMap rMap;
+
+	private static boolean m_autoStarted = false;
+	private static double m_timeStart;
+	public static String fieldMessage = "";
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -83,7 +82,6 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		m_oi = new OI();
-		RobotMap.fieldMessage = "lll";
 		// rMap = new RobotMap();
 		DriveTrain.motorSetup();
 		Elevator.elevatorSetup();
@@ -92,19 +90,22 @@ public class Robot extends TimedRobot {
 		RobotMap.TAL_leftMaster.setSafetyEnabled(false);
 		RobotMap.TAL_rightSlave.setSafetyEnabled(false);
 		RobotMap.TAL_leftSlave.setSafetyEnabled(false);
-		
+
 		RobotMap.SLN_shiftingSolenoid.set(false);
 		RobotMap.SLN_elevatorSolenoid.set(false);
-
-		//m_chooser.addDefault("Default Auto", new testAuto());
+		
+		
 		m_chooser.addDefault("Default", new AutonomousDefault());
 		m_chooser.addObject("Right", new AutonomousRight());
 		m_chooser.addObject("Center", new AutonomousCenter());
 		m_chooser.addObject("Left", new AutonomousLeft());
+
+		// m_chooser.addDefault("Default Auto", new testAuto());
+		
 		// chooser.addObject("My Auto", new MyAutoCommand());
 
-		SmartDashboard.putData("Auto mode", m_chooser);
 		
+
 	}
 
 	/**
@@ -137,24 +138,35 @@ public class Robot extends TimedRobot {
 	@Override
 	public void autonomousInit() {
 		RobotMap.ahrs.reset();
-		RobotMap.SLN_elevatorSolenoid.set(false);
-		kRobotMap.fieldMessage = DriverStation.getInstance().getGameSpecificMessage().toLowerCase();
-		m_autonomousCommand = m_chooser.getSelected();
-		
-		
 
+		RobotMap.SLN_elevatorSolenoid.set(false);
+
+		fieldMessage = DriverStation.getInstance().getGameSpecificMessage().toLowerCase();
+		
+		SmartDashboard.putString("FieldMessage", fieldMessage);
+		
+		m_chooser.addDefault("Default", new AutonomousDefault());
+		m_chooser.addObject("Right", new AutonomousRight());
+		m_chooser.addObject("Center", new AutonomousCenter());
+		m_chooser.addObject("Left", new AutonomousLeft());
+		
+		SmartDashboard.putData("Auto mode", m_chooser);
+		
+		m_autonomousCommand = m_chooser.getSelected();
+		SmartDashboard.putString("Chosen Command", m_autonomousCommand.getName());
+		
+		if (m_autonomousCommand != null) {
+			m_autonomousCommand.start();
+		}
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
 		 * switch(autoSelected) { case "My Auto": autonomousCommand = new
 		 * MyAutoCommand(); break; case "Default Auto": default: autonomousCommand = new
 		 * ExampleCommand(); break; }
 		 */
-		
 
 		// schedule the autonomous command (example)
-		if (m_autonomousCommand != null) {
-			m_autonomousCommand.start();
-		}
+
 	}
 
 	/**
@@ -163,17 +175,20 @@ public class Robot extends TimedRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		fieldMessage = DriverStation.getInstance().getGameSpecificMessage().toLowerCase();
+
+		
 		SmartDashboard.putNumber("IMU_Angle", RobotMap.ahrs.getAngle());
 	}
 
 	@Override
 	public void teleopInit() {
-		
+
 		RobotMap.TAL_rightMaster.getSensorCollection().setQuadraturePosition(0, 20);
 		RobotMap.TAL_leftMaster.getSensorCollection().setQuadraturePosition(0, 20);
-		
+
 		RobotMap.SLN_elevatorSolenoid.set(false);
-		
+
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
@@ -185,19 +200,19 @@ public class Robot extends TimedRobot {
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
 		}
-		
+
 	}
 
 	public WPI_TalonSRX TAL_carriageMotor = new WPI_TalonSRX(13);
-	
+
 	/**
 	 * This function is called periodically during operator control.
 	 */
 	@Override
 	public void teleopPeriodic() {
-		
+
 		Scheduler.getInstance().run();
-		
+
 		// SmartDashboard.putNumber("Position",
 		// RobotMap.elevatorMotor.getSensorCollection().getQuadraturePosition());
 		// SmartDashboard.putNumber("Position2",
@@ -210,35 +225,56 @@ public class Robot extends TimedRobot {
 		// RobotMap.elevatorMotor.getClosedLoopError(0));
 		// SmartDashboard.putNumber("Setpoint",
 		// RobotMap.elevatorMotor.getClosedLoopTarget(0));
-//		SmartDashboard.putNumber("Voltage", RobotMap.TAL_leftMaster.getMotorOutputVoltage());
-//		SmartDashboard.putNumber("IMU_Yaw", RobotMap.ahrs.getYaw());
-//		SmartDashboard.putNumber("IMU_Pitch", RobotMap.ahrs.getPitch());
-//		SmartDashboard.putNumber("IMU_Roll", RobotMap.ahrs.getRoll());
-		
-//		SmartDashboard.putNumber("Pres Sensor", RobotMap.ALA_PreSensor.getValue());
-		
-		/*SmartDashboard.putNumber("Position Left", RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition());
-		SmartDashboard.putNumber("Velocity Left", RobotMap.TAL_leftMaster.getSensorCollection().getQuadratureVelocity());
-		SmartDashboard.putNumber("Error Left", RobotMap.TAL_leftMaster.getClosedLoopError(0));
-		SmartDashboard.putNumber("Position Right", RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition());
-		SmartDashboard.putNumber("Velocity Right", RobotMap.TAL_rightMaster.getSensorCollection().getQuadratureVelocity());
-		SmartDashboard.putNumber("Error Right", RobotMap.TAL_rightMaster.getClosedLoopError(0));*/
-//		SmartDashboard.putNumber("Elevator Pos", RobotMap.TAL_elevatorMotor.getSensorCollection().getQuadraturePosition());
-//		SmartDashboard.putNumber("Elevator Pos2", RobotMap.TAL_elevatorMotor.getSelectedSensorPosition(0));
-//		SmartDashboard.putNumber("Elevator Setpoint", RobotMap.TAL_elevatorMotor.getClosedLoopTarget(0));
-//		SmartDashboard.putNumber("Elevator Current", RobotMap.TAL_elevatorMotor.getOutputCurrent());
-		SmartDashboard.putBoolean("The freaking limitswitch", RobotMap.TAL_elevatorMotor.getSensorCollection().isFwdLimitSwitchClosed());
+		// SmartDashboard.putNumber("Voltage",
+		// RobotMap.TAL_leftMaster.getMotorOutputVoltage());
+		// SmartDashboard.putNumber("IMU_Yaw", RobotMap.ahrs.getYaw());
+		// SmartDashboard.putNumber("IMU_Pitch", RobotMap.ahrs.getPitch());
+		// SmartDashboard.putNumber("IMU_Roll", RobotMap.ahrs.getRoll());
+
+		// SmartDashboard.putNumber("Pres Sensor", RobotMap.ALA_PreSensor.getValue());
+
+		/*
+		 * SmartDashboard.putNumber("Position Left",
+		 * RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition());
+		 * SmartDashboard.putNumber("Velocity Left",
+		 * RobotMap.TAL_leftMaster.getSensorCollection().getQuadratureVelocity());
+		 * SmartDashboard.putNumber("Error Left",
+		 * RobotMap.TAL_leftMaster.getClosedLoopError(0));
+		 * SmartDashboard.putNumber("Position Right",
+		 * RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition());
+		 * SmartDashboard.putNumber("Velocity Right",
+		 * RobotMap.TAL_rightMaster.getSensorCollection().getQuadratureVelocity());
+		 * SmartDashboard.putNumber("Error Right",
+		 * RobotMap.TAL_rightMaster.getClosedLoopError(0));
+		 */
+		// SmartDashboard.putNumber("Elevator Pos",
+		// RobotMap.TAL_elevatorMotor.getSensorCollection().getQuadraturePosition());
+		// SmartDashboard.putNumber("Elevator Pos2",
+		// RobotMap.TAL_elevatorMotor.getSelectedSensorPosition(0));
+		// SmartDashboard.putNumber("Elevator Setpoint",
+		// RobotMap.TAL_elevatorMotor.getClosedLoopTarget(0));
+		// SmartDashboard.putNumber("Elevator Current",
+		// RobotMap.TAL_elevatorMotor.getOutputCurrent());
+		SmartDashboard.putBoolean("The freaking limitswitch",
+				RobotMap.TAL_elevatorMotor.getSensorCollection().isFwdLimitSwitchClosed());
 		SmartDashboard.putNumber("IMU_Angle", RobotMap.ahrs.getAngle());
 		SmartDashboard.putNumber("IMU_Yaw", RobotMap.ahrs.getYaw());
-		
+
 		SmartDashboard.putNumber("Right Pos", RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition());
-//		SmartDashboard.putNumber("Right Pos2", RobotMap.TAL_rightMaster.getSelectedSensorPosition(0));
-//		SmartDashboard.putNumber("Right Setpoint", RobotMap.TAL_rightMaster.getClosedLoopTarget(0));
-		
+		// SmartDashboard.putNumber("Right Pos2",
+		// RobotMap.TAL_rightMaster.getSelectedSensorPosition(0));
+		// SmartDashboard.putNumber("Right Setpoint",
+		// RobotMap.TAL_rightMaster.getClosedLoopTarget(0));
+
 		SmartDashboard.putNumber("Left Pos", RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition());
-//		SmartDashboard.putNumber("Left Pos2", RobotMap.TAL_leftMaster.getSelectedSensorPosition(0));
-//		SmartDashboard.putNumber("Left Setpoint", RobotMap.TAL_leftMaster.getClosedLoopTarget(0));
-		//RobotMap.currentTurnTicks = ((RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition() + RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition()) /2)/ RobotMap.encoder2TurnDegrees;
+		// SmartDashboard.putNumber("Left Pos2",
+		// RobotMap.TAL_leftMaster.getSelectedSensorPosition(0));
+		// SmartDashboard.putNumber("Left Setpoint",
+		// RobotMap.TAL_leftMaster.getClosedLoopTarget(0));
+		// RobotMap.currentTurnTicks =
+		// ((RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition() +
+		// RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition()) /2)/
+		// RobotMap.encoder2TurnDegrees;
 		SmartDashboard.putNumber("Turning Degrees", RobotMap.currentTurnDegrees);
 	}
 
