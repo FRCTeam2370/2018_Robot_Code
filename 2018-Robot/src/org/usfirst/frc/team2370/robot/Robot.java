@@ -145,14 +145,29 @@ public class Robot extends TimedRobot {
 		
 		SmartDashboard.putString("FieldMessage", fieldMessage);
 		
-		m_chooser.addDefault("Default", new AutonomousDefault());
+		/*m_chooser.addDefault("Default", new AutonomousDefault());
 		m_chooser.addObject("Right", new AutonomousRight());
 		m_chooser.addObject("Center", new AutonomousCenter());
 		m_chooser.addObject("Left", new AutonomousLeft());
 		
-		SmartDashboard.putData("Auto mode", m_chooser);
+		SmartDashboard.putData("Auto mode", m_chooser);*/
 		
-		m_autonomousCommand = m_chooser.getSelected();
+		//m_autonomousCommand = m_chooser.getSelected();
+		
+		if (RobotMap.left.get()) {
+			m_autonomousCommand = new AutonomousLeft();
+		}
+		else if (RobotMap.center.get()) {
+			m_autonomousCommand = new AutonomousCenter();
+		}
+		else if (RobotMap.right.get()) {
+			m_autonomousCommand = new AutonomousRight();
+		}
+		else
+		{
+			m_autonomousCommand = new AutonomousDefault();
+		}
+		
 		SmartDashboard.putString("Chosen Command", m_autonomousCommand.getName());
 		
 		if (m_autonomousCommand != null) {

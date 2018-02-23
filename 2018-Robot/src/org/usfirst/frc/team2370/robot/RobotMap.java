@@ -124,4 +124,10 @@ public class RobotMap {
 	 */
 	public static AHRS ahrs;
 	
+	/**
+	 * Digital inputs for autonomous choosing
+	 */
+	public static DigitalInput left = new DigitalInput(2);
+	public static DigitalInput center = new DigitalInput(3);
+	public static DigitalInput right = new DigitalInput(4);
 }
