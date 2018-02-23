@@ -291,6 +291,10 @@ public class Robot extends TimedRobot {
 		// RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition()) /2)/
 		// RobotMap.encoder2TurnDegrees;
 		SmartDashboard.putNumber("Turning Degrees", RobotMap.currentTurnDegrees);
+		
+		SmartDashboard.putBoolean("Left", RobotMap.left.get());
+		SmartDashboard.putBoolean("Center", RobotMap.center.get());
+		SmartDashboard.putBoolean("Right", RobotMap.right.get());
 	}
 
 	/**
