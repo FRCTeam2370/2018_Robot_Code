@@ -10,6 +10,7 @@ public class AutonomousRight extends CommandGroup {
 	public AutonomousRight() {
 
 		switch (Robot.fieldMessage) {
+		
 		case "lll":
 			// Drive to the scale and place the cube (Around the world)
 			addSequential(new DriveStraight(220), 4.3);

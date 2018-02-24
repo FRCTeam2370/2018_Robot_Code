@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.MotorSafety;
 import edu.wpi.first.wpilibj.MotorSafetyHelper;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -27,6 +28,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team2370.robot.commands.AutonomousLeft;
 import org.usfirst.frc.team2370.robot.commands.AutonomousRight;
 //import org.usfirst.frc.team2370.robot.commands.testAuto;
+
+import java.util.concurrent.TimeUnit;
 
 import org.usfirst.frc.team2370.robot.commands.AutonomousCenter;
 import org.usfirst.frc.team2370.robot.commands.AutonomousDefault;
@@ -140,7 +143,9 @@ public class Robot extends TimedRobot {
 		RobotMap.ahrs.reset();
 
 		RobotMap.SLN_elevatorSolenoid.set(false);
-
+		
+		Timer.delay(0.5);
+		
 		fieldMessage = DriverStation.getInstance().getGameSpecificMessage().toLowerCase();
 		
 		SmartDashboard.putString("FieldMessage", fieldMessage);
@@ -154,13 +159,13 @@ public class Robot extends TimedRobot {
 		
 		//m_autonomousCommand = m_chooser.getSelected();
 		
-		if (RobotMap.left.get()) {
+		if (!RobotMap.left.get()) {
 			m_autonomousCommand = new AutonomousLeft();
 		}
-		else if (RobotMap.center.get()) {
+		else if (!RobotMap.center.get()) {
 			m_autonomousCommand = new AutonomousCenter();
 		}
-		else if (RobotMap.right.get()) {
+		else if (!RobotMap.right.get()) {
 			m_autonomousCommand = new AutonomousRight();
 		}
 		else
@@ -271,7 +276,7 @@ public class Robot extends TimedRobot {
 		// SmartDashboard.putNumber("Elevator Current",
 		// RobotMap.TAL_elevatorMotor.getOutputCurrent());
 		SmartDashboard.putBoolean("The freaking limitswitch",
-				RobotMap.TAL_elevatorMotor.getSensorCollection().isFwdLimitSwitchClosed());
+		RobotMap.TAL_elevatorMotor.getSensorCollection().isFwdLimitSwitchClosed());
 		SmartDashboard.putNumber("IMU_Angle", RobotMap.ahrs.getAngle());
 		SmartDashboard.putNumber("IMU_Yaw", RobotMap.ahrs.getYaw());
 

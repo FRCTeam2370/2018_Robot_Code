@@ -179,7 +179,7 @@ public class DriveTrain extends Subsystem {
 						.getQuadraturePosition() > (distance * RobotMap.encoder2actual) * -1) {
 
 			RobotMap.TAL_rightMaster.set(-1 * speed);
-			RobotMap.TAL_leftMaster.set(speed);
+			RobotMap.TAL_leftMaster.set(speed + .08);
 
 		} else {
 			RobotMap.TAL_rightMaster.set(0);
@@ -204,5 +204,16 @@ public class DriveTrain extends Subsystem {
 		// Set the default command for a subsystem here.
 		setDefaultCommand(new DriveWithJoystick());
 	}
+
+	public static void driveRight() {
+			RobotMap.TAL_rightMaster.set((-1 * speed) + .255);
+			RobotMap.TAL_leftMaster.set(speed + .08);
+		
+	}
+	public static void driveLeft() {
+		RobotMap.TAL_rightMaster.set((-1 * speed));
+		RobotMap.TAL_leftMaster.set(speed - .20);
+	
+}
 
 }
