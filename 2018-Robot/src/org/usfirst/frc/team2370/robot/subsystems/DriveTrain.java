@@ -25,7 +25,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  * Drive Train Subsystem
  */
-public class DriveTrain extends Subsystem {
+public class DriveTrain extends PIDSubsystem {
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
@@ -33,8 +33,23 @@ public class DriveTrain extends Subsystem {
 	 * Method to setup the slave speed controllers to follower mode
 	 */
 
+	
+	static double fwdMod = 0;
 	static double speed = 0.55;
 	static double turnSpeed = 0.55;
+	static final double kP = 0.5;
+	static final double kI = 0.0;
+	static final double kD = 0.0;
+	static final double kF = speed;
+	
+	public DriveTrain() {
+		super("AngleController" ,kP, kI, kD, kF);
+		setAbsoluteTolerance(0.05);
+        getPIDController().setContinuous(true);
+        getPIDController().setInputRange(-180.0f,  180.0f);
+        getPIDController().setOutputRange(-1.0, 1.0);
+        getPIDController().enable();
+	}
 
 	public static void motorSetup() {
 		int timeout = 1000;
@@ -170,12 +185,14 @@ public class DriveTrain extends Subsystem {
 	 *            The distance (In inches) to drive forward
 	 */
 	public static void driveForward(double distance) {
+		
+		Robot.kDriveTrain.setSetpoint(RobotMap.ahrs.getAngle());
 
 		if ((RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition() < distance
 				* RobotMap.encoder2actual)
 				&& RobotMap.TAL_leftMaster.getSensorCollection()
 						.getQuadraturePosition() > (distance * RobotMap.encoder2actual) * -1) {
-			if (RobotMap.originalAngle > RobotMap.ahrs.getAngle()) {
+			/*if (RobotMap.originalAngle > RobotMap.ahrs.getAngle()) {
 				RobotMap.TAL_rightMaster.set(-1 * speed);
 				RobotMap.TAL_leftMaster.set(speed + .14);
 			}
@@ -187,6 +204,11 @@ public class DriveTrain extends Subsystem {
 				RobotMap.TAL_rightMaster.set(-1 * speed);
 				RobotMap.TAL_leftMaster.set(speed + 0.9);
 			}
+			*/
+			
+			RobotMap.TAL_rightMaster.set(-1 * speed + fwdMod);
+			RobotMap.TAL_leftMaster.set(speed - fwdMod);
+			
 		} else {
 			RobotMap.TAL_rightMaster.set(0);
 			RobotMap.TAL_leftMaster.set(0);
@@ -234,5 +256,19 @@ public class DriveTrain extends Subsystem {
 		RobotMap.TAL_leftMaster.set(speed - .20);
 	
 }
+	
+	@Override
+	protected double returnPIDInput() {
+		
+		return RobotMap.ahrs.getAngle();
+		
+	}
+
+	@Override
+	protected void usePIDOutput(double output) {
+		
+		fwdMod = output;
+		
+	}
 
 }
