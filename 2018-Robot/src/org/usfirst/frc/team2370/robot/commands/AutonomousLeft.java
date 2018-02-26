@@ -13,51 +13,57 @@ public class AutonomousLeft extends CommandGroup {
 	public AutonomousLeft() {
 		switch (Robot.fieldMessage) {
 		case "lll":
-			addSequential(new DriveStraight(115), 3.25);
-			addSequential(new PushElevatorSol(), .5);
-			//addSequential(new SetElevatorPosition(-1500));
-			addSequential(new TurnRight(90), 2.5);
+			// Place the cube on the switch if you are on the right.
+			addSequential(new DriveStraight(142), 3.25);
+			addParallel(new PushElevatorSol(), 0.1);
+			// addParallel(new SetElevatorPosition(-3000));
+			addSequential(new TurnRight(86), 1.5);
 			addSequential(new DriveStraight(18), 1.5);
 			addSequential(new PushGripper());
 			addSequential(new DriveBackwards(20), 3);
-			addSequential(new ElevatorToBottom());
-			addSequential(new TurnLeft(90), 2.5);
-			addSequential(new DriveStraight(5) , 2);
-			
+			// addSequential(new ElevatorToBottom());
+			addSequential(new TurnLeft(86), 2.5);
+			addSequential(new DriveStraight(5), 2);
 			break;
 		case "rrr":
-			addSequential(new DriveStraight(204), 5);
-			addSequential(new TurnRight(90),4);
-			addSequential(new DriveStraight(144));
-			addSequential(new TurnRight(90),2);
-			addSequential(new PushElevatorSol(), .1);
-			addSequential(new DriveStraight(10), 1);
-			addSequential(new PushGripper());
-			addSequential(new DriveBackwards(10), 1);
-	
+			// Drive to the scale and place the cube (Around the world)
+			addSequential(new DriveStraight(220), 4.3);
+			addSequential(new TurnRight(86), 1);
+			addSequential(new DriveStraight(137), 3.1);
+			addSequential(new TurnRight(65), 1);
+			addParallel(new PushElevatorSol(), .1);
+			// addSequential(new SetElevatorPosition(-3000));
+			addParallel(new DriveStraight(10), 0.8);
+			addParallel(new PushGripper());
 			break;
+
 		case "rlr":
-			addSequential(new DriveStraight(204), 5);
-			addSequential(new TurnRight(90),2);
-			addSequential(new DriveStraight(144));
-			addSequential(new TurnRight(90),2);
-			addSequential(new PushElevatorSol(), .1);
-			addSequential(new DriveStraight(10), 1);
-			addSequential(new PushGripper());
-			addSequential(new DriveBackwards(10), 1);
-			
+			// Drive to the scale and place the cube (Around the world)
+			addSequential(new DriveStraight(220), 4.3);
+			addSequential(new TurnRight(86), 1);
+			addSequential(new DriveStraight(137), 3.1);
+			addSequential(new TurnRight(65), 1);
+			addParallel(new PushElevatorSol(), .1);
+			// addSequential(new SetElevatorPosition(-3000));
+			addParallel(new DriveStraight(10), 0.8);
+			addParallel(new PushGripper());
 			break;
+
 		case "lrl":
-			addSequential(new DriveStraight(115), 3.25);
-			addSequential(new PushElevatorSol(), .5);
-			addSequential(new TurnRight(100), 2.5);
+			// Place the cube on the switch if you are on the right.
+			addSequential(new DriveStraight(142), 3.25);
+			addParallel(new PushElevatorSol(), 0.1);
+			// addParallel(new SetElevatorPosition(-3000));
+			addSequential(new TurnRight(86), 1.5);
 			addSequential(new DriveStraight(18), 1.5);
 			addSequential(new PushGripper());
 			addSequential(new DriveBackwards(20), 3);
-			addSequential(new ElevatorToBottom());
-			addSequential(new TurnLeft(90), 2.5);
-			addSequential(new DriveStraight(5) , 2);
-			
+			// addSequential(new ElevatorToBottom());
+			addSequential(new TurnLeft(86), 2.5);
+			addSequential(new DriveStraight(5), 2);
+			break;
+		default:
+			addSequential(new DriveStraight(150), 5);
 			break;
 		}
 	}

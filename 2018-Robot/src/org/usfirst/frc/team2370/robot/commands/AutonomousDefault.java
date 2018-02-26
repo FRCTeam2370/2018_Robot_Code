@@ -11,6 +11,6 @@ public class AutonomousDefault extends CommandGroup {
 
 	public AutonomousDefault() {
 		// Drive forward into a wall or whatever
-		addSequential(new DriveStraight(14));
+		addSequential(new DriveStraight(50), 5);
 	}
 }

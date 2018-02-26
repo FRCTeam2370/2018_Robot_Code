@@ -130,4 +130,6 @@ public class RobotMap {
 	public static DigitalInput left = new DigitalInput(2);
 	public static DigitalInput center = new DigitalInput(3);
 	public static DigitalInput right = new DigitalInput(4);
+	
+	public static double originalAngle = 0;
 }
