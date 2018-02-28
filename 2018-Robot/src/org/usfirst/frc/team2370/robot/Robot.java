@@ -228,6 +228,7 @@ public class Robot extends TimedRobot {
 	/**
 	 * This function is called periodically during operator control.
 	 */
+	@SuppressWarnings("deprecation")
 	@Override
 	public void teleopPeriodic() {
 
@@ -279,6 +280,7 @@ public class Robot extends TimedRobot {
 		RobotMap.TAL_elevatorMotor.getSensorCollection().isFwdLimitSwitchClosed());
 		SmartDashboard.putNumber("IMU_Angle", RobotMap.ahrs.getAngle());
 		SmartDashboard.putNumber("IMU_Yaw", RobotMap.ahrs.getYaw());
+		SmartDashboard.putNumber("Voltage", DriverStation.getInstance().getBatteryVoltage());
 
 		SmartDashboard.putNumber("Right Pos", RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition());
 		// SmartDashboard.putNumber("Right Pos2",
@@ -296,10 +298,11 @@ public class Robot extends TimedRobot {
 		// RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition()) /2)/
 		// RobotMap.encoder2TurnDegrees;
 		SmartDashboard.putNumber("Turning Degrees", RobotMap.currentTurnDegrees);
-		
+		SmartDashboard.putNumber("Presurre sensor", ((RobotMap.ALG_PreSensor.getAverageVoltage() - 0.5222)/.0188));
 		SmartDashboard.putBoolean("Left", RobotMap.left.get());
 		SmartDashboard.putBoolean("Center", RobotMap.center.get());
 		SmartDashboard.putBoolean("Right", RobotMap.right.get());
+		SmartDashboard.putBoolean("DriverStop", RobotMap.driverStop);
 	}
 
 	/**

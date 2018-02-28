@@ -43,7 +43,8 @@ public class RobotMap {
 	 */
 	public static Solenoid SLN_shiftingSolenoid = new Solenoid(0);
 	public static Compressor compressor = new Compressor();
-	public static AnalogInput ALA_PreSensor = new AnalogInput(0);
+	public static AnalogInput ALG_PreSensor = new AnalogInput(0);
+	public static boolean driverStop = false;
 
 	/**
 	 * This will set the speed controllers, drive train object, and deadband for the
