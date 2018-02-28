@@ -171,20 +171,39 @@ public class DriveTrain extends Subsystem {
 	 */
 	public static void driveForward(double distance) {
 
-		// double fixedDistance = distance - 1;
-
 		if ((RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition() < distance
+				* RobotMap.encoder2actual)
+				&& RobotMap.TAL_leftMaster.getSensorCollection()
+						.getQuadraturePosition() > (distance * RobotMap.encoder2actual) * -1) {
+			if (RobotMap.originalAngle > RobotMap.ahrs.getAngle()) {
+				RobotMap.TAL_rightMaster.set(-1 * speed);
+				RobotMap.TAL_leftMaster.set(speed + .14);
+			}
+			else if (RobotMap.originalAngle < RobotMap.ahrs.getAngle()) {
+				RobotMap.TAL_rightMaster.set(-1 * speed - .12);
+				RobotMap.TAL_leftMaster.set(speed);
+			}
+			else {
+				RobotMap.TAL_rightMaster.set(-1 * speed);
+				RobotMap.TAL_leftMaster.set(speed + 0.9);
+			}
+		} else {
+			RobotMap.TAL_rightMaster.set(0);
+			RobotMap.TAL_leftMaster.set(0);
+		}
+		
+		/*if ((RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition() < distance
 				* RobotMap.encoder2actual)
 				&& RobotMap.TAL_leftMaster.getSensorCollection()
 						.getQuadraturePosition() > (distance * RobotMap.encoder2actual) * -1) {
 
 			RobotMap.TAL_rightMaster.set(-1 * speed);
-			RobotMap.TAL_leftMaster.set(speed);
+			RobotMap.TAL_leftMaster.set(speed + .08);
 
 		} else {
 			RobotMap.TAL_rightMaster.set(0);
 			RobotMap.TAL_leftMaster.set(0);
-		}
+		}*/
 	}
 
 	public static void driveBackwards(double distance) {
@@ -204,5 +223,16 @@ public class DriveTrain extends Subsystem {
 		// Set the default command for a subsystem here.
 		setDefaultCommand(new DriveWithJoystick());
 	}
+
+	public static void driveRight() {
+			RobotMap.TAL_rightMaster.set((-1 * speed) + .255);
+			RobotMap.TAL_leftMaster.set(speed + .08);
+		
+	}
+	public static void driveLeft() {
+		RobotMap.TAL_rightMaster.set((-1 * speed));
+		RobotMap.TAL_leftMaster.set(speed - .20);
+	
+}
 
 }

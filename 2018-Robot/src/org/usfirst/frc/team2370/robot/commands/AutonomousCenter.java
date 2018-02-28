@@ -13,24 +13,28 @@ public class AutonomousCenter extends CommandGroup {
 	public AutonomousCenter() {
 		switch (Robot.fieldMessage) {
 		case "lll":
-			addSequential(new ElevatorToBottom());
-			addParallel(new DriveStraight(0));
-			addParallel(new PullGripper());
+			addSequential(new DriveLeft(), 2.3);
+			addParallel(new PushElevatorSol());
+			addSequential(new DriveRight(), 1.6);
+			addSequential(new PushGripper());
 			break;
 		case "rrr":
-			addSequential(new ElevatorToBottom());
-			addParallel(new DriveStraight(0));
-			addParallel(new PullGripper());
+			addSequential(new DriveRight(), 2.3);
+			addParallel(new PushElevatorSol());
+			addSequential(new DriveLeft(), 1.6);
+			addSequential(new PushGripper());
 			break;
 		case "rlr":
-			addSequential(new ElevatorToBottom());
-			addParallel(new DriveStraight(0));
-			addParallel(new PullGripper());
+			addSequential(new DriveRight(), 2.3);
+			addParallel(new PushElevatorSol());
+			addSequential(new DriveLeft(), 1.6);
+			addSequential(new PushGripper());
 			break;
 		case "lrl":
-			addSequential(new ElevatorToBottom());
-			addParallel(new DriveStraight(0));
-			addParallel(new PullGripper());
+			addSequential(new DriveLeft(), 2.3);
+			addParallel(new PushElevatorSol());
+			addSequential(new DriveRight(), 1.6);
+			addSequential(new PushGripper());
 			break;
 		}
 	}

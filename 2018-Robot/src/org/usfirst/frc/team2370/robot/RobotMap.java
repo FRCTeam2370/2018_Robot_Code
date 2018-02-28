@@ -43,7 +43,8 @@ public class RobotMap {
 	 */
 	public static Solenoid SLN_shiftingSolenoid = new Solenoid(0);
 	public static Compressor compressor = new Compressor();
-	public static AnalogInput ALA_PreSensor = new AnalogInput(0);
+	public static AnalogInput ALG_PreSensor = new AnalogInput(0);
+	public static boolean driverStop = false;
 
 	/**
 	 * This will set the speed controllers, drive train object, and deadband for the
@@ -102,7 +103,7 @@ public class RobotMap {
 	public static Button BTN_elevatorToBot = new JoystickButton(controller, 1);
 	public static Button BTN_elevatorToTop = new JoystickButton(controller, 2);
 	public static Button BTN_shift = new JoystickButton(controller, 3);
-	public static Button BTN_testTurning = new JoystickButton(controller, 4);
+	public static Button BTN_resetElevator = new JoystickButton(controller, 4);
 	public static Button BTN_gripperPull = new JoystickButton(controller, 5);
 	public static Button BTN_gripperPush = new JoystickButton(controller, 6);
 	public static Button BTN_dropElevatorSol = new JoystickButton(controller, 7);
@@ -130,4 +131,6 @@ public class RobotMap {
 	public static DigitalInput left = new DigitalInput(2);
 	public static DigitalInput center = new DigitalInput(3);
 	public static DigitalInput right = new DigitalInput(4);
+	
+	public static double originalAngle = 0;
 }
