@@ -268,12 +268,10 @@ public class Robot extends TimedRobot {
 		 * SmartDashboard.putNumber("Error Right",
 		 * RobotMap.TAL_rightMaster.getClosedLoopError(0));
 		 */
-		// SmartDashboard.putNumber("Elevator Pos",
-		// RobotMap.TAL_elevatorMotor.getSensorCollection().getQuadraturePosition());
+		SmartDashboard.putNumber("Elevator Position Percent", (RobotMap.TAL_elevatorMotor.getSensorCollection().getQuadraturePosition()/60));
 		// SmartDashboard.putNumber("Elevator Pos2",
 		// RobotMap.TAL_elevatorMotor.getSelectedSensorPosition(0));
-		// SmartDashboard.putNumber("Elevator Setpoint",
-		// RobotMap.TAL_elevatorMotor.getClosedLoopTarget(0));
+		SmartDashboard.putNumber("Elevator Setpoint Percent", (RobotMap.TAL_elevatorMotor.getClosedLoopTarget(0))/60);
 		// SmartDashboard.putNumber("Elevator Current",
 		// RobotMap.TAL_elevatorMotor.getOutputCurrent());
 		SmartDashboard.putBoolean("The freaking limitswitch",
