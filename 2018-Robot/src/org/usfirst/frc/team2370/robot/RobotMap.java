@@ -103,7 +103,7 @@ public class RobotMap {
 	public static Button BTN_elevatorToBot = new JoystickButton(controller, 1);
 	public static Button BTN_elevatorToTop = new JoystickButton(controller, 2);
 	public static Button BTN_shift = new JoystickButton(controller, 3);
-	public static Button BTN_testTurning = new JoystickButton(controller, 4);
+	public static Button BTN_resetElevator = new JoystickButton(controller, 4);
 	public static Button BTN_gripperPull = new JoystickButton(controller, 5);
 	public static Button BTN_gripperPush = new JoystickButton(controller, 6);
 	public static Button BTN_dropElevatorSol = new JoystickButton(controller, 7);

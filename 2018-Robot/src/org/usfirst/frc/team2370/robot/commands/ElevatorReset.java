@@ -20,7 +20,7 @@ public class ElevatorReset extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		//setTimeout(0.1);
+		setTimeout(4);
 		//RobotMap.TAL_elevatorMotor.config_kP(0, RobotMap.pDown, RobotMap.timeout);
 	}
 
@@ -28,11 +28,12 @@ public class ElevatorReset extends Command {
 	protected void execute() {
 		//Elevator.setPos(0);
 		//end();
+		Elevator.elevatorReset();
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return false;//isTimedOut();
+		return isTimedOut();
 	}
 
 	// Called once after isFinished returns true

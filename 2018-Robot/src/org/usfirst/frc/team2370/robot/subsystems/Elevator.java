@@ -67,11 +67,15 @@ public class Elevator extends Subsystem {
 		RobotMap.TAL_elevatorMotor.set(ControlMode.Position, pos);
 	}
 	
+public static double resetPos = 0;
+	
 	public static void elevatorReset() {
 		if (RobotMap.DIG_elevatorBottom.get() == false) {
-			RobotMap.TAL_elevatorMotor.set(-0.1);
+			//RobotMap.TAL_elevatorMotor.set(-0.1);
+			RobotMap.TAL_elevatorMotor.set(ControlMode.Position, resetPos);
+			resetPos += 30;
 		} else {
-			RobotMap.TAL_elevatorMotor.set(0);
+			RobotMap.TAL_elevatorMotor.set(ControlMode.Position, 0);
 			RobotMap.TAL_elevatorMotor.getSensorCollection().setQuadraturePosition(0, 20);
 		}
 	}
