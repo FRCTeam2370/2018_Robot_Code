@@ -28,8 +28,8 @@ public class AutonomousLeft extends CommandGroup {
 		case "rrr":
 			// Drive to the scale and place the cube (Around the world)
 			addSequential(new DriveStraight(220), 4.3);
-			addSequential(new TurnRight(86), 1);
-			addSequential(new DriveStraight(137), 3.1);
+			addSequential(new TurnRight(90), 1.5);
+			addSequential(new DriveStraight(142), 3.4);
 			addSequential(new TurnRight(65), 1);
 			addParallel(new PushElevatorSol(), .1);
 			// addSequential(new SetElevatorPosition(-3000));
@@ -40,8 +40,8 @@ public class AutonomousLeft extends CommandGroup {
 		case "rlr":
 			// Drive to the scale and place the cube (Around the world)
 			addSequential(new DriveStraight(220), 4.3);
-			addSequential(new TurnRight(86), 1);
-			addSequential(new DriveStraight(137), 3.1);
+			addSequential(new TurnRight(90), 1.5);
+			addSequential(new DriveStraight(142), 3.4);
 			addSequential(new TurnRight(65), 1);
 			addParallel(new PushElevatorSol(), .1);
 			// addSequential(new SetElevatorPosition(-3000));

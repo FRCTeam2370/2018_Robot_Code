@@ -177,15 +177,15 @@ public class DriveTrain extends Subsystem {
 						.getQuadraturePosition() > (distance * RobotMap.encoder2actual) * -1) {
 			if (RobotMap.originalAngle > RobotMap.ahrs.getAngle()) {
 				RobotMap.TAL_rightMaster.set(-1 * speed);
-				RobotMap.TAL_leftMaster.set(speed + .14);
+				RobotMap.TAL_leftMaster.set(speed + 0.1);
 			}
 			else if (RobotMap.originalAngle < RobotMap.ahrs.getAngle()) {
-				RobotMap.TAL_rightMaster.set(-1 * speed - .12);
+				RobotMap.TAL_rightMaster.set(-1 * speed - 0.12);
 				RobotMap.TAL_leftMaster.set(speed);
 			}
 			else {
 				RobotMap.TAL_rightMaster.set(-1 * speed);
-				RobotMap.TAL_leftMaster.set(speed + 0.9);
+				RobotMap.TAL_leftMaster.set(speed + 0.22);
 			}
 		} else {
 			RobotMap.TAL_rightMaster.set(0);
@@ -230,7 +230,7 @@ public class DriveTrain extends Subsystem {
 		
 	}
 	public static void driveLeft() {
-		RobotMap.TAL_rightMaster.set((-1 * speed));
+		RobotMap.TAL_rightMaster.set((-1 * speed - 0.07));
 		RobotMap.TAL_leftMaster.set(speed - .20);
 	
 }

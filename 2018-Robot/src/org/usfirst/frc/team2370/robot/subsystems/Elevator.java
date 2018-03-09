@@ -54,7 +54,7 @@ public class Elevator extends Subsystem {
 
 		RobotMap.TAL_elevatorMotor.setInverted(true);
 		
-		RobotMap.TAL_carriageMotor.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen, 0);
+		//RobotMap.TAL_carriageMotor.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen, 0);
 }
 	
 	/**

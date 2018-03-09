@@ -14,8 +14,8 @@ public class AutonomousRight extends CommandGroup {
 		case "lll":
 			// Drive to the scale and place the cube (Around the world)
 			addSequential(new DriveStraight(220), 4.3);
-			addSequential(new TurnLeft(86), 1);
-			addSequential(new DriveStraight(137), 3.1);
+			addSequential(new TurnLeft(90), 1.5);
+			addSequential(new DriveStraight(142), 3.4);
 			addSequential(new TurnLeft(65), 1);
 			addParallel(new PushElevatorSol(), .1);
 			// addSequential(new SetElevatorPosition(-3000));
@@ -39,8 +39,8 @@ public class AutonomousRight extends CommandGroup {
 		case "lrl":
 			// Drive to the scale and place the cube (Around the world)
 			addSequential(new DriveStraight(220), 4.3);
-			addSequential(new TurnLeft(86), 1);
-			addSequential(new DriveStraight(137), 3.1);
+			addSequential(new TurnLeft(90), 1.5);
+			addSequential(new DriveStraight(142), 3.4);
 			addSequential(new TurnLeft(65), 1);
 			addParallel(new PushElevatorSol(), .1);
 			// addSequential(new SetElevatorPosition(-3000));
@@ -51,7 +51,7 @@ public class AutonomousRight extends CommandGroup {
 			// start
 			addSequential(new DriveStraight(142), 3.25);
 			addParallel(new PushElevatorSol(), 0.1);
-			addParallel(new SetElevatorPosition(-3000));
+			//addParallel(new SetElevatorPosition(-3000));
 			addSequential(new TurnLeft(86), 1.5);
 			addSequential(new DriveStraight(18), 1.5);
 			addSequential(new PushGripper());
