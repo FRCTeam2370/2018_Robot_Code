@@ -47,12 +47,37 @@ public class DriveTrain extends Subsystem {
 		RobotMap.TAL_leftMaster.getSensorCollection().setQuadraturePosition(0, timeout);
 		RobotMap.TAL_rightMaster.getSensorCollection().setQuadraturePosition(0, timeout);
 
-		/*
-		 * RobotMap.TAL_rightMaster.setInverted(true);
-		 * RobotMap.TAL_leftMaster.setInverted(true);
-		 * RobotMap.TAL_rightSlave.setInverted(true);
-		 * RobotMap.TAL_leftSlave.setInverted(true);
-		 */
+		RobotMap.TAL_leftMaster.configNominalOutputForward(0.0, timeout);
+		RobotMap.TAL_rightMaster.configNominalOutputForward(0.0, timeout);
+		
+		RobotMap.TAL_leftMaster.configNominalOutputReverse(0.0, timeout);
+		RobotMap.TAL_rightMaster.configNominalOutputReverse(0.0, timeout);
+		
+		RobotMap.TAL_leftMaster.configPeakOutputForward(1.0, timeout);
+		RobotMap.TAL_rightMaster.configPeakOutputForward(1.0, timeout);
+		
+		RobotMap.TAL_leftMaster.configPeakOutputReverse(-1.0, timeout);
+		RobotMap.TAL_rightMaster.configPeakOutputReverse(-1.0, timeout);
+		
+		RobotMap.TAL_leftMaster.config_kP(0, 0.5, timeout);
+		RobotMap.TAL_rightMaster.config_kP(0, 0.5, timeout);
+		
+		RobotMap.TAL_leftMaster.config_kI(0, 0.0, timeout);
+		RobotMap.TAL_rightMaster.config_kI(0, 0.0, timeout);
+		
+		RobotMap.TAL_leftMaster.config_kD(0, 0.0, timeout);
+		RobotMap.TAL_rightMaster.config_kD(0, 0.0, timeout);
+		
+		RobotMap.TAL_leftMaster.config_kF(0, 0.0, timeout);
+		RobotMap.TAL_rightMaster.config_kF(0, 0.0, timeout);
+		
+		
+		
+		 RobotMap.TAL_rightMaster.setInverted(true);
+		 //RobotMap.TAL_leftMaster.setInverted(true);
+		 RobotMap.TAL_rightSlave.setInverted(true);
+		 //RobotMap.TAL_leftSlave.setInverted(true);
+		 
 
 		try {
 			RobotMap.ahrs = new AHRS(SerialPort.Port.kUSB);// , AHRS.SerialDataType.kRawData, RobotMap.updateRate);//

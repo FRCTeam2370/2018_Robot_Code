@@ -9,6 +9,7 @@ ved.                        */
 
 package org.usfirst.frc.team2370.robot;
  
+import org.usfirst.frc.team2370.paths.TestAuto;
 import org.usfirst.frc.team2370.robot.commands.ChangeGears;
 import org.usfirst.frc.team2370.robot.commands.DriveBackwards;
 import org.usfirst.frc.team2370.robot.commands.DriveStraight;
@@ -16,6 +17,7 @@ import org.usfirst.frc.team2370.robot.commands.DropElevatorSol;
 import org.usfirst.frc.team2370.robot.commands.ElevatorReset;
 import org.usfirst.frc.team2370.robot.commands.ElevatorToBottom;
 import org.usfirst.frc.team2370.robot.commands.ElevatorToTop;
+import org.usfirst.frc.team2370.robot.commands.FollowTrajectory;
 import org.usfirst.frc.team2370.robot.commands.PullGripper;
 import org.usfirst.frc.team2370.robot.commands.PushElevatorSol;
 import org.usfirst.frc.team2370.robot.commands.PushGripper;
@@ -37,7 +39,7 @@ public class OI {
 		RobotMap.BTN_dropElevatorSol.whenPressed(new DropElevatorSol());
 		RobotMap.BTN_pushElevatorSol.whenPressed(new PushElevatorSol());
 		
-		RobotMap.BTN_resetElevator.whenPressed(new ElevatorReset());
+		RobotMap.BTN_resetElevator.whenPressed(new FollowTrajectory(new TestAuto()));//new ElevatorReset());
 		
 		RobotMap.BTN_elevatorToBot.whenPressed(new ElevatorToBottom());
 		RobotMap.BTN_elevatorToTop.whenPressed(new ElevatorToTop());
