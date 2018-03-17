@@ -268,10 +268,10 @@ public class Robot extends TimedRobot {
 		 * SmartDashboard.putNumber("Error Right",
 		 * RobotMap.TAL_rightMaster.getClosedLoopError(0));
 		 */
-		SmartDashboard.putNumber("Elevator Position Percent", (RobotMap.TAL_elevatorMotor.getSensorCollection().getQuadraturePosition()/60));
+		SmartDashboard.putNumber("Elevator Position Percent", (RobotMap.TAL_elevatorMotor.getSensorCollection().getQuadraturePosition()/85));
 		// SmartDashboard.putNumber("Elevator Pos2",
 		// RobotMap.TAL_elevatorMotor.getSelectedSensorPosition(0));
-		SmartDashboard.putNumber("Elevator Setpoint Percent", (RobotMap.TAL_elevatorMotor.getClosedLoopTarget(0))/60);
+		SmartDashboard.putNumber("Elevator Setpoint Percent", (RobotMap.TAL_elevatorMotor.getClosedLoopTarget(0))/85);
 		// SmartDashboard.putNumber("Elevator Current",
 		// RobotMap.TAL_elevatorMotor.getOutputCurrent());
 		SmartDashboard.putBoolean("The freaking limitswitch",
@@ -287,6 +287,12 @@ public class Robot extends TimedRobot {
 		// RobotMap.TAL_rightMaster.getClosedLoopTarget(0));
 
 		SmartDashboard.putNumber("Left Pos", RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition());
+		
+		SmartDashboard.putNumber("Right Master Current", RobotMap.TAL_rightMaster.getOutputCurrent());
+		SmartDashboard.putNumber("Left Master Current", RobotMap.TAL_leftMaster.getOutputCurrent());
+		SmartDashboard.putNumber("Right Slave Current", RobotMap.TAL_rightSlave.getOutputCurrent());
+		SmartDashboard.putNumber("Left Slave Current", RobotMap.TAL_leftSlave.getOutputCurrent());
+				
 		// SmartDashboard.putNumber("Left Pos2",
 		// RobotMap.TAL_leftMaster.getSelectedSensorPosition(0));
 		// SmartDashboard.putNumber("Left Setpoint",
