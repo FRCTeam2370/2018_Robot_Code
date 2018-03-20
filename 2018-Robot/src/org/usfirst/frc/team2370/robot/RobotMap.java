@@ -61,7 +61,7 @@ public class RobotMap {
 	public static double encoder2TurnDegrees = 25.2888;
 	public static double currentTurnDegrees;
 	public static byte updateRate = 30;
-	public static double oldAngle;
+	public static double oldAngle; 
 	/**   
 	 * This will set the speed controllers for the Gripper subsystem
 	 */ 
