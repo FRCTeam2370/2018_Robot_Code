@@ -233,45 +233,11 @@ public class Robot extends TimedRobot {
 	public void teleopPeriodic() {
 
 		Scheduler.getInstance().run();
-
-		// SmartDashboard.putNumber("Position",
-		// RobotMap.elevatorMotor.getSensorCollection().getQuadraturePosition());
-		// SmartDashboard.putNumber("Position2",
-		// RobotMap.elevatorMotor.getSelectedSensorPosition(0));
-		// SmartDashboard.putNumber("Velocity",
-		// RobotMap.elevatorMotor.getSensorCollection().getQuadratureVelocity());
-		// SmartDashboard.putNumber("Error",
-		// RobotMap.elevatorMotor.getErrorDerivative(0));
-		// SmartDashboard.putNumber("Error2",
-		// RobotMap.elevatorMotor.getClosedLoopError(0));
-		// SmartDashboard.putNumber("Setpoint",
-		// RobotMap.elevatorMotor.getClosedLoopTarget(0));
-		// SmartDashboard.putNumber("Voltage",
-		// RobotMap.TAL_leftMaster.getMotorOutputVoltage());
-		// SmartDashboard.putNumber("IMU_Yaw", RobotMap.ahrs.getYaw());
-		// SmartDashboard.putNumber("IMU_Pitch", RobotMap.ahrs.getPitch());
-		// SmartDashboard.putNumber("IMU_Roll", RobotMap.ahrs.getRoll());
-
-		// SmartDashboard.putNumber("Pres Sensor", RobotMap.ALA_PreSensor.getValue());
-
-		/*
-		 * SmartDashboard.putNumber("Position Left",
-		 * RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition());
-		 * SmartDashboard.putNumber("Velocity Left",
-		 * RobotMap.TAL_leftMaster.getSensorCollection().getQuadratureVelocity());
-		 * SmartDashboard.putNumber("Error Left",
-		 * RobotMap.TAL_leftMaster.getClosedLoopError(0));
-		 * SmartDashboard.putNumber("Position Right",
-		 * RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition());
-		 * SmartDashboard.putNumber("Velocity Right",
-		 * RobotMap.TAL_rightMaster.getSensorCollection().getQuadratureVelocity());
-		 * SmartDashboard.putNumber("Error Right",
-		 * RobotMap.TAL_rightMaster.getClosedLoopError(0));
-		 */
-		SmartDashboard.putNumber("Elevator Position Percent", (RobotMap.TAL_elevatorMotor.getSensorCollection().getQuadraturePosition()/85));
+		SmartDashboard.putNumber("Box Sensor Value", RobotMap.ALA_BoxSensor.getVoltage()); 
+		SmartDashboard.putNumber("Elevator Position Percent", (RobotMap.TAL_elevatorMotor.getSensorCollection().getQuadraturePosition()/60));
 		// SmartDashboard.putNumber("Elevator Pos2",
 		// RobotMap.TAL_elevatorMotor.getSelectedSensorPosition(0));
-		SmartDashboard.putNumber("Elevator Setpoint Percent", (RobotMap.TAL_elevatorMotor.getClosedLoopTarget(0))/85);
+		SmartDashboard.putNumber("Elevator Setpoint Percent", (RobotMap.TAL_elevatorMotor.getClosedLoopTarget(0))/60);
 		// SmartDashboard.putNumber("Elevator Current",
 		// RobotMap.TAL_elevatorMotor.getOutputCurrent());
 		SmartDashboard.putBoolean("The freaking limitswitch",

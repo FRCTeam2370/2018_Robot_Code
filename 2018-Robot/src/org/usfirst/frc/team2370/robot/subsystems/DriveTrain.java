@@ -33,8 +33,8 @@ public class DriveTrain extends Subsystem {
 	 * Method to setup the slave speed controllers to follower mode
 	 */
 
-	static double speed = 0.3;
-	static double turnSpeed = 0.55;
+	static double speed = .9;
+	static double turnSpeed = 0.70;
 
 	public static void motorSetup() {
 		int timeout = 1000;
@@ -53,8 +53,6 @@ public class DriveTrain extends Subsystem {
 		 * RobotMap.TAL_rightSlave.setInverted(true);
 		 * RobotMap.TAL_leftSlave.setInverted(true);
 		 */
-		
-		
 
 		try {
 			RobotMap.ahrs = new AHRS(SerialPort.Port.kUSB);// , AHRS.SerialDataType.kRawData, RobotMap.updateRate);//
@@ -107,12 +105,13 @@ public class DriveTrain extends Subsystem {
 		 * RobotMap.TAL_rightMaster.set(0); RobotMap.TAL_leftMaster.set(0); }
 		 */
 		if (RobotMap.ahrs.getAngle() < RobotMap.oldAngle + angle) {
-			RobotMap.TAL_rightMaster.set(turnSpeed);
-			RobotMap.TAL_leftMaster.set(turnSpeed);
-		} else if (RobotMap.ahrs.getAngle() > RobotMap.oldAngle + angle) {
-			RobotMap.TAL_rightMaster.set(-turnSpeed / 3);
-			RobotMap.TAL_leftMaster.set(-turnSpeed / 3);
-		} else {
+			RobotMap.TAL_rightMaster.set(turnSpeed / 2);
+			RobotMap.TAL_leftMaster.set(turnSpeed / 2);
+		}
+		// } else if (RobotMap.ahrs.getAngle() > RobotMap.oldAngle + angle) {
+		// RobotMap.TAL_rightMaster.set(-turnSpeed / 3);
+		// RobotMap.TAL_leftMaster.set(-turnSpeed / 3);
+		else {
 			RobotMap.TAL_rightMaster.set(0);
 			RobotMap.TAL_leftMaster.set(0);
 		}
@@ -142,12 +141,13 @@ public class DriveTrain extends Subsystem {
 		 * RobotMap.TAL_leftMaster.set(turnSpeed*-1);
 		 */
 		if (RobotMap.ahrs.getAngle() > RobotMap.oldAngle - angle) {
-			RobotMap.TAL_rightMaster.set(-1 * turnSpeed);
-			RobotMap.TAL_leftMaster.set(-1 * turnSpeed);
-		} else if (RobotMap.ahrs.getAngle() < RobotMap.oldAngle - angle) {
-			RobotMap.TAL_rightMaster.set(turnSpeed / 3);
-			RobotMap.TAL_leftMaster.set(turnSpeed / 3);
-		} else {
+			RobotMap.TAL_rightMaster.set((-1 * turnSpeed) / 2);
+			RobotMap.TAL_leftMaster.set((-1 * turnSpeed) / 2);
+		}
+		// } else if (RobotMap.ahrs.getAngle() < RobotMap.oldAngle - angle) {
+		// RobotMap.TAL_rightMaster.set(turnSpeed / 3);
+		// RobotMap.TAL_leftMaster.set(turnSpeed / 3);
+		else {
 			RobotMap.TAL_rightMaster.set(0);
 			RobotMap.TAL_leftMaster.set(0);
 		}
@@ -172,68 +172,134 @@ public class DriveTrain extends Subsystem {
 	 *            The distance (In inches) to drive forward
 	 */
 	public static void driveForward(double distance) {
+		double rightEnc = RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition();
+		double leftEnc = RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition();
+		double fixedDistance = distance * RobotMap.encoder2actual;
+		double error = rightEnc / fixedDistance;
 
 		// Angle matching
-		if ((RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition() < distance
-				* RobotMap.encoder2actual)
-				|| RobotMap.TAL_leftMaster.getSensorCollection()
-						.getQuadraturePosition() > (distance * RobotMap.encoder2actual) * -1) {
-			
-			// Veering left, correct towards the right
-			if (RobotMap.originalAngle > RobotMap.ahrs.getAngle()) {
-				RobotMap.TAL_rightMaster.set(-1 * speed);
-				RobotMap.TAL_leftMaster.set(speed + 0.2);
+		if ((rightEnc < fixedDistance) || leftEnc > fixedDistance * -1) {
+
+			if (error > 0.5 && error < 0.7) {
+				// Veering left, correct towards the right
+				if (RobotMap.originalAngle > RobotMap.ahrs.getAngle()) {
+					RobotMap.TAL_rightMaster.set((-1 * speed) / 1.25);
+					RobotMap.TAL_leftMaster.set((speed + 0.1) / 1.25);
+				}
+
+				// Veering right, correct towards the left
+				else if (RobotMap.originalAngle < RobotMap.ahrs.getAngle()) {
+					RobotMap.TAL_rightMaster.set((-1 * speed - 0.1) / 1.25);
+					RobotMap.TAL_leftMaster.set(speed / 1.25);
+				}
+
+				// Right on the money
+				else {
+					RobotMap.TAL_rightMaster.set((-1 * speed) / 1.25);
+					RobotMap.TAL_leftMaster.set(speed / 1.25);
+				}
+
 			}
-			
-			// Veering right, correct towards the left
-			else if (RobotMap.originalAngle < RobotMap.ahrs.getAngle()) {
-				RobotMap.TAL_rightMaster.set(-1 * speed - 0.2);
-				RobotMap.TAL_leftMaster.set(speed);
+			if (error > 0.7) {
+				// Veering left, correct towards the right
+				if (RobotMap.originalAngle > RobotMap.ahrs.getAngle()) {
+					RobotMap.TAL_rightMaster.set((-1 * speed) / 1.5);
+					RobotMap.TAL_leftMaster.set((speed + 0.1) / 1.5);
+				}
+
+				// Veering right, correct towards the left
+				else if (RobotMap.originalAngle < RobotMap.ahrs.getAngle()) {
+					RobotMap.TAL_rightMaster.set((-1 * speed - 0.1) / 1.5);
+					RobotMap.TAL_leftMaster.set(speed / 1.5);
+				}
+
+				// Right on the money
+				else {
+					RobotMap.TAL_rightMaster.set((-1 * speed) / 1.5);
+					RobotMap.TAL_leftMaster.set(speed / 1.5);
+				}
+
+			} else {
+				// Veering left, correct towards the right
+				if (RobotMap.originalAngle > RobotMap.ahrs.getAngle()) {
+					RobotMap.TAL_rightMaster.set(-1 * speed);
+					RobotMap.TAL_leftMaster.set(speed + 0.1);
+				}
+
+				// Veering right, correct towards the left
+				else if (RobotMap.originalAngle < RobotMap.ahrs.getAngle()) {
+					RobotMap.TAL_rightMaster.set(-1 * speed - 0.1);
+					RobotMap.TAL_leftMaster.set(speed);
+				}
+
+				// Right on the money
+				else {
+					RobotMap.TAL_rightMaster.set(-1 * speed);
+					RobotMap.TAL_leftMaster.set(speed);
+				}
 			}
-			
-			// Right on the money
-			else {
-				RobotMap.TAL_rightMaster.set(-1 * speed);
-				RobotMap.TAL_leftMaster.set(speed);
-			}
-			
-		// Stop the motors, you've made it to your destination
+
+			// Stop the motors, you've made it to your destination
 		} else {
 			RobotMap.TAL_rightMaster.set(0);
 			RobotMap.TAL_leftMaster.set(0);
 		}
-		
-		
+
 		// Encoder matching
-		/*if ((RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition() < distance * RobotMap.encoder2actual
-				)
-				|| RobotMap.TAL_leftMaster.getSensorCollection()
+		/*
+		 * if ((RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition() <
+		 * distance * RobotMap.encoder2actual ) ||
+		 * RobotMap.TAL_leftMaster.getSensorCollection() .getQuadraturePosition() >
+		 * (distance * RobotMap.encoder2actual) * -1) {
+		 * 
+		 * if (RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition() >
+		 * (RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition()*-1)) {
+		 * 
+		 * RobotMap.TAL_rightMaster.set(-1 * speed); RobotMap.TAL_leftMaster.set(speed +
+		 * 0.3); }
+		 * 
+		 * if (RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition() <
+		 * (RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition()*-1)) {
+		 * 
+		 * RobotMap.TAL_rightMaster.set(-1 * speed - 0.3);
+		 * RobotMap.TAL_leftMaster.set(speed); } else { RobotMap.TAL_rightMaster.set(-1
+		 * * speed); RobotMap.TAL_leftMaster.set(speed); }
+		 * 
+		 * } else { RobotMap.TAL_rightMaster.set(0); RobotMap.TAL_leftMaster.set(0); }
+		 */
+
+	}
+
+	public static void driveForwardSlow(double distance) {
+		double rightEnc = RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition();
+		double leftEnc = RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition();
+		double fixedDistance = distance * RobotMap.encoder2actual;
+		double error = rightEnc / fixedDistance;
+
+		// Angle matching
+		if ((RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition() < distance
+				* RobotMap.encoder2actual)
+				&& RobotMap.TAL_leftMaster.getSensorCollection()
 						.getQuadraturePosition() > (distance * RobotMap.encoder2actual) * -1) {
-			
-			if (RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition() > 
-			   (RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition()*-1)) {
-				
-				RobotMap.TAL_rightMaster.set(-1 * speed);
-				RobotMap.TAL_leftMaster.set(speed + 0.3);
-			}
-			
-			if (RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition() < 
-			   (RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition()*-1)) {
-				
-				RobotMap.TAL_rightMaster.set(-1 * speed - 0.3);
-				RobotMap.TAL_leftMaster.set(speed);
-			}
-			else {
-				RobotMap.TAL_rightMaster.set(-1 * speed);
-				RobotMap.TAL_leftMaster.set(speed);
-			}
-			
+			RobotMap.TAL_rightMaster.set((-1 * speed) / 3);
+			RobotMap.TAL_leftMaster.set(speed / 3);
 		} else {
 			RobotMap.TAL_rightMaster.set(0);
 			RobotMap.TAL_leftMaster.set(0);
-		}*/
-		
+		}
+	}
 
+	public static void driveBackwardsSlow(double distance) {
+		if ((RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition() > -distance
+				* RobotMap.encoder2actual)
+				&& RobotMap.TAL_leftMaster.getSensorCollection()
+						.getQuadraturePosition() < (-distance * RobotMap.encoder2actual) * -1) {
+			RobotMap.TAL_rightMaster.set((-1 * -speed) / 3);
+			RobotMap.TAL_leftMaster.set(-speed / 3);
+		} else {
+			RobotMap.TAL_rightMaster.set(0);
+			RobotMap.TAL_leftMaster.set(0);
+		}
 	}
 
 	public static void driveBackwards(double distance) {
@@ -255,14 +321,15 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public static void driveRight() {
-			RobotMap.TAL_rightMaster.set((-1 * speed) + .255);
-			RobotMap.TAL_leftMaster.set(speed + .08);
-		
+		RobotMap.TAL_rightMaster.set((-1 * speed) + .255);
+		RobotMap.TAL_leftMaster.set(speed + .08);
+
 	}
+
 	public static void driveLeft() {
 		RobotMap.TAL_rightMaster.set((-1 * speed - 0.07));
 		RobotMap.TAL_leftMaster.set(speed - .20);
-	
-}
+
+	}
 
 }

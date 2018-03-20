@@ -43,8 +43,8 @@ public class Elevator extends Subsystem {
 		RobotMap.TAL_elevatorMotor.configSetParameter(ParamEnum.eFeedbackNotContinuous, 1, 0x00, 0x00, 0x00);
 		RobotMap.TAL_elevatorMotor.configNominalOutputForward(0, timeout);
 		RobotMap.TAL_elevatorMotor.configNominalOutputReverse(0, timeout);
-		RobotMap.TAL_elevatorMotor.configPeakOutputForward(0.2, timeout);
-		RobotMap.TAL_elevatorMotor.configPeakOutputReverse(-0.6, timeout);
+		RobotMap.TAL_elevatorMotor.configPeakOutputForward(0.6, timeout);
+		RobotMap.TAL_elevatorMotor.configPeakOutputReverse(-1.0, timeout);
 		
 		//RobotMap.TAL_elevatorMotor.
 		

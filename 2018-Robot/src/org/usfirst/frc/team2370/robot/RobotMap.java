@@ -43,7 +43,8 @@ public class RobotMap {
 	 */
 	public static Solenoid SLN_shiftingSolenoid = new Solenoid(0);
 	public static Compressor compressor = new Compressor();
-	public static AnalogInput ALG_PreSensor = new AnalogInput(0);
+	public static AnalogInput ALG_PreSensor = new AnalogInput(1);
+	public static AnalogInput ALA_BoxSensor = new AnalogInput(0);
 	public static boolean driverStop = false;
 
 	/**
@@ -56,7 +57,7 @@ public class RobotMap {
 	public static WPI_TalonSRX TAL_leftSlave = new WPI_TalonSRX(10);
 	public static DifferentialDrive driveTrain = new DifferentialDrive(TAL_leftMaster, TAL_rightMaster);
 	public static double deadbandPercent = .05;
-	public static double encoder2actual = 121.0576923;//139.1519;
+	public static double encoder2actual = 139.1519;//121.0576923;
 	public static double encoder2TurnDegrees = 25.2888;
 	public static double currentTurnDegrees;
 	public static byte updateRate = 30;
