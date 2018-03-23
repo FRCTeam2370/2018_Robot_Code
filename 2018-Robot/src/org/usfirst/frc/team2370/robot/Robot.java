@@ -233,6 +233,25 @@ public class Robot extends TimedRobot {
 	public void teleopPeriodic() {
 
 		Scheduler.getInstance().run();
+		
+		if (RobotMap.sonar.getVoltage() < 0.3) {
+			RobotMap.boxLED.set(true);
+		} else {
+			RobotMap.boxLED.set(false);
+		}
+		
+		if (DriverStation.getInstance().getAlliance() == DriverStation.Alliance.Blue) {
+			RobotMap.teamLED.set(true);
+		} else {
+			RobotMap.teamLED.set(false);
+		}
+		
+		if (Timer.getMatchTime() < 30) {
+			RobotMap.timeLED.set(true);
+		} else {
+			RobotMap.timeLED.set(false);
+		}
+		
 		SmartDashboard.putNumber("Box Sensor Value", RobotMap.ALA_BoxSensor.getVoltage()); 
 		SmartDashboard.putNumber("Elevator Position Percent", (RobotMap.TAL_elevatorMotor.getSensorCollection().getQuadraturePosition()/60));
 		// SmartDashboard.putNumber("Elevator Pos2",

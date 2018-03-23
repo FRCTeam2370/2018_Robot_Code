@@ -16,6 +16,8 @@ import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DigitalOutput;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -135,4 +137,12 @@ public static WPI_TalonSRX TAL_elevatorMotor = new WPI_TalonSRX(15);
 	public static DigitalInput right = new DigitalInput(4);
 	
 	public static double originalAngle = 0;
+	
+	/**
+	 * The most vital part of the robot, lighting effects
+	 */
+	public static DigitalOutput teamLED = new DigitalOutput(7);
+	public static DigitalOutput timeLED = new DigitalOutput(8);
+	public static DigitalOutput boxLED = new DigitalOutput(9);
+	public static AnalogInput sonar = new AnalogInput(2);
 }
