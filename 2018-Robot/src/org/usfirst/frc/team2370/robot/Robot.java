@@ -144,6 +144,8 @@ public class Robot extends TimedRobot {
 
 		RobotMap.SLN_elevatorSolenoid.set(false);
 		
+		RobotMap.autoPin.set(true);
+		
 		Timer.delay(0.5);
 		
 		fieldMessage = DriverStation.getInstance().getGameSpecificMessage().toLowerCase();
@@ -203,12 +205,13 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopInit() {
-
+		RobotMap.autoPin.set(false);
+		
 		RobotMap.TAL_rightMaster.getSensorCollection().setQuadraturePosition(0, 20);
 		RobotMap.TAL_leftMaster.getSensorCollection().setQuadraturePosition(0, 20);
 
 		RobotMap.SLN_elevatorSolenoid.set(false);
-
+		
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
@@ -235,21 +238,21 @@ public class Robot extends TimedRobot {
 		Scheduler.getInstance().run();
 		
 		if (RobotMap.sonar.getVoltage() < 0.3) {
-			RobotMap.boxLED.set(true);
+			RobotMap.boxPin.set(true);
 		} else {
-			RobotMap.boxLED.set(false);
+			RobotMap.boxPin.set(false);
 		}
 		
 		if (DriverStation.getInstance().getAlliance() == DriverStation.Alliance.Blue) {
-			RobotMap.teamLED.set(true);
+			RobotMap.teamPin.set(true);
 		} else {
-			RobotMap.teamLED.set(false);
+			RobotMap.teamPin.set(false);
 		}
 		
 		if (Timer.getMatchTime() < 30) {
-			RobotMap.timeLED.set(true);
+			RobotMap.timePin.set(true);
 		} else {
-			RobotMap.timeLED.set(false);
+			RobotMap.timePin.set(false);
 		}
 		
 		SmartDashboard.putNumber("Box Sensor Value", RobotMap.ALA_BoxSensor.getVoltage()); 

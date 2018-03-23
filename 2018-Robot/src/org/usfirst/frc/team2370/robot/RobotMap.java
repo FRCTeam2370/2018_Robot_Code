@@ -141,8 +141,13 @@ public static WPI_TalonSRX TAL_elevatorMotor = new WPI_TalonSRX(15);
 	/**
 	 * The most vital part of the robot, lighting effects
 	 */
-	public static DigitalOutput teamLED = new DigitalOutput(7);
-	public static DigitalOutput timeLED = new DigitalOutput(8);
-	public static DigitalOutput boxLED = new DigitalOutput(9);
+	// True only during autonomous
+	public static DigitalOutput autoPin = new DigitalOutput(6);
+	// True if on blue team, false on red team
+	public static DigitalOutput teamPin = new DigitalOutput(7);
+	// True during last 30 seconds
+	public static DigitalOutput timePin = new DigitalOutput(8);
+	// True if box is inside of gripper
+	public static DigitalOutput boxPin = new DigitalOutput(9);
 	public static AnalogInput sonar = new AnalogInput(2);
 }
