@@ -97,6 +97,11 @@ public class Robot extends TimedRobot {
 		RobotMap.SLN_shiftingSolenoid.set(false);
 		RobotMap.SLN_elevatorSolenoid.set(false);
 		
+		if (DriverStation.getInstance().getAlliance() == DriverStation.Alliance.Blue) {
+			RobotMap.teamPin.set(true);
+		} else {
+			RobotMap.teamPin.set(false);
+		}
 		
 		m_chooser.addDefault("Default", new AutonomousDefault());
 		m_chooser.addObject("Right", new AutonomousRight());
@@ -144,7 +149,7 @@ public class Robot extends TimedRobot {
 
 		RobotMap.SLN_elevatorSolenoid.set(false);
 		
-		RobotMap.autoPin.set(true);
+		//RobotMap.autoPin.set(true);
 		
 		Timer.delay(0.5);
 		
@@ -205,7 +210,7 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopInit() {
-		RobotMap.autoPin.set(false);
+		//RobotMap.autoPin.set(false);
 		
 		RobotMap.TAL_rightMaster.getSensorCollection().setQuadraturePosition(0, 20);
 		RobotMap.TAL_leftMaster.getSensorCollection().setQuadraturePosition(0, 20);
@@ -241,12 +246,6 @@ public class Robot extends TimedRobot {
 			RobotMap.boxPin.set(true);
 		} else {
 			RobotMap.boxPin.set(false);
-		}
-		
-		if (DriverStation.getInstance().getAlliance() == DriverStation.Alliance.Blue) {
-			RobotMap.teamPin.set(true);
-		} else {
-			RobotMap.teamPin.set(false);
 		}
 		
 		if (Timer.getMatchTime() < 30) {
