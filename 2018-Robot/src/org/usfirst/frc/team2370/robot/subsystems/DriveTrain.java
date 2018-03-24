@@ -281,8 +281,8 @@ public class DriveTrain extends Subsystem {
 				* RobotMap.encoder2actual)
 				&& RobotMap.TAL_leftMaster.getSensorCollection()
 						.getQuadraturePosition() > (distance * RobotMap.encoder2actual) * -1) {
-			RobotMap.TAL_rightMaster.set((-1 * speed) / 2.5);
-			RobotMap.TAL_leftMaster.set(speed / 2.5);
+			RobotMap.TAL_rightMaster.set((-1 * speed) / 2.25);
+			RobotMap.TAL_leftMaster.set(speed / 2.25);
 		} else {
 			RobotMap.TAL_rightMaster.set(0);
 			RobotMap.TAL_leftMaster.set(0);

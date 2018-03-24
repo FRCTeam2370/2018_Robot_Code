@@ -19,6 +19,7 @@ import org.usfirst.frc.team2370.robot.commands.ElevatorToTop;
 import org.usfirst.frc.team2370.robot.commands.PullGripper;
 import org.usfirst.frc.team2370.robot.commands.PushElevatorSol;
 import org.usfirst.frc.team2370.robot.commands.PushGripper;
+import org.usfirst.frc.team2370.robot.commands.PushGripperButWayHarder;
 import org.usfirst.frc.team2370.robot.commands.StopGripper;
 import org.usfirst.frc.team2370.robot.commands.TurnLeft;
 import org.usfirst.frc.team2370.robot.commands.TurnRight;
@@ -38,7 +39,7 @@ public class OI {
 		RobotMap.BTN_pushElevatorSol.whenPressed(new PushElevatorSol());
 		
 		//RobotMap.BTN_resetElevator.whenPressed(new ElevatorReset());
-		RobotMap.BTN_resetElevator.whenPressed(new DriveStraight(260));
+		RobotMap.BTN_resetElevator.whenPressed(new PushGripperButWayHarder());
 		
 		RobotMap.BTN_elevatorToBot.whenPressed(new ElevatorToBottom());
 		RobotMap.BTN_elevatorToTop.whenPressed(new ElevatorToTop());

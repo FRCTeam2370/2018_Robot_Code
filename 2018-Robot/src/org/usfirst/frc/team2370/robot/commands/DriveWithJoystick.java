@@ -31,10 +31,10 @@ public class DriveWithJoystick extends Command {
 	@Override
 	protected void execute() {
 		if (RobotMap.controller.getRawAxis(3) > RobotMap.deadbandPercent) {
-			DriveTrain.arcadeDrive(RobotMap.controller.getRawAxis(3), RobotMap.controller.getRawAxis(0)*.85 );
+			DriveTrain.arcadeDrive((RobotMap.controller.getRawAxis(3)) * RobotMap.ThrottleDamper, (RobotMap.controller.getRawAxis(0)*.85) * RobotMap.ThrottleDamper);
 		}
 		else if (RobotMap.controller.getRawAxis(2) > RobotMap.deadbandPercent) {
-			DriveTrain.arcadeDrive(RobotMap.controller.getRawAxis(2) *-1, RobotMap.controller.getRawAxis(0)*.85 );
+			DriveTrain.arcadeDrive((RobotMap.controller.getRawAxis(2) *-1) * RobotMap.ThrottleDamper, (RobotMap.controller.getRawAxis(0)*.85) * RobotMap.ThrottleDamper);
 		}
 		else{
 			DriveTrain.arcadeDrive(0, RobotMap.controller.getRawAxis(0));

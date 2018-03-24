@@ -20,6 +20,7 @@ public class ElevatorToTop extends Command {
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		setTimeout(0.1);
+		RobotMap.ThrottleDamper = 0.75;
 		//RobotMap.TAL_elevatorMotor.config_kP(0, RobotMap.pUp, RobotMap.timeout);
 	}
 

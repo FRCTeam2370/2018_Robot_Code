@@ -297,6 +297,8 @@ public class Robot extends TimedRobot {
 		
 		SmartDashboard.putNumber("Carriage Bus Voltage", RobotMap.TAL_carriageMotor.getBusVoltage());
 		SmartDashboard.putNumber("Carriage Output Voltage", RobotMap.TAL_carriageMotor.getMotorOutputVoltage());
+		
+		SmartDashboard.putNumber("Preference Voltage", RobotMap.preference.getVoltage());
 	}
 
 	/**

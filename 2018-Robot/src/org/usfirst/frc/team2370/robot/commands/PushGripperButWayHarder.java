@@ -15,8 +15,8 @@ import org.usfirst.frc.team2370.robot.subsystems.Gripper;
 /**
  * An example command. You can replace me with your own command.
  */
-public class PullGripper extends Command {
-	public PullGripper() {
+public class PushGripperButWayHarder extends Command {
+	public PushGripperButWayHarder() {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.kGripper);
 	}
@@ -24,13 +24,13 @@ public class PullGripper extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		setTimeout(3.0);
+		setTimeout(1.5);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Gripper.pullPush(-0.7);
+		Gripper.pullPush(1);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

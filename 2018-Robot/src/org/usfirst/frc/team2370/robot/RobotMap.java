@@ -70,6 +70,8 @@ public class RobotMap {
 	public static WPI_TalonSRX TAL_gripMotorLeft = new WPI_TalonSRX(14);
 	public static WPI_TalonSRX TAL_gripMotorRight = new WPI_TalonSRX(11);
 	
+	public static double ThrottleDamper = 1;
+	
 	/**
 	 * Motors for the Ramp to elevate after being dropped to the floor.
 	 */
@@ -135,6 +137,9 @@ public static WPI_TalonSRX TAL_elevatorMotor = new WPI_TalonSRX(15);
 	public static DigitalInput left = new DigitalInput(2);
 	public static DigitalInput center = new DigitalInput(3);
 	public static DigitalInput right = new DigitalInput(4);
+	// Above 50% is switch preference, below 50% is scale preference
+	public static double preferenceAmount = 2.5;
+	public static AnalogInput preference = new AnalogInput(3);
 	
 	public static double originalAngle = 0;
 	
