@@ -32,8 +32,8 @@ public class AutonomousDefault extends CommandGroup {
 	//addSequential(new PushElevatorSol());
 		
 	//left side
-	addSequential(new DriveLeft45(35), 3);
-	addSequential(new DriveRight45(45), 3);
+	addSequential(new DriveLeft(35), 3);
+	addSequential(new DriveRight(45), 3);
 	addSequential(new PushElevatorSol());
 	
 	}

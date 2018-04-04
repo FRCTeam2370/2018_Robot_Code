@@ -16,17 +16,18 @@ import org.usfirst.frc.team2370.robot.subsystems.DriveTrain;
  * An example command. You can replace me with your own command.
  */
 public class DriveRight extends Command {
+	double distance = 0;
 	
-	public DriveRight() {
+	public DriveRight(double distance) {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.kDriveTrain);
-		
+		this.distance = distance;
 	}
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		setTimeout(15);
+		RobotMap.originalAngle = RobotMap.ahrs.getAngle();
 		RobotMap.TAL_rightMaster.getSensorCollection().setQuadraturePosition(0, 20);
 		RobotMap.TAL_leftMaster.getSensorCollection().setQuadraturePosition(0, 20);
 
@@ -35,21 +36,20 @@ public class DriveRight extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		DriveTrain.driveRight();
+		DriveTrain.rightSideTurn(distance, 45);
 		
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return isTimedOut();
+		return false;
 	}
 
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-		DriveTrain.stopMotors();
-		
+
 	}
 
 	// Called when another command which requires one or more of the same

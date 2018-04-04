@@ -271,24 +271,22 @@ public class DriveTrain extends Subsystem {
 
 	}
 
-	public static void rightSideSwitch1(double distance) {
+	public static void rightSideTurn(double distance,int angle) {
 		double rightEnc = RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition();
-		double leftEnc = RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition();
+		RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition();
 		double fixedDistance = distance * RobotMap.encoder2actual;
-		double error = rightEnc / fixedDistance;
-
 		// Angle matching
 		if ((rightEnc < fixedDistance)) {
 
 			
 			// Veering left, correct towards the right
-			if ((RobotMap.originalAngle+45) > RobotMap.ahrs.getAngle()) {
+			if ((RobotMap.originalAngle+angle) > RobotMap.ahrs.getAngle()) {
 				RobotMap.TAL_rightMaster.set(-1 * speedButSpencers);
 				RobotMap.TAL_leftMaster.set(speedButSpencers + .6);
 			}
 
 			// Veering right, correct towards the left
-			else if ((RobotMap.originalAngle+45) < RobotMap.ahrs.getAngle()) {
+			else if ((RobotMap.originalAngle+angle) < RobotMap.ahrs.getAngle()) {
 				RobotMap.TAL_rightMaster.set(-1 * speedButSpencers - 0.1);
 				RobotMap.TAL_leftMaster.set(speedButSpencers );
 			}
@@ -306,24 +304,22 @@ public class DriveTrain extends Subsystem {
 		}
 
 	}
-	public static void leftSideSwitch2(double distance) {
-		double rightEnc = RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition();
+	public static void leftSideTurn(double distance, int angle) {
+		RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition();
 		double leftEnc = RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition();
 		double fixedDistance = distance * RobotMap.encoder2actual;
-		double error = rightEnc / fixedDistance;
-
 		// Angle matching
 		if ( leftEnc > fixedDistance * -1) {
 
 			
 			// Veering left, correct towards the right
-			if ((RobotMap.originalAngle-45) > RobotMap.ahrs.getAngle()) {
+			if ((RobotMap.originalAngle-angle) > RobotMap.ahrs.getAngle()) {
 				RobotMap.TAL_rightMaster.set(-1 * speedButSpencers);
 				RobotMap.TAL_leftMaster.set(speedButSpencers + .1);
 			}
 
 			// Veering right, correct towards the left
-			else if ((RobotMap.originalAngle-45) < RobotMap.ahrs.getAngle()) {
+			else if ((RobotMap.originalAngle-angle) < RobotMap.ahrs.getAngle()) {
 				RobotMap.TAL_rightMaster.set(-1 * speedButSpencers - .6);
 				RobotMap.TAL_leftMaster.set(speedButSpencers);
 			}
@@ -343,11 +339,8 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public static void driveForwardSlow(double distance) {
-		double rightEnc = RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition();
-		double leftEnc = RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition();
-		double fixedDistance = distance * RobotMap.encoder2actual;
-		double error = rightEnc / fixedDistance;
-
+		RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition();
+		RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition();
 		// Angle matching
 		if ((RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition() < distance
 				* RobotMap.encoder2actual)
@@ -392,16 +385,5 @@ public class DriveTrain extends Subsystem {
 		setDefaultCommand(new DriveWithJoystick());
 	}
 
-	public static void driveRight() {
-		RobotMap.TAL_rightMaster.set((-1 * speed) + .255);
-		RobotMap.TAL_leftMaster.set(speed + .08);
-
-	}
-
-	public static void driveLeft() {
-		RobotMap.TAL_rightMaster.set((-1 * speed - 0.07));
-		RobotMap.TAL_leftMaster.set(speed - .20);
-
-	}
-
+	
 }
