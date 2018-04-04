@@ -17,11 +17,15 @@ import org.usfirst.frc.team2370.robot.subsystems.DriveTrain;
  */
 public class DriveLeft extends Command {
 	double distance = 0;
+	double angle = 0;
+	double speed = 0;
 	
-	public DriveLeft(double distance) {
+	public DriveLeft(double distance, double angle, double speed) {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.kDriveTrain);
 		this.distance = distance;
+		this.angle = angle;
+		this.speed = speed;
 	}
 
 	// Called just before this Command runs the first time
@@ -36,7 +40,7 @@ public class DriveLeft extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		DriveTrain.leftSideTurn(distance, 45);
+		DriveTrain.leftSideTurn(distance, angle, speed);
 		
 	}
 

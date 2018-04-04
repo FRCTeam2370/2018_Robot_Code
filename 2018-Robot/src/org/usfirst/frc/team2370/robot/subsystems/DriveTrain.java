@@ -34,7 +34,7 @@ public class DriveTrain extends Subsystem {
 	 */
 
 	static double speed = .9;
-	static double speedButSpencers = 0.4;
+	
 	static double turnSpeed = 0.50;
 
 	public static void motorSetup() {
@@ -271,7 +271,7 @@ public class DriveTrain extends Subsystem {
 
 	}
 
-	public static void rightSideTurn(double distance,int angle) {
+	public static void rightSideTurn(double distance,double angle,double speedB) {
 		double rightEnc = RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition();
 		RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition();
 		double fixedDistance = distance * RobotMap.encoder2actual;
@@ -281,14 +281,14 @@ public class DriveTrain extends Subsystem {
 			
 			// Veering left, correct towards the right
 			if ((RobotMap.originalAngle+angle) > RobotMap.ahrs.getAngle()) {
-				RobotMap.TAL_rightMaster.set(-1 * speedButSpencers);
-				RobotMap.TAL_leftMaster.set(speedButSpencers + .6);
+				RobotMap.TAL_rightMaster.set(-1 * speedB);
+				RobotMap.TAL_leftMaster.set(speedB + .6);
 			}
 
 			// Veering right, correct towards the left
 			else if ((RobotMap.originalAngle+angle) < RobotMap.ahrs.getAngle()) {
-				RobotMap.TAL_rightMaster.set(-1 * speedButSpencers - 0.1);
-				RobotMap.TAL_leftMaster.set(speedButSpencers );
+				RobotMap.TAL_rightMaster.set(-1 * speedB - 0.1);
+				RobotMap.TAL_leftMaster.set(speedB );
 			}
 
 			// Right on the money
@@ -304,7 +304,7 @@ public class DriveTrain extends Subsystem {
 		}
 
 	}
-	public static void leftSideTurn(double distance, int angle) {
+	public static void leftSideTurn(double distance, double angle, double speedB) {
 		RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition();
 		double leftEnc = RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition();
 		double fixedDistance = distance * RobotMap.encoder2actual;
@@ -314,19 +314,19 @@ public class DriveTrain extends Subsystem {
 			
 			// Veering left, correct towards the right
 			if ((RobotMap.originalAngle-angle) > RobotMap.ahrs.getAngle()) {
-				RobotMap.TAL_rightMaster.set(-1 * speedButSpencers);
-				RobotMap.TAL_leftMaster.set(speedButSpencers + .1);
+				RobotMap.TAL_rightMaster.set(-1 * speedB);
+				RobotMap.TAL_leftMaster.set(speedB + .1);
 			}
 
 			// Veering right, correct towards the left
 			else if ((RobotMap.originalAngle-angle) < RobotMap.ahrs.getAngle()) {
-				RobotMap.TAL_rightMaster.set(-1 * speedButSpencers - .6);
-				RobotMap.TAL_leftMaster.set(speedButSpencers);
+				RobotMap.TAL_rightMaster.set(-1 * speedB - .6);
+				RobotMap.TAL_leftMaster.set(speedB);
 			}
 
 			// Right on the money
 			else {
-				RobotMap.TAL_rightMaster.set(-1 * speedButSpencers);
+				RobotMap.TAL_rightMaster.set(-1 * speedB);
 				RobotMap.TAL_leftMaster.set(speed);
 			}
 
