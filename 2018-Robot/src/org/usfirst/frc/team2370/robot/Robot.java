@@ -42,7 +42,7 @@ import org.usfirst.frc.team2370.robot.subsystems.Elevator;
 import org.usfirst.frc.team2370.robot.subsystems.Gripper;
 import org.usfirst.frc.team2370.robot.subsystems.LEDs;
 import org.usfirst.frc.team2370.robot.subsystems.Pneumatics;
-import org.usfirst.frc.team2370.robot.subsystems.Vision;
+
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -61,7 +61,7 @@ public class Robot extends TimedRobot {
 	public static final Elevator kElevator = new Elevator();
 	// public static final Ramps kRamps = new Ramps();
 	public static final RobotMap kRobotMap = new RobotMap();
-	public static final Vision kVision = new Vision();
+	
 	public static final Dashboard kDashboard = new Dashboard();
 	public static final Pneumatics kPneumatics = new Pneumatics();
 
@@ -88,7 +88,7 @@ public class Robot extends TimedRobot {
 		// rMap = new RobotMap();
 		DriveTrain.motorSetup();
 		Elevator.elevatorSetup();
-		Vision.usbCamSetup();
+	
 		RobotMap.TAL_rightMaster.setSafetyEnabled(false);
 		RobotMap.TAL_leftMaster.setSafetyEnabled(false);
 		RobotMap.TAL_rightSlave.setSafetyEnabled(false);
@@ -254,11 +254,11 @@ public class Robot extends TimedRobot {
 			RobotMap.timePin.set(false);
 		}
 		
-		SmartDashboard.putNumber("Box Sensor Value", RobotMap.ALA_BoxSensor.getVoltage()); 
-		SmartDashboard.putNumber("Elevator Position Percent", (RobotMap.TAL_elevatorMotor.getSensorCollection().getQuadraturePosition()/60));
+		//SmartDashboard.putNumber("Box Sensor Value", RobotMap.ALA_BoxSensor.getVoltage()); 
+		SmartDashboard.putNumber("Elevator Position", (RobotMap.TAL_elevatorMotor.getSensorCollection().getQuadraturePosition()));
 		// SmartDashboard.putNumber("Elevator Pos2",
 		// RobotMap.TAL_elevatorMotor.getSelectedSensorPosition(0));
-		SmartDashboard.putNumber("Elevator Setpoint Percent", (RobotMap.TAL_elevatorMotor.getClosedLoopTarget(0))/60);
+		SmartDashboard.putNumber("Elevator Setpoint", (RobotMap.TAL_elevatorMotor.getClosedLoopTarget(0)));
 		// SmartDashboard.putNumber("Elevator Current",
 		// RobotMap.TAL_elevatorMotor.getOutputCurrent());
 		SmartDashboard.putBoolean("The freaking limitswitch",

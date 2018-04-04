@@ -26,7 +26,7 @@ public class ElevatorToTop extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Elevator.setPos(-8500);
+		Elevator.setPos(-300);
 		//end();
 	}
 

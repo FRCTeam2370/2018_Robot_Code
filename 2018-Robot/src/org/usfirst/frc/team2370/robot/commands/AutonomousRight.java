@@ -14,14 +14,14 @@ public class AutonomousRight extends CommandGroup {
 		case "lll":
 			
 			// Drive to the scale and place the cube (Around the world)
-			addSequential(new DriveStraight(217), 4.3);
-			addSequential(new TurnLeft(84), 1.5);
-			addSequential(new DriveStraight(156), 3.4);
-			addSequential(new PushElevatorSol(), .1);
-			addSequential(new TurnLeft(65), 1);
-			// addSequential(new SetElevatorPosition(-3000));
-			addSequential(new DriveStraight(14), 1);
-			addSequential(new PushGripperButWayHarder());
+			addSequential(new DriveStraight(150), 4.3);
+//			addSequential(new TurnLeft(84), 1.5);
+//			addSequential(new DriveStraight(156), 3.4);
+//			addSequential(new PushElevatorSol(), .1);
+//			addSequential(new TurnLeft(65), 1);
+//			// addSequential(new SetElevatorPosition(-3000));
+//			addSequential(new DriveStraight(14), 1);
+//			addSequential(new PushGripperButWayHarder());
 			break;
 		case "rrr":
 			
@@ -56,14 +56,14 @@ public class AutonomousRight extends CommandGroup {
 		case "lrl":
 			if (RobotMap.preference.getVoltage() > RobotMap.preferenceAmount) {
 				// Drive to the scale and place the cube (Around the world)
-				addSequential(new DriveStraight(217), 4.3);
-				addSequential(new TurnLeft(84), 1.5);
-				addSequential(new DriveStraight(156), 3.4);
-				addSequential(new PushElevatorSol(), .1);
-				addSequential(new TurnLeft(65), 1);
-				// addSequential(new SetElevatorPosition(-3000));
-				addSequential(new DriveStraight(14), 1);
-				addSequential(new PushGripperButWayHarder());
+				addSequential(new DriveStraight(150), 4.3);
+//				addSequential(new TurnLeft(84), 1.5);
+//				addSequential(new DriveStraight(156), 3.4);
+//				addSequential(new PushElevatorSol(), .1);
+//				addSequential(new TurnLeft(65), 1);
+//				// addSequential(new SetElevatorPosition(-3000));
+//				addSequential(new DriveStraight(14), 1);
+//				addSequential(new PushGripperButWayHarder());
 			} else {
 				addParallel(new PushElevatorSol());
 				addSequential(new DriveStraight(242), 4);
@@ -97,7 +97,7 @@ public class AutonomousRight extends CommandGroup {
 			break;
 		// stop
 		default:
-			addSequential(new DriveStraight(300), 15);
+			addSequential(new DriveStraight(150), 15);
 			break;
 		}
 

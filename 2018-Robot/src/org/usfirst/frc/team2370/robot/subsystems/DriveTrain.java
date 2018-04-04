@@ -34,6 +34,7 @@ public class DriveTrain extends Subsystem {
 	 */
 
 	static double speed = .9;
+	static double speedButSpencers = 0.4;
 	static double turnSpeed = 0.50;
 
 	public static void motorSetup() {
@@ -105,8 +106,8 @@ public class DriveTrain extends Subsystem {
 		 * RobotMap.TAL_rightMaster.set(0); RobotMap.TAL_leftMaster.set(0); }
 		 */
 		if (RobotMap.ahrs.getAngle() < RobotMap.oldAngle + angle) {
-			RobotMap.TAL_rightMaster.set(turnSpeed );
-			RobotMap.TAL_leftMaster.set(turnSpeed );
+			RobotMap.TAL_rightMaster.set(turnSpeed);
+			RobotMap.TAL_leftMaster.set(turnSpeed);
 		}
 		// } else if (RobotMap.ahrs.getAngle() > RobotMap.oldAngle + angle) {
 		// RobotMap.TAL_rightMaster.set(-turnSpeed / 3);
@@ -267,6 +268,77 @@ public class DriveTrain extends Subsystem {
 		 * 
 		 * } else { RobotMap.TAL_rightMaster.set(0); RobotMap.TAL_leftMaster.set(0); }
 		 */
+
+	}
+
+	public static void rightSideSwitch1(double distance) {
+		double rightEnc = RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition();
+		double leftEnc = RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition();
+		double fixedDistance = distance * RobotMap.encoder2actual;
+		double error = rightEnc / fixedDistance;
+
+		// Angle matching
+		if ((rightEnc < fixedDistance)) {
+
+			
+			// Veering left, correct towards the right
+			if ((RobotMap.originalAngle+45) > RobotMap.ahrs.getAngle()) {
+				RobotMap.TAL_rightMaster.set(-1 * speedButSpencers);
+				RobotMap.TAL_leftMaster.set(speedButSpencers + .6);
+			}
+
+			// Veering right, correct towards the left
+			else if ((RobotMap.originalAngle+45) < RobotMap.ahrs.getAngle()) {
+				RobotMap.TAL_rightMaster.set(-1 * speedButSpencers - 0.1);
+				RobotMap.TAL_leftMaster.set(speedButSpencers );
+			}
+
+			// Right on the money
+			else {
+				RobotMap.TAL_rightMaster.set(-1 * speed);
+				RobotMap.TAL_leftMaster.set(speed);
+			}
+
+			// Stop the motors, you've made it to your destination
+		} else {
+			RobotMap.TAL_rightMaster.set(0);
+			RobotMap.TAL_leftMaster.set(0);
+		}
+
+	}
+	public static void leftSideSwitch2(double distance) {
+		double rightEnc = RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition();
+		double leftEnc = RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition();
+		double fixedDistance = distance * RobotMap.encoder2actual;
+		double error = rightEnc / fixedDistance;
+
+		// Angle matching
+		if ( leftEnc > fixedDistance * -1) {
+
+			
+			// Veering left, correct towards the right
+			if ((RobotMap.originalAngle-45) > RobotMap.ahrs.getAngle()) {
+				RobotMap.TAL_rightMaster.set(-1 * speedButSpencers);
+				RobotMap.TAL_leftMaster.set(speedButSpencers + .1);
+			}
+
+			// Veering right, correct towards the left
+			else if ((RobotMap.originalAngle-45) < RobotMap.ahrs.getAngle()) {
+				RobotMap.TAL_rightMaster.set(-1 * speedButSpencers - .6);
+				RobotMap.TAL_leftMaster.set(speedButSpencers);
+			}
+
+			// Right on the money
+			else {
+				RobotMap.TAL_rightMaster.set(-1 * speedButSpencers);
+				RobotMap.TAL_leftMaster.set(speed);
+			}
+
+			// Stop the motors, you've made it to your destination
+		} else {
+			RobotMap.TAL_rightMaster.set(0);
+			RobotMap.TAL_leftMaster.set(0);
+		}
 
 	}
 

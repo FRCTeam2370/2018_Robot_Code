@@ -15,30 +15,29 @@ import org.usfirst.frc.team2370.robot.subsystems.DriveTrain;
 /**
  * An example command. You can replace me with your own command.
  */
-public class DriveWithJoystick extends Command {
-	public DriveWithJoystick() {
+public class DriveLeft45 extends Command {
+	double distance = 0;
+	
+	public DriveLeft45(double distance) {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.kDriveTrain);
+		this.distance = distance;
 	}
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		DriveTrain.arcadeDrive(0, 0);
+		RobotMap.originalAngle = RobotMap.ahrs.getAngle();
+		RobotMap.TAL_rightMaster.getSensorCollection().setQuadraturePosition(0, 20);
+		RobotMap.TAL_leftMaster.getSensorCollection().setQuadraturePosition(0, 20);
+
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		if (RobotMap.controller.getRawAxis(3) > RobotMap.deadbandPercent) {
-			DriveTrain.arcadeDrive((RobotMap.controller.getRawAxis(3)) * RobotMap.ThrottleDamper, (RobotMap.controller.getRawAxis(0)) * RobotMap.ThrottleDamper);
-		}
-		else if (RobotMap.controller.getRawAxis(2) > RobotMap.deadbandPercent) {
-			DriveTrain.arcadeDrive((RobotMap.controller.getRawAxis(2) *-1) * RobotMap.ThrottleDamper, (RobotMap.controller.getRawAxis(0)) * RobotMap.ThrottleDamper);
-		}
-		else{
-			DriveTrain.arcadeDrive(0, RobotMap.controller.getRawAxis(0) * RobotMap.ThrottleDamper);
-		}
+		DriveTrain.leftSideSwitch2(distance);;
+		
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -50,12 +49,13 @@ public class DriveWithJoystick extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-		// DriveTrain.stopMotors();
+
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
+		end();
 	}
 }

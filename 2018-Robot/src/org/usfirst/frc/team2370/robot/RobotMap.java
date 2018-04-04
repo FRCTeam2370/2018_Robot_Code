@@ -11,9 +11,9 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 //import com.mindsensors.CANLight;
 import com.kauailabs.navx.frc.AHRS;
 
-import edu.wpi.cscore.UsbCamera;
+
 import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.CameraServer;
+
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DigitalOutput;
@@ -45,18 +45,18 @@ public class RobotMap {
 	 */
 	public static Solenoid SLN_shiftingSolenoid = new Solenoid(0);
 	public static Compressor compressor = new Compressor();
-	public static AnalogInput ALG_PreSensor = new AnalogInput(1);
-	public static AnalogInput ALA_BoxSensor = new AnalogInput(0);
+	public static AnalogInput ALG_PreSensor = new AnalogInput(0);
+	//public static AnalogInput ALA_BoxSensor = new AnalogInput(0);
 	public static boolean driverStop = false;
 
 	/**
 	 * This will set the speed controllers, drive train object, and deadband for the
 	 * DriveTrain subsystem
 	 */
-	public static WPI_TalonSRX TAL_rightMaster = new WPI_TalonSRX(16);
-	public static WPI_TalonSRX TAL_leftMaster = new WPI_TalonSRX(17);
-	public static WPI_TalonSRX TAL_rightSlave = new WPI_TalonSRX(18);
-	public static WPI_TalonSRX TAL_leftSlave = new WPI_TalonSRX(19);
+	public static WPI_TalonSRX TAL_rightMaster = new WPI_TalonSRX(13);
+	public static WPI_TalonSRX TAL_leftMaster = new WPI_TalonSRX(11);
+	public static WPI_TalonSRX TAL_rightSlave = new WPI_TalonSRX(12);
+	public static WPI_TalonSRX TAL_leftSlave = new WPI_TalonSRX(10);
 	public static DifferentialDrive driveTrain = new DifferentialDrive(TAL_leftMaster, TAL_rightMaster);
 	public static double deadbandPercent = .05;
 	public static double encoder2actual = 139.1519;//121.0576923;
@@ -68,7 +68,7 @@ public class RobotMap {
 	 * This will set the speed controllers for the Gripper subsystem
 	 */ 
 	public static WPI_TalonSRX TAL_gripMotorLeft = new WPI_TalonSRX(14);
-	public static WPI_TalonSRX TAL_gripMotorRight = new WPI_TalonSRX(11);
+	public static WPI_TalonSRX TAL_gripMotorRight = new WPI_TalonSRX(0);
 	
 	public static double ThrottleDamper = 1;
 	
@@ -83,8 +83,8 @@ public class RobotMap {
 	 * This will set the speed controller for the Elevator subsystem
 	 */
 
-public static WPI_TalonSRX TAL_elevatorMotor = new WPI_TalonSRX(15);
-	public static WPI_TalonSRX TAL_carriageMotor = new WPI_TalonSRX(13);
+public static WPI_TalonSRX TAL_elevatorMotor = new WPI_TalonSRX(18);
+	public static WPI_TalonSRX TAL_carriageMotor = new WPI_TalonSRX(0);
 	public static Solenoid SLN_elevatorSolenoid = new Solenoid(1);
 	public static DigitalInput DIG_elevatorBottom = new DigitalInput(0);
 	public static DigitalInput DIG_elevatorTop = new DigitalInput(1);
@@ -96,12 +96,11 @@ public static WPI_TalonSRX TAL_elevatorMotor = new WPI_TalonSRX(15);
 	public static int timeout = 5;*/
 	
 	/**
-	 * This will set the Limelight network table up and the driver USB camera for
+	 * This will set the Limelight network table up and the driver USB  for
 	 * the Vision subsystem
 	 */
 	public static NetworkTable limeLightTable = NetworkTable.getTable("limelight");
-	public static UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-
+	
 	/**
 	 * This will set up the buttons and controller for the OI (Operator Interface)
 	 */ 

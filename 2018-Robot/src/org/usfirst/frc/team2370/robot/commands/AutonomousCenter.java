@@ -46,9 +46,7 @@ public class AutonomousCenter extends CommandGroup {
 			break;
 		case "rrr":
 			addSequential(new DriveRight(), 1.4);
-			addParallel(new PushElevatorSol());
-			addSequential(new DriveLeft(), 1.2);
-			addSequential(new PushGripper());
+			
 			break;
 		case "rlr":
 			addSequential(new DriveRight(), 1.4);

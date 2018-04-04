@@ -13,19 +13,7 @@ public class AutonomousDefault extends CommandGroup {
 		// Drive forward into a wall or whatever
 		
 
-		addParallel(new PushElevatorSol());
-		addSequential(new DriveStraight(247), 4);
-		
-		addParallel(new ElevatorToTop());
-		addSequential(new TurnLeft(45), 1.5);
-		addSequential(new DriveForwardsSlow(9), 2.25);
-		//addSequential(new PushGripper(), 2);
-		addSequential(new DriveBackwardsSlow(8), 2);
-		addSequential(new ElevatorToBottom());
-		addSequential(new TurnLeft(75), 2.25);
-		
-		addSequential(new DriveStraight(28), 2);
-		
+	
 //		addSequential(new DriveBackwards(40), 2);
 //		addSequential(new ElevatorToTop());
 //		addSequential(new TurnRight(83), 3);
@@ -38,6 +26,15 @@ public class AutonomousDefault extends CommandGroup {
 		
 		
 		
+	//working right side
+	//addSequential(new DriveRight45(55), 3);
+	//addSequential(new DriveLeft45(40), 3);
+	//addSequential(new PushElevatorSol());
 		
+	//left side
+	addSequential(new DriveLeft45(35), 3);
+	addSequential(new DriveRight45(45), 3);
+	addSequential(new PushElevatorSol());
+	
 	}
 }

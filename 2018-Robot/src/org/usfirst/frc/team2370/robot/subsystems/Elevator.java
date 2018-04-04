@@ -9,6 +9,7 @@ package org.usfirst.frc.team2370.robot.subsystems;
 
 import org.usfirst.frc.team2370.robot.RobotMap;
 import org.usfirst.frc.team2370.robot.commands.CarriageWithJoystick;
+import org.usfirst.frc.team2370.robot.commands.ElevatorWithPOV;
 
 import com.ctre.phoenix.ParamEnum;
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -27,7 +28,7 @@ public class Elevator extends Subsystem {
 	// here. Call these from Commands.
 	public static final double BOTTOM = 0;
 
-	public static final double p = 2.5;
+	public static final double p = 0.8;//2.5
 	public static final double i = 0.0;
 	public static final double d = 0.0;
 
@@ -67,6 +68,17 @@ public class Elevator extends Subsystem {
 		RobotMap.TAL_elevatorMotor.set(ControlMode.Position, pos);
 	}
 	
+	/*public static void manualElevator(int POV) {
+		if (POV == 0) {
+			RobotMap.TAL_elevatorMotor.set(-0.1);
+		}
+		else if (POV == 180) {
+			RobotMap.TAL_elevatorMotor.set(0.1);
+		} else {
+			RobotMap.TAL_elevatorMotor.set(0);
+		}
+	}*/
+	
 public static double resetPos = 0;
 	
 	public static void elevatorReset() {
@@ -103,6 +115,7 @@ public static double resetPos = 0;
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
 		setDefaultCommand(new CarriageWithJoystick());
+		//setDefaultCommand(new ElevatorWithPOV());
 	}
 
 	
