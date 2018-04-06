@@ -88,7 +88,7 @@ public class Robot extends TimedRobot {
 		// rMap = new RobotMap();
 		DriveTrain.motorSetup();
 		Elevator.elevatorSetup();
-	
+		
 		RobotMap.TAL_rightMaster.setSafetyEnabled(false);
 		RobotMap.TAL_leftMaster.setSafetyEnabled(false);
 		RobotMap.TAL_rightSlave.setSafetyEnabled(false);
@@ -256,8 +256,8 @@ public class Robot extends TimedRobot {
 		
 		//SmartDashboard.putNumber("Box Sensor Value", RobotMap.ALA_BoxSensor.getVoltage()); 
 		SmartDashboard.putNumber("Elevator Position", (RobotMap.TAL_elevatorMotor.getSensorCollection().getQuadraturePosition()));
-		// SmartDashboard.putNumber("Elevator Pos2",
-		// RobotMap.TAL_elevatorMotor.getSelectedSensorPosition(0));
+		SmartDashboard.putNumber("Elevator Pos2", RobotMap.TAL_elevatorMotor.getSelectedSensorPosition(0));
+		
 		SmartDashboard.putNumber("Elevator Setpoint", (RobotMap.TAL_elevatorMotor.getClosedLoopTarget(0)));
 		// SmartDashboard.putNumber("Elevator Current",
 		// RobotMap.TAL_elevatorMotor.getOutputCurrent());

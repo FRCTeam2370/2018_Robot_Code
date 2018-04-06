@@ -282,12 +282,12 @@ public class DriveTrain extends Subsystem {
 			// Veering left, correct towards the right
 			if ((RobotMap.originalAngle+angle) > RobotMap.ahrs.getAngle()) {
 				RobotMap.TAL_rightMaster.set(-1 * speedB);
-				RobotMap.TAL_leftMaster.set(speedB + .6);
+				RobotMap.TAL_leftMaster.set(speedB + .4);
 			}
 
 			// Veering right, correct towards the left
 			else if ((RobotMap.originalAngle+angle) < RobotMap.ahrs.getAngle()) {
-				RobotMap.TAL_rightMaster.set(-1 * speedB - 0.1);
+				RobotMap.TAL_rightMaster.set(-1 * speedB - 0.2);
 				RobotMap.TAL_leftMaster.set(speedB );
 			}
 
@@ -315,12 +315,12 @@ public class DriveTrain extends Subsystem {
 			// Veering left, correct towards the right
 			if ((RobotMap.originalAngle-angle) > RobotMap.ahrs.getAngle()) {
 				RobotMap.TAL_rightMaster.set(-1 * speedB);
-				RobotMap.TAL_leftMaster.set(speedB + .1);
+				RobotMap.TAL_leftMaster.set(speedB + .2);
 			}
 
 			// Veering right, correct towards the left
 			else if ((RobotMap.originalAngle-angle) < RobotMap.ahrs.getAngle()) {
-				RobotMap.TAL_rightMaster.set(-1 * speedB - .6);
+				RobotMap.TAL_rightMaster.set(-1 * speedB - .4);
 				RobotMap.TAL_leftMaster.set(speedB);
 			}
 

@@ -28,7 +28,7 @@ public class Elevator extends Subsystem {
 	// here. Call these from Commands.
 	public static final double BOTTOM = 0;
 
-	public static final double p = 0.8;//2.5
+	public static final double p = 2.5;
 	public static final double i = 0.0;
 	public static final double d = 0.0;
 
