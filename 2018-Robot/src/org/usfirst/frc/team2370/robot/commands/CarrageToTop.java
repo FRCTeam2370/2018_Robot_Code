@@ -18,8 +18,8 @@ import org.usfirst.frc.team2370.robot.subsystems.Elevator;
 /**
  * An example command. You can replace me with your own command.
  */
-public class CarriageWithJoystick extends Command {
-	public CarriageWithJoystick() {
+public class CarrageToTop extends Command {
+	public CarrageToTop() {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.kElevator);
 	}
@@ -37,8 +37,11 @@ public class CarriageWithJoystick extends Command {
 		
 		//Elevator.moveCarriage(RobotMap.controller.getRawAxis(5));
 		
-		
-		Elevator.moveCarriage(RobotMap.controller.getRawAxis(5));
+		if(RobotMap.TAL_carriageMotor.getSensorCollection().isRevLimitSwitchClosed()) {
+		Elevator.stopCarriage();
+		}else {
+			Elevator.moveCarriage(1);
+		}
 		}
 		
 		//}
