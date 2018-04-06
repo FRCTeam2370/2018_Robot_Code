@@ -37,32 +37,20 @@ public class CarriageToBottom extends Command {
 
 		// Elevator.moveCarriage(RobotMap.controller.getRawAxis(5));
 
-		if (RobotMap.TAL_carriageMotor.getSensorCollection().isFwdLimitSwitchClosed()) {
-			Elevator.stopCarriage();
-		} else {
-			Elevator.moveCarriage(-1);
-
-		}
+		Elevator.moveCarriage(-1);
 
 	}
-
-	// }
-	/*
-	 * else if (RobotMap.controller.getRawAxis(5) < (RobotMap.deadbandPercent) * -1)
-	 * { Elevator.moveCarriage(RobotMap.controller.getRawAxis(5)); } else{
-	 * Elevator.stopCarriage(); }
-	 */
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return isTimedOut();
+		return RobotMap.TAL_carriageMotor.getSensorCollection().isFwdLimitSwitchClosed();
 	}
 
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-		// DriveTrain.stopMotors();
+		Elevator.stopCarriage();
 	}
 
 	// Called when another command which requires one or more of the same

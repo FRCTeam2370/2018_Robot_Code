@@ -33,6 +33,8 @@ public class DriveTrain extends Subsystem {
 	 * Method to setup the slave speed controllers to follower mode
 	 */
 
+	
+	
 	static double speed = .9;
 	
 	static double turnSpeed = 0.50;
@@ -244,6 +246,7 @@ public class DriveTrain extends Subsystem {
 		} else {
 			RobotMap.TAL_rightMaster.set(0);
 			RobotMap.TAL_leftMaster.set(0);
+			RobotMap.doneDriving = true;
 		}
 
 		// Encoder matching

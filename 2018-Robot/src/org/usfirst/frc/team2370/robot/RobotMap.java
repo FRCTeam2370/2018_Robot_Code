@@ -48,6 +48,7 @@ public class RobotMap {
 	public static AnalogInput ALG_PreSensor = new AnalogInput(0);
 	//public static AnalogInput ALA_BoxSensor = new AnalogInput(0);
 	public static boolean driverStop = false;
+	public static boolean doneDriving= false;
 
 	/**
 	 * This will set the speed controllers, drive train object, and deadband for the

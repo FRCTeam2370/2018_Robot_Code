@@ -27,42 +27,30 @@ public class CarriageToTop extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		
+
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		//if (RobotMap.controller.getRawAxis(5) > RobotMap.deadbandPercent) {
-		
-		//Elevator.moveCarriage(RobotMap.controller.getRawAxis(5));
-		
-		if(RobotMap.TAL_carriageMotor.getSensorCollection().isRevLimitSwitchClosed()) {
-		Elevator.stopCarriage();
-		}else {
-			Elevator.moveCarriage(1);
-		}
-		}
-		
-		//}
-		/*else if (RobotMap.controller.getRawAxis(5) < (RobotMap.deadbandPercent) * -1) {
-			Elevator.moveCarriage(RobotMap.controller.getRawAxis(5));
-		}
-		else{
-			Elevator.stopCarriage();
-		}*/
-	
+		// if (RobotMap.controller.getRawAxis(5) > RobotMap.deadbandPercent) {
+
+		// Elevator.moveCarriage(RobotMap.controller.getRawAxis(5));
+
+		Elevator.moveCarriage(1);
+
+	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return isTimedOut();
+		return RobotMap.TAL_carriageMotor.getSensorCollection().isRevLimitSwitchClosed();
 	}
 
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-		// DriveTrain.stopMotors();
+		Elevator.stopCarriage();
 	}
 
 	// Called when another command which requires one or more of the same

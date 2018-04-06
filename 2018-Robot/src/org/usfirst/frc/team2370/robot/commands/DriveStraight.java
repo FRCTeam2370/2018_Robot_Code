@@ -27,6 +27,7 @@ public class DriveStraight extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
+		RobotMap.doneDriving = false;
 		RobotMap.originalAngle = RobotMap.ahrs.getAngle();
 		RobotMap.TAL_rightMaster.getSensorCollection().setQuadraturePosition(0, 20);
 		RobotMap.TAL_leftMaster.getSensorCollection().setQuadraturePosition(0, 20);
@@ -43,7 +44,7 @@ public class DriveStraight extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return RobotMap.doneDriving;
 	}
 
 	// Called once after isFinished returns true
