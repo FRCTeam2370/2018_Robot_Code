@@ -93,18 +93,27 @@ public static double resetPos = 0;
 	}
 	
 	public static void moveCarriage(double speed) {
-//		if (RobotMap.TAL_carriageMotor.getSensorCollection().isFwdLimitSwitchClosed() == false && speed > 0) {
-//			RobotMap.TAL_carriageMotor.set(speed);
-//		}
-//		else if (RobotMap.TAL_carriageMotor.getSensorCollection().isFwdLimitSwitchClosed() == true) {
-//			RobotMap.TAL_carriageMotor.set(speed);
-//		}
-//		else {
-//			RobotMap.TAL_carriageMotor.set(0);
-//		}
+/*	if (RobotMap.TAL_carriageMotor.getSensorCollection().isFwdLimitSwitchClosed()  && speed > 0) {
+			RobotMap.TAL_carriageMotor.set(speed);
+	}
+	else if (RobotMap.TAL_carriageMotor.getSensorCollection().isFwdLimitSwitchClosed() ) {
+		RobotMap.TAL_carriageMotor.set(speed);
+	}
+	else {
+		RobotMap.TAL_carriageMotor.set(0);
+	}
 		
 		RobotMap.TAL_carriageMotor.set(speed);
 		
+	*/
+	if(RobotMap.TAL_carriageMotor.getSensorCollection().isFwdLimitSwitchClosed() && speed > 0) {
+		RobotMap.TAL_carriageMotor.set(0);
+	}else if (RobotMap.TAL_carriageMotor.getSensorCollection().isRevLimitSwitchClosed() && speed < 0) {
+		RobotMap.TAL_carriageMotor.set(0);
+	}else {
+		RobotMap.TAL_carriageMotor.set(speed);
+	}
+	
 	}
 	
 	public static void stopCarriage() {

@@ -18,8 +18,8 @@ import org.usfirst.frc.team2370.robot.subsystems.Elevator;
 /**
  * An example command. You can replace me with your own command.
  */
-public class CarriageWithJoystick extends Command {
-	public CarriageWithJoystick() {
+public class CarriageToBottom extends Command {
+	public CarriageToBottom() {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.kElevator);
 	}
@@ -27,28 +27,31 @@ public class CarriageWithJoystick extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		
+
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		//if (RobotMap.controller.getRawAxis(5) > RobotMap.deadbandPercent) {
-		
-		//Elevator.moveCarriage(RobotMap.controller.getRawAxis(5));
-		
-		
-		Elevator.moveCarriage(RobotMap.controller.getRawAxis(5));
-		}
-		
-		//}
-		/*else if (RobotMap.controller.getRawAxis(5) < (RobotMap.deadbandPercent) * -1) {
-			Elevator.moveCarriage(RobotMap.controller.getRawAxis(5));
-		}
-		else{
+		// if (RobotMap.controller.getRawAxis(5) > RobotMap.deadbandPercent) {
+
+		// Elevator.moveCarriage(RobotMap.controller.getRawAxis(5));
+
+		if (RobotMap.TAL_carriageMotor.getSensorCollection().isFwdLimitSwitchClosed()) {
 			Elevator.stopCarriage();
-		}*/
-	
+		} else {
+			Elevator.moveCarriage(-1);
+
+		}
+
+	}
+
+	// }
+	/*
+	 * else if (RobotMap.controller.getRawAxis(5) < (RobotMap.deadbandPercent) * -1)
+	 * { Elevator.moveCarriage(RobotMap.controller.getRawAxis(5)); } else{
+	 * Elevator.stopCarriage(); }
+	 */
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override

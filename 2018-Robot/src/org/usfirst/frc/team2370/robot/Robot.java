@@ -294,6 +294,9 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putBoolean("Center", RobotMap.center.get());
 		SmartDashboard.putBoolean("Right", RobotMap.right.get());
 		SmartDashboard.putBoolean("DriverStop", RobotMap.driverStop);
+		SmartDashboard.putBoolean("Bottom carriage switch", RobotMap.TAL_carriageMotor.getSensorCollection().isFwdLimitSwitchClosed());
+		SmartDashboard.putBoolean("Top carriarge switch", RobotMap.TAL_carriageMotor.getSensorCollection().isRevLimitSwitchClosed());
+		
 		
 		SmartDashboard.putNumber("Carriage Bus Voltage", RobotMap.TAL_carriageMotor.getBusVoltage());
 		SmartDashboard.putNumber("Carriage Output Voltage", RobotMap.TAL_carriageMotor.getMotorOutputVoltage());
