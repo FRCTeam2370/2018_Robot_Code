@@ -18,8 +18,8 @@ import org.usfirst.frc.team2370.robot.subsystems.Elevator;
 /**
  * An example command. You can replace me with your own command.
  */
-public class CarrageToTop extends Command {
-	public CarrageToTop() {
+public class CarriageToTop extends Command {
+	public CarriageToTop() {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.kElevator);
 	}
@@ -56,7 +56,7 @@ public class CarrageToTop extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return isTimedOut();
 	}
 
 	// Called once after isFinished returns true

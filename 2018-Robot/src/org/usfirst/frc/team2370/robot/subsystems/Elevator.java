@@ -33,7 +33,7 @@ public class Elevator extends Subsystem {
 	public static final double d = 0.0;
 
 	public Elevator() {
-		
+
 	}
 
 	public static void elevatorSetup() {
@@ -46,18 +46,19 @@ public class Elevator extends Subsystem {
 		RobotMap.TAL_elevatorMotor.configNominalOutputReverse(0, timeout);
 		RobotMap.TAL_elevatorMotor.configPeakOutputForward(0.6, timeout);
 		RobotMap.TAL_elevatorMotor.configPeakOutputReverse(-1.0, timeout);
-		
-		//RobotMap.TAL_elevatorMotor.
-		
+
+		// RobotMap.TAL_elevatorMotor.
+
 		RobotMap.TAL_elevatorMotor.config_kP(0, p, timeout);
 		RobotMap.TAL_elevatorMotor.config_kI(0, i, timeout);
 		RobotMap.TAL_elevatorMotor.config_kD(0, d, timeout);
 
 		RobotMap.TAL_elevatorMotor.setInverted(true);
-		
-		//RobotMap.TAL_carriageMotor.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen, 0);
-}
-	
+
+		// RobotMap.TAL_carriageMotor.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector,
+		// LimitSwitchNormal.NormallyOpen, 0);
+	}
+
 	/**
 	 * Set the PID setpoint to the given value
 	 * 
@@ -67,23 +68,19 @@ public class Elevator extends Subsystem {
 	public static void setPos(double pos) {
 		RobotMap.TAL_elevatorMotor.set(ControlMode.Position, pos);
 	}
-	
-	/*public static void manualElevator(int POV) {
-		if (POV == 0) {
-			RobotMap.TAL_elevatorMotor.set(-0.1);
-		}
-		else if (POV == 180) {
-			RobotMap.TAL_elevatorMotor.set(0.1);
-		} else {
-			RobotMap.TAL_elevatorMotor.set(0);
-		}
-	}*/
-	
-public static double resetPos = 0;
-	
+
+	/*
+	 * public static void manualElevator(int POV) { if (POV == 0) {
+	 * RobotMap.TAL_elevatorMotor.set(-0.1); } else if (POV == 180) {
+	 * RobotMap.TAL_elevatorMotor.set(0.1); } else {
+	 * RobotMap.TAL_elevatorMotor.set(0); } }
+	 */
+
+	public static double resetPos = 0;
+
 	public static void elevatorReset() {
 		if (RobotMap.DIG_elevatorBottom.get() == false) {
-			//RobotMap.TAL_elevatorMotor.set(-0.1);
+			// RobotMap.TAL_elevatorMotor.set(-0.1);
 			RobotMap.TAL_elevatorMotor.set(ControlMode.Position, resetPos);
 			resetPos += 30;
 		} else {
@@ -91,31 +88,34 @@ public static double resetPos = 0;
 			RobotMap.TAL_elevatorMotor.getSensorCollection().setQuadraturePosition(0, 20);
 		}
 	}
-	
+
 	public static void moveCarriage(double speed) {
-/*	if (RobotMap.TAL_carriageMotor.getSensorCollection().isFwdLimitSwitchClosed()  && speed > 0) {
+		/*
+		 * if (RobotMap.TAL_carriageMotor.getSensorCollection().isFwdLimitSwitchClosed()
+		 * && speed > 0) { RobotMap.TAL_carriageMotor.set(speed); } else if
+		 * (RobotMap.TAL_carriageMotor.getSensorCollection().isFwdLimitSwitchClosed() )
+		 * { RobotMap.TAL_carriageMotor.set(speed); } else {
+		 * RobotMap.TAL_carriageMotor.set(0); }
+		 * 
+		 * RobotMap.TAL_carriageMotor.set(speed);
+		 * 
+		 */
+//		if ((RobotMap.TAL_carriageMotor.getSensorCollection().isFwdLimitSwitchClosed() && speed > 0) || (RobotMap.TAL_carriageMotor.getSensorCollection().isRevLimitSwitchClosed() && speed < 0)) {
+//			RobotMap.TAL_carriageMotor.set(0);
+//		} else {
+//			RobotMap.TAL_carriageMotor.set(speed);
+//		}
+
+		if (RobotMap.TAL_carriageMotor.getSensorCollection().isFwdLimitSwitchClosed() && speed > 0) {
+			RobotMap.TAL_carriageMotor.set(0);
+		} else if (RobotMap.TAL_carriageMotor.getSensorCollection().isRevLimitSwitchClosed() && speed < 0) {
+			RobotMap.TAL_carriageMotor.set(0);
+		} else {
 			RobotMap.TAL_carriageMotor.set(speed);
+		}
+
 	}
-	else if (RobotMap.TAL_carriageMotor.getSensorCollection().isFwdLimitSwitchClosed() ) {
-		RobotMap.TAL_carriageMotor.set(speed);
-	}
-	else {
-		RobotMap.TAL_carriageMotor.set(0);
-	}
-		
-		RobotMap.TAL_carriageMotor.set(speed);
-		
-	*/
-	if(RobotMap.TAL_carriageMotor.getSensorCollection().isFwdLimitSwitchClosed() && speed > 0) {
-		RobotMap.TAL_carriageMotor.set(0);
-	}else if (RobotMap.TAL_carriageMotor.getSensorCollection().isRevLimitSwitchClosed() && speed < 0) {
-		RobotMap.TAL_carriageMotor.set(0);
-	}else {
-		RobotMap.TAL_carriageMotor.set(speed);
-	}
-	
-	}
-	
+
 	public static void stopCarriage() {
 		RobotMap.TAL_carriageMotor.set(0);
 	}
@@ -124,8 +124,7 @@ public static double resetPos = 0;
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
 		setDefaultCommand(new CarriageWithJoystick());
-		//setDefaultCommand(new ElevatorWithPOV());
+		// setDefaultCommand(new ElevatorWithPOV());
 	}
 
-	
 }
