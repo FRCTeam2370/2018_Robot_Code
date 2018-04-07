@@ -17,7 +17,7 @@ import org.usfirst.frc.team2370.robot.subsystems.DriveTrain;
  */
 public class DriveStraight extends Command {
 	double distance = 0;
-	
+
 	public DriveStraight(double distance) {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.kDriveTrain);
@@ -27,18 +27,17 @@ public class DriveStraight extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		RobotMap.doneDriving = false;
-		RobotMap.originalAngle = RobotMap.ahrs.getAngle();
 		RobotMap.TAL_rightMaster.getSensorCollection().setQuadraturePosition(0, 20);
 		RobotMap.TAL_leftMaster.getSensorCollection().setQuadraturePosition(0, 20);
-
+		RobotMap.originalAngle = RobotMap.ahrs.getAngle(); 
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
+		RobotMap.doneDriving = false;
 		DriveTrain.driveForward(distance);
-		
+
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -50,7 +49,9 @@ public class DriveStraight extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-
+		RobotMap.TAL_rightMaster.getSensorCollection().setQuadraturePosition(0, 20);
+		RobotMap.TAL_leftMaster.getSensorCollection().setQuadraturePosition(0, 20);
+		RobotMap.doneDriving = false;
 	}
 
 	// Called when another command which requires one or more of the same

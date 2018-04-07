@@ -28,6 +28,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team2370.robot.commands.AutonomousLeft;
 import org.usfirst.frc.team2370.robot.commands.AutonomousRight;
 //import org.usfirst.frc.team2370.robot.commands.testAuto;
+import org.usfirst.frc.team2370.robot.commands.DriveStraight;
 
 import java.util.concurrent.TimeUnit;
 
@@ -206,6 +207,8 @@ public class Robot extends TimedRobot {
 
 		
 		SmartDashboard.putNumber("IMU_Angle", RobotMap.ahrs.getAngle());
+		SmartDashboard.putNumber("Left Encoder", RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition());
+		SmartDashboard.putNumber("Right Encoder", RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition());
 	}
 
 	@Override
@@ -224,7 +227,7 @@ public class Robot extends TimedRobot {
 		// RobotMap.compressor.setClosedLoopControl(true);
 		// RobotMap.compressor.start();
 		RobotMap.ahrs.reset();
-		RobotMap.compressor.enabled();
+		//RobotMap.compressor.enabled();
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
 		}
@@ -253,55 +256,60 @@ public class Robot extends TimedRobot {
 		} else {
 			RobotMap.timePin.set(false);
 		}
+		SmartDashboard.putBoolean("Done Driving", RobotMap.doneDriving);
 		
-		//SmartDashboard.putNumber("Box Sensor Value", RobotMap.ALA_BoxSensor.getVoltage()); 
-		SmartDashboard.putNumber("Elevator Position", (RobotMap.TAL_elevatorMotor.getSensorCollection().getQuadraturePosition()));
-		SmartDashboard.putNumber("Elevator Pos2", RobotMap.TAL_elevatorMotor.getSelectedSensorPosition(0));
-		
-		SmartDashboard.putNumber("Elevator Setpoint", (RobotMap.TAL_elevatorMotor.getClosedLoopTarget(0)));
-		// SmartDashboard.putNumber("Elevator Current",
-		// RobotMap.TAL_elevatorMotor.getOutputCurrent());
-		SmartDashboard.putBoolean("The freaking limitswitch",
-		RobotMap.TAL_elevatorMotor.getSensorCollection().isFwdLimitSwitchClosed());
+		//		
+//		
+//		//SmartDashboard.putNumber("Box Sensor Value", RobotMap.ALA_BoxSensor.getVoltage()); 
+//		SmartDashboard.putNumber("Elevator Position", (RobotMap.TAL_elevatorMotor.getSensorCollection().getQuadraturePosition()));
+//		SmartDashboard.putNumber("Elevator Pos2", RobotMap.TAL_elevatorMotor.getSelectedSensorPosition(0));
+//		
+//		SmartDashboard.putNumber("Elevator Setpoint", (RobotMap.TAL_elevatorMotor.getClosedLoopTarget(0)));
+//		// SmartDashboard.putNumber("Elevator Current",
+//		// RobotMap.TAL_elevatorMotor.getOutputCurrent());
+//		SmartDashboard.putBoolean("The freaking limitswitch",
+//		RobotMap.TAL_elevatorMotor.getSensorCollection().isFwdLimitSwitchClosed());
 		SmartDashboard.putNumber("IMU_Angle", RobotMap.ahrs.getAngle());
 		SmartDashboard.putNumber("IMU_Yaw", RobotMap.ahrs.getYaw());
-		SmartDashboard.putNumber("Voltage", DriverStation.getInstance().getBatteryVoltage());
-
-		SmartDashboard.putNumber("Right Pos", RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition());
-		// SmartDashboard.putNumber("Right Pos2",
-		// RobotMap.TAL_rightMaster.getSelectedSensorPosition(0));
-		// SmartDashboard.putNumber("Right Setpoint",
-		// RobotMap.TAL_rightMaster.getClosedLoopTarget(0));
-
-		SmartDashboard.putNumber("Left Pos", RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition());
-		
+		SmartDashboard.putNumber("Right Encoder", RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition());
+		SmartDashboard.putNumber("Left Encoder", RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition());
+//		SmartDashboard.putNumber("Voltage", DriverStation.getInstance().getBatteryVoltage());
+//
+//		SmartDashboard.putNumber("Right Pos", RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition());
+//		// SmartDashboard.putNumber("Right Pos2",
+//		// RobotMap.TAL_rightMaster.getSelectedSensorPosition(0));
+//		// SmartDashboard.putNumber("Right Setpoint",
+//		// RobotMap.TAL_rightMaster.getClosedLoopTarget(0));
+//
+//		SmartDashboard.putNumber("Left Pos", RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition());
+//		
 		SmartDashboard.putNumber("Right Master Current", RobotMap.TAL_rightMaster.getOutputCurrent());
 		SmartDashboard.putNumber("Left Master Current", RobotMap.TAL_leftMaster.getOutputCurrent());
 		SmartDashboard.putNumber("Right Slave Current", RobotMap.TAL_rightSlave.getOutputCurrent());
 		SmartDashboard.putNumber("Left Slave Current", RobotMap.TAL_leftSlave.getOutputCurrent());
-				
-		// SmartDashboard.putNumber("Left Pos2",
-		// RobotMap.TAL_leftMaster.getSelectedSensorPosition(0));
-		// SmartDashboard.putNumber("Left Setpoint",
-		// RobotMap.TAL_leftMaster.getClosedLoopTarget(0));
-		// RobotMap.currentTurnTicks =
-		// ((RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition() +
-		// RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition()) /2)/
-		// RobotMap.encoder2TurnDegrees;
-		SmartDashboard.putNumber("Turning Degrees", RobotMap.currentTurnDegrees);
-		SmartDashboard.putNumber("Presurre sensor", ((RobotMap.ALG_PreSensor.getAverageVoltage() - 0.5222)/.0188));
-		SmartDashboard.putBoolean("Left", RobotMap.left.get());
-		SmartDashboard.putBoolean("Center", RobotMap.center.get());
-		SmartDashboard.putBoolean("Right", RobotMap.right.get());
-		SmartDashboard.putBoolean("DriverStop", RobotMap.driverStop);
-		SmartDashboard.putBoolean("Bottom carriage switch", RobotMap.TAL_carriageMotor.getSensorCollection().isFwdLimitSwitchClosed());
-		SmartDashboard.putBoolean("Top carriarge switch", RobotMap.TAL_carriageMotor.getSensorCollection().isRevLimitSwitchClosed());
-		
-		
-		SmartDashboard.putNumber("Carriage Bus Voltage", RobotMap.TAL_carriageMotor.getBusVoltage());
-		SmartDashboard.putNumber("Carriage Output Voltage", RobotMap.TAL_carriageMotor.getMotorOutputVoltage());
-		
-		SmartDashboard.putNumber("Preference Voltage", RobotMap.preference.getVoltage());
+//				
+//		// SmartDashboard.putNumber("Left Pos2",
+//		// RobotMap.TAL_leftMaster.getSelectedSensorPosition(0));
+//		// SmartDashboard.putNumber("Left Setpoint",
+//		// RobotMap.TAL_leftMaster.getClosedLoopTarget(0));
+//		// RobotMap.currentTurnTicks =
+//		// ((RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition() +
+//		// RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition()) /2)/
+//		// RobotMap.encoder2TurnDegrees;
+//		SmartDashboard.putNumber("Turning Degrees", RobotMap.currentTurnDegrees);
+//		SmartDashboard.putNumber("Presurre sensor", ((RobotMap.ALG_PreSensor.getAverageVoltage() - 0.5222)/.0188));
+//		SmartDashboard.putBoolean("Left", RobotMap.left.get());
+//		SmartDashboard.putBoolean("Center", RobotMap.center.get());
+//		SmartDashboard.putBoolean("Right", RobotMap.right.get());
+//		SmartDashboard.putBoolean("DriverStop", RobotMap.driverStop);
+//		SmartDashboard.putBoolean("Bottom carriage switch", RobotMap.TAL_carriageMotor.getSensorCollection().isFwdLimitSwitchClosed());
+//		SmartDashboard.putBoolean("Top carriarge switch", RobotMap.TAL_carriageMotor.getSensorCollection().isRevLimitSwitchClosed());
+//		
+//		
+//		SmartDashboard.putNumber("Carriage Bus Voltage", RobotMap.TAL_carriageMotor.getBusVoltage());
+//		SmartDashboard.putNumber("Carriage Output Voltage", RobotMap.TAL_carriageMotor.getMotorOutputVoltage());
+//		
+//		SmartDashboard.putNumber("Preference Voltage", RobotMap.preference.getVoltage());
 	}
 
 	/**

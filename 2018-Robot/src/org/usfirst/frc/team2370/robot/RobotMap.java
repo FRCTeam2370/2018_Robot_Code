@@ -48,7 +48,8 @@ public class RobotMap {
 	public static AnalogInput ALG_PreSensor = new AnalogInput(0);
 	//public static AnalogInput ALA_BoxSensor = new AnalogInput(0);
 	public static boolean driverStop = false;
-	public static boolean doneDriving= false;
+	public static boolean doneDriving = false;
+	public static boolean doneTurning = false;
 
 	/**
 	 * This will set the speed controllers, drive train object, and deadband for the
@@ -69,7 +70,7 @@ public class RobotMap {
 	 * This will set the speed controllers for the Gripper subsystem
 	 */ 
 	public static WPI_TalonSRX TAL_gripMotorLeft = new WPI_TalonSRX(14);
-	public static WPI_TalonSRX TAL_gripMotorRight = new WPI_TalonSRX(0);
+	public static WPI_TalonSRX TAL_gripMotorRight = new WPI_TalonSRX(6);
 	
 	public static double ThrottleDamper = 1;
 	
@@ -109,7 +110,7 @@ public static WPI_TalonSRX TAL_elevatorMotor = new WPI_TalonSRX(18);
 	public static Button BTN_elevatorToBot = new JoystickButton(controller, 1);
 	public static Button BTN_elevatorToTop = new JoystickButton(controller, 2);
 	public static Button BTN_shift = new JoystickButton(controller, 3);
-	public static Button BTN_resetElevator = new JoystickButton(controller, 4);
+	public static Button BTN_climb = new JoystickButton(controller, 4);
 	public static Button BTN_gripperPull = new JoystickButton(controller, 5);
 	public static Button BTN_gripperPush = new JoystickButton(controller, 6);
 	public static Button BTN_dropElevatorSol = new JoystickButton(controller, 7);

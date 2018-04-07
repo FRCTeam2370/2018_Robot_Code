@@ -18,7 +18,7 @@ import org.usfirst.frc.team2370.robot.subsystems.DriveTrain;
 
 public class TurnRight extends Command {
 	public double angle;
-	
+
 	public TurnRight(double angle) {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.kDriveTrain);
@@ -29,11 +29,12 @@ public class TurnRight extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		//RobotMap.TAL_leftMaster.getSensorCollection().setQuadraturePosition(0, 20);
-		//RobotMap.TAL_rightMaster.getSensorCollection().setQuadraturePosition(0, 20);
+		// RobotMap.TAL_leftMaster.getSensorCollection().setQuadraturePosition(0, 20);
+		// RobotMap.TAL_rightMaster.getSensorCollection().setQuadraturePosition(0, 20);
+		RobotMap.doneTurning = false;
 		RobotMap.oldAngle = RobotMap.ahrs.getAngle();
-		//setTimeout(3);
-		
+		// setTimeout(3);
+
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -45,12 +46,14 @@ public class TurnRight extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return RobotMap.doneTurning;
 	}
 
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
+		RobotMap.originalAngle = RobotMap.ahrs.getAngle();
+		RobotMap.doneTurning = false;
 	}
 
 	// Called when another command which requires one or more of the same

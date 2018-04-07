@@ -8,23 +8,21 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class SetElevatorPosition extends Command {
-	double position;
-    public SetElevatorPosition(double position) {
+public class Wait extends Command {
+	double seconds;
+    public Wait(double seconds) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	this.position = position;
-    	requires(Robot.kElevator);
+    	this.seconds = seconds;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	setTimeout(.5);
+    	setTimeout(seconds);
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-    	Elevator.setPos(position);
+    protected void execute() {;
     }
 
     // Make this return true when this Command no longer needs to run execute()

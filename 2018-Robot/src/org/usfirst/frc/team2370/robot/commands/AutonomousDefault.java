@@ -26,17 +26,17 @@ public class AutonomousDefault extends CommandGroup {
 		*/
 		
 		
-		addSequential(new DriveStraight(210), 3);
-		addSequential(new TurnRight(80), 1.3);
-		addParallel(new PushElevatorSol(), .5);
-		addSequential(new DriveStraight(165), 3.6);
-		addParallel(new ElevatorToTop(), .5);
-		addSequential(new TurnLeft(80), 1.4);
+		addSequential(new DriveStraight(210));
+		addSequential(new TurnLeft(78));
+		//addSequential(new PushElevatorSol(), 2);
+		addSequential(new DriveStraight(180));
+		//addParallel(new ElevatorToTop(), .5);
+		addSequential(new TurnRight(80));
 		
 		addSequential(new DriveForwardsSlow(28), 1.4);
-		addSequential(new PushGripperButWayHarder(), .2);
+		//addSequential(new PushGripperButWayHarder(), .2);
 		addSequential(new DriveBackwardsSlow(3), 1);
-		addSequential(new ElevatorToBottom(), .5);
+		//addSequential(new ElevatorToBottom(), .5);
 		
 		
 

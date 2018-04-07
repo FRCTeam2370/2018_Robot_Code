@@ -35,7 +35,7 @@ public class DriveTrain extends Subsystem {
 
 	
 	
-	static double speed = .9;
+	static double speed = .8;
 	
 	static double turnSpeed = 0.50;
 
@@ -115,6 +115,7 @@ public class DriveTrain extends Subsystem {
 		// RobotMap.TAL_rightMaster.set(-turnSpeed / 3);
 		// RobotMap.TAL_leftMaster.set(-turnSpeed / 3);
 		else {
+			RobotMap.doneTurning = true;
 			RobotMap.TAL_rightMaster.set(0);
 			RobotMap.TAL_leftMaster.set(0);
 		}
@@ -147,10 +148,8 @@ public class DriveTrain extends Subsystem {
 			RobotMap.TAL_rightMaster.set((-1 * turnSpeed));
 			RobotMap.TAL_leftMaster.set((-1 * turnSpeed));
 		}
-		// } else if (RobotMap.ahrs.getAngle() < RobotMap.oldAngle - angle) {
-		// RobotMap.TAL_rightMaster.set(turnSpeed / 3);
-		// RobotMap.TAL_leftMaster.set(turnSpeed / 3);
 		else {
+			RobotMap.doneTurning = true;
 			RobotMap.TAL_rightMaster.set(0);
 			RobotMap.TAL_leftMaster.set(0);
 		}
@@ -175,10 +174,12 @@ public class DriveTrain extends Subsystem {
 	 *            The distance (In inches) to drive forward
 	 */
 	public static void driveForward(double distance) {
+		
 		double rightEnc = RobotMap.TAL_rightMaster.getSensorCollection().getQuadraturePosition();
 		double leftEnc = RobotMap.TAL_leftMaster.getSensorCollection().getQuadraturePosition();
 		double fixedDistance = distance * RobotMap.encoder2actual;
 		double error = rightEnc / fixedDistance;
+		//RobotMap.doneDriving = false;
 
 		// Angle matching
 		if ((rightEnc < fixedDistance) || leftEnc > fixedDistance * -1) {
@@ -244,9 +245,9 @@ public class DriveTrain extends Subsystem {
 
 			// Stop the motors, you've made it to your destination
 		} else {
+			RobotMap.doneDriving = true;
 			RobotMap.TAL_rightMaster.set(0);
 			RobotMap.TAL_leftMaster.set(0);
-			RobotMap.doneDriving = true;
 		}
 
 		// Encoder matching

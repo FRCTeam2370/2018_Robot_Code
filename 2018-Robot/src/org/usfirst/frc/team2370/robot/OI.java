@@ -10,19 +10,15 @@ ved.                        */
 package org.usfirst.frc.team2370.robot;
  
 import org.usfirst.frc.team2370.robot.commands.ChangeGears;
-import org.usfirst.frc.team2370.robot.commands.DriveBackwards;
+import org.usfirst.frc.team2370.robot.commands.Climb;
 import org.usfirst.frc.team2370.robot.commands.DriveStraight;
 import org.usfirst.frc.team2370.robot.commands.DropElevatorSol;
-import org.usfirst.frc.team2370.robot.commands.ElevatorReset;
 import org.usfirst.frc.team2370.robot.commands.ElevatorToBottom;
 import org.usfirst.frc.team2370.robot.commands.ElevatorToTop;
 import org.usfirst.frc.team2370.robot.commands.PullGripper;
 import org.usfirst.frc.team2370.robot.commands.PushElevatorSol;
 import org.usfirst.frc.team2370.robot.commands.PushGripper;
-import org.usfirst.frc.team2370.robot.commands.PushGripperButWayHarder;
 import org.usfirst.frc.team2370.robot.commands.StopGripper;
-import org.usfirst.frc.team2370.robot.commands.TurnLeft;
-import org.usfirst.frc.team2370.robot.commands.TurnRight;
 
 //import edu.wpi.first.wpilibj.Joystick; 
 //import edu.wpi.first.wpilibj.buttons.Button;
@@ -39,7 +35,7 @@ public class OI {
 		RobotMap.BTN_pushElevatorSol.whenPressed(new PushElevatorSol());
 		
 		//RobotMap.BTN_resetElevator.whenPressed(new ElevatorReset());
-		RobotMap.BTN_resetElevator.whenPressed(new PushGripperButWayHarder());
+		RobotMap.BTN_climb.whenPressed(new DriveStraight(24));
 		
 		RobotMap.BTN_elevatorToBot.whenPressed(new ElevatorToBottom());
 		RobotMap.BTN_elevatorToTop.whenPressed(new ElevatorToTop());

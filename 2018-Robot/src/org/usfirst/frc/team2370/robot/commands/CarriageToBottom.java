@@ -33,9 +33,6 @@ public class CarriageToBottom extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		// if (RobotMap.controller.getRawAxis(5) > RobotMap.deadbandPercent) {
-
-		// Elevator.moveCarriage(RobotMap.controller.getRawAxis(5));
 
 		Elevator.moveCarriage(-1);
 
