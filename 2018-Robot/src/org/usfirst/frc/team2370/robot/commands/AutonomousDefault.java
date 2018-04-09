@@ -10,6 +10,27 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutonomousDefault extends CommandGroup {
 
 	public AutonomousDefault() {
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		/*
 		addSequential(new DriveStraight(210), 4.3);
 		addSequential(new TurnLeft(80), 1.5);
@@ -27,6 +48,8 @@ public class AutonomousDefault extends CommandGroup {
 		
 		
 		
+		/** working around the world scale auto **/
+		/**
 		addSequential(new DriveStraight(211));
 		addSequential(new TurnLeft(80));
 		addSequential(new PushElevatorSol(),.1);
@@ -44,7 +67,7 @@ public class AutonomousDefault extends CommandGroup {
 		addSequential(new ElevatorToBottom(), .5);
 		addSequential(new TurnLeft(175));
 		addSequential(new CarriageToBottom());
-		
+		**/
 
 	//left side
 	//the driveLeft and driveRight commands has 3 parameters (distance, angle, speed)
