@@ -15,7 +15,7 @@ public class AutonomousLeft extends CommandGroup {
 		case "lll":
 
 			if (RobotMap.preference.getVoltage() < RobotMap.preferenceAmount) {
-				// Scale our Side
+				// Scale on our side
 				addParallel(new PushElevatorSol());
 				addSequential(new DriveStraight(242));
 				addSequential(new Wait(.5));
@@ -23,14 +23,19 @@ public class AutonomousLeft extends CommandGroup {
 				addSequential(new Wait(.2));
 				addSequential(new TurnRight(45));
 				addSequential(new DriveForwardsSlow(15), 2.5);
-				addSequential(new PushGripperButWayHarder(), 2);
+				addSequential(new PushGripperButWayHarder(), 1.5);
 				addSequential(new DriveBackwardsSlow(8), 2);
 				addSequential(new ElevatorToBottom());
-				addSequential(new TurnRight(75), 2.25);
+				addSequential(new TurnRight(75));
 
-				addSequential(new DriveStraight(28), 2);
+				// Attempt switch too
+				addSequential(new DriveStraight(28));
+				addSequential(new PullGripper(), 1.5);
+				addSequential(new CarriageToTop());
+				addSequential(new PushGripper());
+				
 			} else {
-				//Switch our Side
+				// Switch on our side
 				addSequential(new DriveStraight(142));
 				addParallel(new PushElevatorSol(), 0.1);
 				addSequential(new TurnRight(84), 1.5);
@@ -85,7 +90,7 @@ public class AutonomousLeft extends CommandGroup {
 				addSequential(new PushGripperButWayHarder(), 2);
 				addSequential(new DriveBackwardsSlow(8), 2);
 				addSequential(new ElevatorToBottom());
-				addSequential(new TurnRight(75), 2.25);
+				addSequential(new TurnRight(75));
 
 				addSequential(new DriveStraight(28), 2);
 
