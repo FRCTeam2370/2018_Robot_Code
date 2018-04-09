@@ -245,7 +245,7 @@ public class Robot extends TimedRobot {
 
 		Scheduler.getInstance().run();
 		
-		if (RobotMap.sonar.getVoltage() < 0.3) {
+/*		if (RobotMap.sonar.getVoltage() < 0.3) {
 			RobotMap.boxPin.set(true);
 		} else {
 			RobotMap.boxPin.set(false);
@@ -256,7 +256,7 @@ public class Robot extends TimedRobot {
 		} else {
 			RobotMap.timePin.set(false);
 		}
-		SmartDashboard.putBoolean("Done Driving", RobotMap.doneDriving);
+		SmartDashboard.putBoolean("Done Driving", RobotMap.doneDriving);*/
 		
 		//		
 //		
@@ -287,7 +287,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("Left Master Current", RobotMap.TAL_leftMaster.getOutputCurrent());
 		SmartDashboard.putNumber("Right Slave Current", RobotMap.TAL_rightSlave.getOutputCurrent());
 		SmartDashboard.putNumber("Left Slave Current", RobotMap.TAL_leftSlave.getOutputCurrent());
-//				
+		SmartDashboard.putNumber("Ultra Sonic", RobotMap.ANAL_Sensor.getVoltage());
 //		// SmartDashboard.putNumber("Left Pos2",
 //		// RobotMap.TAL_leftMaster.getSelectedSensorPosition(0));
 //		// SmartDashboard.putNumber("Left Setpoint",

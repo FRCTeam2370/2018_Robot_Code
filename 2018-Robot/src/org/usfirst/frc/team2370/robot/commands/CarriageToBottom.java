@@ -34,7 +34,7 @@ public class CarriageToBottom extends Command {
 	@Override
 	protected void execute() {
 
-		Elevator.moveCarriage(-1);
+		Elevator.moveCarriage(.35);
 
 	}
 

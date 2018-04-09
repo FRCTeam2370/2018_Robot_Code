@@ -140,7 +140,8 @@ public static WPI_TalonSRX TAL_elevatorMotor = new WPI_TalonSRX(18);
 	public static DigitalInput right = new DigitalInput(4);
 	// Above 50% is switch preference, below 50% is scale preference
 	public static double preferenceAmount = 2.5;
-	public static AnalogInput preference = new AnalogInput(3);
+	public static AnalogInput ANAL_Sensor = new AnalogInput(3);
+	public static AnalogInput preference = new AnalogInput(1);
 	
 	public static double originalAngle = 0;
 	
@@ -155,5 +156,5 @@ public static WPI_TalonSRX TAL_elevatorMotor = new WPI_TalonSRX(18);
 	public static DigitalOutput timePin = new DigitalOutput(8);
 	// True if box is inside of gripper
 	public static DigitalOutput boxPin = new DigitalOutput(9);
-	public static AnalogInput sonar = new AnalogInput(2);
+	
 }
